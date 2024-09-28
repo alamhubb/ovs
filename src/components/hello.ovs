@@ -1,5 +1,5 @@
 var a = 101
 
-div{
+export default div{
   a
 }

@@ -1,8 +1,6 @@
 export const code =
     `
-var a = 10
-
-div{
-  a
+export default div{
+  1
 }
 \n`
