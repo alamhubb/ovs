@@ -5,6 +5,6 @@ export function ovsGenerateTsCode(typescriptAst: SourceFile): string {
         newLine: ts.NewLineKind.LineFeed, // 设置换行符
         removeComments: false,             // 保留注释
     });
-    const tsCode = printer.printFile(sourceFileAst);
+    const tsCode = printer.printFile(typescriptAst);
     return tsCode
 }

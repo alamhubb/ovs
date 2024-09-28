@@ -1,4 +1,4 @@
-import {OvsSyntaxName} from "../chervotainSyntaxDefine/OvsChevrotainSyntaxDefine.ts";
+import {OvsSyntaxName} from "./OvsChevrotainSyntaxDefine.ts";
 import ChevrotainEcma5Cst from "../model/ChevrotainEcma5Cst.ts";
 import ts, {SourceFile, Statement} from "typescript";
 import {Es5SyntaxName, tokenIndexMap} from "../ecma5/ecma5_parser.ts";
@@ -20,7 +20,7 @@ ovsToTsTokenSyntaxMap.set(Es5TokenName.Identifier, ts.SyntaxKind.Identifier)
  * @param programAst
  */
 export function transformOvsAstToTsAst(programAst: ChevrotainEcma5Ast): SourceFile {
-    if (chevrotainAst.name !== Es5SyntaxName.Program) {
+    if (programAst.name !== Es5SyntaxName.Program) {
         throw "解析错误"
     }
     const statements: Statement [] = []
@@ -65,7 +65,7 @@ export function transformOvsChevrotainCstToAst(cst: ChevrotainEcma5Cst): Chevrot
             //{name: 'additionExpression', children: {…}}
             keyValue.forEach(indexChild => {
                 // {name,child}
-                const transformChild = convertCstToChevrotainAst(indexChild)
+                const transformChild = transformOvsChevrotainCstToAst(indexChild)
                 // Object.keys(indexChild.children).forEach(realKey => {
                 //   const realChild = indexChild.children[realKey]
                 // const transformChild = transform(realKey, realChild[0], level + 1)

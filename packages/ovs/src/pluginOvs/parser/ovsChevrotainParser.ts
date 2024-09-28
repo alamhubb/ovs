@@ -1,6 +1,6 @@
-import {OvsChevrotainSyntaxDefine} from "../chervotainSyntaxDefine/OvsChevrotainSyntaxDefine.ts";
 import {tokenize} from "../ecma5/ecma5_lexer.ts";
 import ChevrotainEcma5Cst from "../model/ChevrotainEcma5Cst.ts";
+import {OvsChevrotainSyntaxDefine} from "./OvsChevrotainSyntaxDefine.ts";
 
 /**
  * Convert string code to ovs Chevrotain cst
