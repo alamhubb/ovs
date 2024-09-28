@@ -16,89 +16,21 @@ const ovsToTsTokenSyntaxMap: Map<string, number> = new Map()
 ovsToTsTokenSyntaxMap.set(Es5TokenName.NumericLiteral, ts.SyntaxKind.NumericLiteral)
 ovsToTsTokenSyntaxMap.set(Es5TokenName.Identifier, ts.SyntaxKind.Identifier)
 
-
-/**
- * Convert string code to ovs Chevrotain cst
- * @param code
- */
-
-
-export function ovsChevrotainParserToCst(code: string): ChevrotainEcma5Cst {
-    const parserInstance = new OvsChevrotainSyntaxDefine();
-    const tokens = tokenize(code);
-    parserInstance.input = tokens;
-    parserInstance.orgText = code;
-    const cst = parserInstance.Program();
-    if (parserInstance.errors.length > 0) {
-        console.log(parserInstance.errors)
-        throw Error("Sad Sad Panda");
-    }
-    return cst
-}
-
-
 /**
  * Convert ovs Chevrotain cst to ast
  * @param code
  */
-export function ovsTransformAstToTsAst(ast: ChevrotainEcma5Ast): SourceFile {
-
-}
-
-
-/**
- * Convert ovs Chevrotain cst to ast
- * @param code
- */
-export function ovsTransformChevrotainCstToAst(cst: ChevrotainEcma5Cst): ChevrotainEcma5Ast {
-    const ovsChevrotainAst = {...cst, children: []};
-
-    if (ovsChevrotainAst.tokenTypeIdx) {
-        ovsChevrotainAst.tokenType = tokenIndexMap.get(ovsChevrotainAst.tokenTypeIdx)
-    }
-    // {additionExpression:[]}
-    const childObj = cst.children
-    if (childObj) {
-        //additionExpression:[]
-        Object.keys(childObj).forEach((key) => {
-            //additionExpression
-            //对象属性的名字，这个属性对应的是个数组
-            //数组，数组里面只有一个元素，
-            //[]
-            const keyValue = cst.children[key]
-            //得到数组里面的这个对象
-            //{name: 'additionExpression', children: {…}}
-            keyValue.forEach(indexChild => {
-                // {name,child}
-                const transformChild = convertCstToChevrotainAst(indexChild)
-                // Object.keys(indexChild.children).forEach(realKey => {
-                //   const realChild = indexChild.children[realKey]
-                // const transformChild = transform(realKey, realChild[0], level + 1)
-                ovsChevrotainAst.children.push(transformChild)
-                // })
-            })
-        })
-    }
-    return ovsChevrotainAst;
-}
-
-export function transformToAST(chevrotainAst: ChevrotainEcma5Ast) {
+export function ovsTransformAstToTsAst(programAst: ChevrotainEcma5Ast): SourceFile {
     if (chevrotainAst.name !== Es5SyntaxName.Program) {
         throw "解析错误"
     }
-    const astRes = transformProgramAst(chevrotainAst)
-    return astRes
-}
-
-function transformProgramAst(programAst: ChevrotainEcma5Ast): SourceFile {
-
     const statements: Statement [] = []
 
     const sourceFile: SourceFile = {
         kind: ts.SyntaxKind.SourceFile,
         statements: statements,
         text: "",
-        fileName: "fsadfasd.ts"
+        fileName: "_$$ovs$$temp$$ovsToTsAst.ts"
     }
     programAst.children.forEach(sourceElements => {
         sourceElements.children.forEach(statement => {
@@ -106,8 +38,6 @@ function transformProgramAst(programAst: ChevrotainEcma5Ast): SourceFile {
             statements.push(statementAst)
         })
     })
-
-
     return sourceFile
 }
 

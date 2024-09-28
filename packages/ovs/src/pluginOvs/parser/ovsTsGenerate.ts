@@ -16,7 +16,7 @@ const ovsToTsTokenSyntaxMap: Map<string, number> = new Map()
 ovsToTsTokenSyntaxMap.set(Es5TokenName.NumericLiteral, ts.SyntaxKind.NumericLiteral)
 ovsToTsTokenSyntaxMap.set(Es5TokenName.Identifier, ts.SyntaxKind.Identifier)
 
-export function ovsTsParser(ovsChevrotainAst: ChevrotainEcma5Ast): SourceFile {
+export function ovsTsGenerate(ovsChevrotainAst: ChevrotainEcma5Ast): SourceFile {
     const tsAst = ovsToTsAst(ovsChevrotainAst)
     return tsAst
 }

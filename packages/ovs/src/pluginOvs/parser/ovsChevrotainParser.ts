@@ -31,8 +31,8 @@ export function ovsChevrotainParser(code: string): ChevrotainEcma5Ast {
         console.log(parserInstance.errors)
         throw Error("Sad Sad Panda");
     }
-    const ovsChevrotainCst = ovsChevrotainParserToCst(res)
-    const ovsChevrotainAst = ovsChevrotainParserCstToAst(ovsChevrotainCst)
+    const ovsChevrotainCst = ovsChevrotainParseToCst(res)
+    const ovsChevrotainAst = ovsChevrotainParseCstToAst(ovsChevrotainCst)
     return ovsChevrotainAst
 }
 
@@ -40,7 +40,7 @@ export function ovsChevrotainParser(code: string): ChevrotainEcma5Ast {
  * Convert string code to ovs Chevrotain cst
  * @param code
  */
-export function ovsChevrotainParserToCst(code: string): ChevrotainEcma5Cst {
+export function ovsChevrotainParseToCst(code: string): ChevrotainEcma5Cst {
     const parserInstance = new OvsChevrotainSyntaxDefine();
     const tokens = tokenize(code);
     parserInstance.input = tokens;
@@ -54,7 +54,7 @@ export function ovsChevrotainParserToCst(code: string): ChevrotainEcma5Cst {
 }
 
 
-export function ovsChevrotainParserCstToAst(cst: ChevrotainEcma5Cst): ChevrotainEcma5Ast {
+export function ovsChevrotainParseCstToAst(cst: ChevrotainEcma5Cst): ChevrotainEcma5Ast {
     const ovsChevrotainAst = {...cst, children: []};
 
     if (ovsChevrotainAst.tokenTypeIdx) {
