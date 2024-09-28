@@ -18,9 +18,9 @@ ovsToTsTokenSyntaxMap.set(Es5TokenName.Identifier, ts.SyntaxKind.Identifier)
 
 /**
  * Convert ovs Chevrotain cst to ast
- * @param code
+ * @param programAst
  */
-export function ovsTransformAstToTsAst(programAst: ChevrotainEcma5Ast): SourceFile {
+export function transformOvsAstToTsAst(programAst: ChevrotainEcma5Ast): SourceFile {
     if (chevrotainAst.name !== Es5SyntaxName.Program) {
         throw "解析错误"
     }
@@ -41,6 +41,55 @@ export function ovsTransformAstToTsAst(programAst: ChevrotainEcma5Ast): SourceFi
     return sourceFile
 }
 
+
+/**
+ * Convert ovs Chevrotain cst to ast
+ * @param code
+ */
+export function transformOvsChevrotainCstToAst(cst: ChevrotainEcma5Cst): ChevrotainEcma5Ast {
+    const ovsChevrotainAst = {...cst, children: []};
+
+    if (ovsChevrotainAst.tokenTypeIdx) {
+        ovsChevrotainAst.tokenType = tokenIndexMap.get(ovsChevrotainAst.tokenTypeIdx)
+    }
+    // {additionExpression:[]}
+    const childObj = cst.children
+    if (childObj) {
+        //additionExpression:[]
+        Object.keys(childObj).forEach((key) => {
+            //additionExpression
+            //对象属性的名字，这个属性对应的是个数组
+            //数组，数组里面只有一个元素，
+            //[]
+            const keyValue = cst.children[key]
+            //得到数组里面的这个对象
+            //{name: 'additionExpression', children: {…}}
+            keyValue.forEach(indexChild => {
+                // {name,child}
+                const transformChild = convertCstToChevrotainAst(indexChild)
+                // Object.keys(indexChild.children).forEach(realKey => {
+                //   const realChild = indexChild.children[realKey]
+                // const transformChild = transform(realKey, realChild[0], level + 1)
+                ovsChevrotainAst.children.push(transformChild)
+                // })
+            })
+        })
+    }
+    return ovsChevrotainAst;
+}
+
+
+
+function transformStatementAst(statementAst: ChevrotainEcma5Ast): Statement {
+    let ast: TypescriptAstNode<StatementExtendNode> = {}
+    const syntax = statementAst.children[0]
+    if (syntax.name === OvsSyntaxName.OvsDomRenderStatement) {
+        ast = transformOvsRenderDomAst(syntax);
+    } else if (syntax.name === Es5SyntaxName.VariableStatement) {
+        ast = transformVariableStatementAst(syntax);
+    }
+    return ast
+}
 
 //      EndOfFileToken = 1,
 //      StringLiteral = 11,
@@ -119,17 +168,6 @@ function transformOvsRenderDomAst(syntax: ChevrotainEcma5Ast) {
         }
     }
     return ast;
-}
-
-function transformStatementAst(statementAst: ChevrotainEcma5Ast): Statement {
-    let ast: TypescriptAstNode<StatementExtendNode> = {}
-    const syntax = statementAst.children[0]
-    if (syntax.name === OvsSyntaxName.OvsDomRenderStatement) {
-        ast = transformOvsRenderDomAst(syntax);
-    } else if (syntax.name === Es5SyntaxName.VariableStatement) {
-        ast = transformVariableStatementAst(syntax);
-    }
-    return ast
 }
 
 
