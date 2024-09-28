@@ -19,8 +19,8 @@ const sourceFile = ts.createSourceFile(
 
 console.log(JSON.stringify(sourceFile))*/
 
-/*import {OvsParser} from "@/pluginOvs/OvsParser.ts";
-import {tokenize} from "@/pluginOvs/ecma5/ecma5_lexer.ts";
+/*import {OvsParser} from "@/ovs/OvsParser.ts";
+import {tokenize} from "@/ovs/ecma5/ecma5_lexer.ts";
 
 const code =
     `
