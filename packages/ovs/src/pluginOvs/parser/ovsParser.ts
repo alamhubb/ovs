@@ -1,14 +1,9 @@
-import {tokenize} from "../ecma5/ecma5_lexer.ts";
-import {convertCstToChevrotainAst, transformToAST} from "../parser/transformToAST.ts";
-import {code} from "./code.ts";
-import {OvsChevrotainSyntaxDefine} from "../chervotainSyntaxDefine/OvsChevrotainSyntaxDefine.ts";
+import {OvsChevrotainSyntaxDefine} from "@/pluginOvs/chervotainSyntaxDefine/OvsChevrotainSyntaxDefine";
+import {tokenize} from "@/pluginOvs/ecma5/ecma5_lexer";
+import {convertCstToChevrotainAst, transformToAST} from "@/pluginOvs/parser/transformToAST";
+import ChevrotainEcma5Ast from "@/pluginOvs/model/ChevrotainEcma5Ast";
 
-
-const res1 = getChevrotainToTsAst(code)
-
-
-
-export function getChevrotainToTsAst(code) {
+export function ovsTypescriptParser(code) {
 
     const parserInstance = new OvsChevrotainSyntaxDefine();
     const tokens = tokenize(code);
@@ -58,4 +53,6 @@ export function getChevrotainToTsAst(code) {
     return res1
 }
 
+export function ovsChevrotainParser(): ChevrotainEcma5Ast {
 
+}

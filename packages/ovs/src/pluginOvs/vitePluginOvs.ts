@@ -1,10 +1,10 @@
 // Vite 插件
 import {createFilter} from "vite";
-import {OvsParser} from "./OvsParser.ts";
+import {OvsChevrotainSyntaxDefine} from "./chervotainSyntaxDefine/OvsChevrotainSyntaxDefine.ts";
 import {tokenize} from "./ecma5/ecma5_lexer.ts";
 import ts, {isMethodDeclaration, SyntaxKind} from "typescript";
 import {convertCst} from "./ConvertChevrotainEcma5CstToTypescriptAst.ts";
-import {convertCstToChevrotainAst, transformToAST} from "./transformToAST.ts";
+import {convertCstToChevrotainAst, transformToAST} from "./parser/transformToAST.ts";
 import {getChevrotainToTsAst} from "./ovsTest/ovsGenerateAst.ts";
 
 export function vitePluginOvsTransform(code) {
