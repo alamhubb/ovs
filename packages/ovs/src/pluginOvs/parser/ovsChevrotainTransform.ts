@@ -1,7 +1,6 @@
-import {OvsChevrotainSyntaxDefine, OvsSyntaxName} from "../chervotainSyntaxDefine/OvsChevrotainSyntaxDefine.ts";
-import {tokenize} from "../ecma5/ecma5_lexer.ts";
+import {OvsSyntaxName} from "../chervotainSyntaxDefine/OvsChevrotainSyntaxDefine.ts";
 import ChevrotainEcma5Cst from "../model/ChevrotainEcma5Cst.ts";
-import ts, {Node, NodeArray, SourceFile, Statement} from "typescript";
+import ts, {SourceFile, Statement} from "typescript";
 import {Es5SyntaxName, tokenIndexMap} from "../ecma5/ecma5_parser.ts";
 import ChevrotainEcma5Ast from "../model/ChevrotainEcma5Ast.ts";
 import {
