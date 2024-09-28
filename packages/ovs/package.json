@@ -39,6 +39,7 @@
     "typescript": "^5.5.3",
     "vite": "^5.4.1",
     "vite-plugin-inspect": "^0.8.7",
+    "vitest": "^2.1.1",
     "vue-tsc": "^2.0.29",
     "xregexp": "5.1.1"
   }
