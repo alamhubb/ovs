@@ -1,13 +1,14 @@
 import {ECMAScript5Parser, Es5SyntaxName} from "../../grammars/ecma5/ecma5_parser";
 import * as t from "../../grammars/ecma5/ecma5_tokens";
+import {ES6Parser} from "../../grammars/es6/ES6Parser";
 
 export enum OvsSyntaxName {
     OvsDomRenderStatement = 'OvsDomRenderStatement',
 }
 
-export class OvsChevrotainSyntaxDefine extends ECMAScript5Parser {
+export class OvsChevrotainSyntaxDefine extends ES6Parser {
     constructor() {
-        super()
+        super(true)
         const $ = this
 
         $.OVERRIDE_RULE("Statement", () => {
