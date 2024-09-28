@@ -362,35 +362,34 @@ export class ECMAScript5Parser extends CstParser {
         });
 
         // A.4 Statements
-        var StatementVal = $.c2 ||
-            ($.c2 = [
-                {ALT: () => $.SUBRULE($.Block)},
-                {ALT: () => $.SUBRULE($[Es5SyntaxName.VariableStatement])},
-                {ALT: () => $.SUBRULE($.EmptyStatement)},
-                // "LabelledStatement" must appear before "ExpressionStatement" due to common lookahead prefix ("inner :" vs "inner")
-                {ALT: () => $.SUBRULE($.LabelledStatement)},
-                // The ambiguity is resolved by the ordering of the alternatives
-                // See: https://ecma-international.org/ecma-262/5.1/#sec-12.4
-                //   - [lookahead ∉ {{, function}]
-                {
-                    ALT: () => $.SUBRULE($.ExpressionStatement),
-                    IGNORE_AMBIGUITIES: true,
-                },
-                {ALT: () => $.SUBRULE($.IfStatement)},
-                {ALT: () => $.SUBRULE($.IterationStatement)},
-                {ALT: () => $.SUBRULE($.ContinueStatement)},
-                {ALT: () => $.SUBRULE($.BreakStatement)},
-                {ALT: () => $.SUBRULE($.ReturnStatement)},
-                {ALT: () => $.SUBRULE($.WithStatement)},
-                {ALT: () => $.SUBRULE($.SwitchStatement)},
-                {ALT: () => $.SUBRULE($.ThrowStatement)},
-                {ALT: () => $.SUBRULE($.TryStatement)},
-                {ALT: () => $.SUBRULE($.DebuggerStatement)},
-            ]);
         // See clause 12
         $.RULE("Statement", () => {
             $.OR(
-                StatementVal
+                $.c2 ||
+                ($.c2 = [
+                    {ALT: () => $.SUBRULE($.Block)},
+                    {ALT: () => $.SUBRULE($[Es5SyntaxName.VariableStatement])},
+                    {ALT: () => $.SUBRULE($.EmptyStatement)},
+                    // "LabelledStatement" must appear before "ExpressionStatement" due to common lookahead prefix ("inner :" vs "inner")
+                    {ALT: () => $.SUBRULE($.LabelledStatement)},
+                    // The ambiguity is resolved by the ordering of the alternatives
+                    // See: https://ecma-international.org/ecma-262/5.1/#sec-12.4
+                    //   - [lookahead ∉ {{, function}]
+                    {
+                        ALT: () => $.SUBRULE($.ExpressionStatement),
+                        IGNORE_AMBIGUITIES: true,
+                    },
+                    {ALT: () => $.SUBRULE($.IfStatement)},
+                    {ALT: () => $.SUBRULE($.IterationStatement)},
+                    {ALT: () => $.SUBRULE($.ContinueStatement)},
+                    {ALT: () => $.SUBRULE($.BreakStatement)},
+                    {ALT: () => $.SUBRULE($.ReturnStatement)},
+                    {ALT: () => $.SUBRULE($.WithStatement)},
+                    {ALT: () => $.SUBRULE($.SwitchStatement)},
+                    {ALT: () => $.SUBRULE($.ThrowStatement)},
+                    {ALT: () => $.SUBRULE($.TryStatement)},
+                    {ALT: () => $.SUBRULE($.DebuggerStatement)},
+                ])
             );
         });
 
