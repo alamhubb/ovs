@@ -1,4 +1,4 @@
-import {tokenize} from "../ecma5/ecma5_lexer.ts";
+import {tokenize} from "../../grammars/ecma5/ecma5_lexer.ts";
 import ChevrotainEcma5Cst from "../model/ChevrotainEcma5Cst.ts";
 import {OvsChevrotainSyntaxDefine} from "./OvsChevrotainSyntaxDefine.ts";
 

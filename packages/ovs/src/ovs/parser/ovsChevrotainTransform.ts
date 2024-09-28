@@ -1,7 +1,7 @@
 import {OvsSyntaxName} from "./OvsChevrotainSyntaxDefine.ts";
 import ChevrotainEcma5Cst from "../model/ChevrotainEcma5Cst.ts";
 import ts, {SourceFile, Statement} from "typescript";
-import {Es5SyntaxName, tokenIndexMap} from "../ecma5/ecma5_parser.ts";
+import {Es5SyntaxName, tokenIndexMap} from "../../grammars/ecma5/ecma5_parser.ts";
 import ChevrotainEcma5Ast from "../model/ChevrotainEcma5Ast.ts";
 import {
     ArgumentsExtendNode,
@@ -9,7 +9,7 @@ import {
     StatementExtendNode,
     TypescriptAstNode, TypescriptTextExtendAstNode
 } from "../TypescriptAstNode.ts";
-import {Es5TokenName} from "../ecma5/ecma5_tokens.ts";
+import {Es5TokenName} from "../../grammars/ecma5/ecma5_tokens.ts";
 
 const ovsToTsTokenSyntaxMap: Map<string, number> = new Map()
 ovsToTsTokenSyntaxMap.set(Es5TokenName.NumericLiteral, ts.SyntaxKind.NumericLiteral)

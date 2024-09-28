@@ -1,5 +1,5 @@
-import {ECMAScript5Parser} from "../ecma5/ecma5_parser";
-import * as t from "../ecma5/ecma5_tokens";
+import {ECMAScript5Parser} from "../../grammars/ecma5/ecma5_parser";
+import * as t from "../../grammars/ecma5/ecma5_tokens";
 
 export enum OvsSyntaxName {
     OvsDomRenderStatement = 'OvsDomRenderStatement',

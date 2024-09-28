@@ -14,7 +14,7 @@ export default defineConfig({
       include: [/\.vue$/, /\.ovs$/]
     }),
     vitePluginOvs(),
-    Inspect(),
+    // Inspect(),
     // pluginAspect1()
   ],
   build: {
