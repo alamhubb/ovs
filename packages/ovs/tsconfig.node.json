@@ -10,16 +10,20 @@
   ],
   "compilerOptions": {
     "strict": false,
-    "skipLibCheck": true,
     "composite": true,
     "noEmit": true,
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
     "module": "ESNext",
+    "types": [
+      "node"
+    ],
+    "esModuleInterop": true,
     "moduleResolution": "Bundler",
-    "types": ["node"],
     "allowImportingTsExtensions": true,
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ]
     }
   }
 }

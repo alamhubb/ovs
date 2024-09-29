@@ -1,4 +1,4 @@
-import {parseCodeToOvsCst} from "./OvsChevrotainParser";
+import {parseCodeToOvsCst} from "./OvsChevrotainParser.ts";
 
 
 parseCodeToOvsCst('div{}')
