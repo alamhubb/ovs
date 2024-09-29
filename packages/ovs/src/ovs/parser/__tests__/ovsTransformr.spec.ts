@@ -4,6 +4,18 @@ import {ovsGenerateCodeToTsCode} from "../ovsTsParser";
 import {ovsTransformToTsCode} from "../ovsTransformer";
 
 
+describe('test export default', () => {
+    const code = 'export default 10'
+
+    test('ovs test', () => {
+        expect(ovsTransformToTsCode(code))
+    })
+
+    test('ts test', () => {
+        expect(ovsGenerateCodeToTsCode(code))
+    })
+})
+
 describe('test export const a = 10', () => {
     const code = 'export var a = 10'
 

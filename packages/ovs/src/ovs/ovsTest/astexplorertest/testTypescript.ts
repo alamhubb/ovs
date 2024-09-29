@@ -1,6 +1,6 @@
 import ts from "typescript";
 import {cleanObject} from "../../util/clearOtherAttr";
-import {ovsGenerateAstToTsCode} from "../ovsTsParser";
+import {ovsGenerateAstToTsCode} from "../../parser/ovsTsParser";
 
 const id = "_$$ovs$$temp$$ovsToTsAst.ts"  // 虚拟文件名
 const code = `

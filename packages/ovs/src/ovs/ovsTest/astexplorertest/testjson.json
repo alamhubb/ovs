@@ -1,0 +1,28 @@
+{
+  "kind": 312,
+  "statements": [{
+    "kind": 277,
+    "expression": {
+      "kind": 9,
+      "text": "10"
+    }
+  }],
+  "endOfFileToken": {
+    "kind": 1
+  },
+  "text": "export default 10",
+  "bindDiagnostics": [],
+  "externalModuleIndicator": {
+    "kind": 277,
+    "expression": {
+      "kind": 9,
+      "text": "10"
+    }
+  },
+  "pragmas": {},
+  "referencedFiles": [],
+  "typeReferenceDirectives": [],
+  "libReferenceDirectives": [],
+  "amdDependencies": [],
+  "identifiers": {}
+}
