@@ -2,7 +2,10 @@ import {SourceFile} from "typescript";
 import ChevrotainEcma5Cst from "../model/ChevrotainEcma5Cst";
 import ChevrotainEcma5Ast from "../model/ChevrotainEcma5Ast";
 import {parseToOvsChevrotainCst} from "../parser/ovsChevrotainParser";
-import {transformOvsAstToTsAst, transformOvsChevrotainCstToAst} from "../parser/ovsChevrotainTransform";
+import {
+    transformOvsAstToTsAst,
+    transformOvsChevrotainCstToAst,
+} from "../parser/ovsChevrotainTransform";
 import {ovsGenerateAstToTsCode} from "./ovsTsParser";
 
 /**
@@ -22,7 +25,6 @@ export function ovsTransformToTsCode(code: string): string {
 
     const typescriptCode: string = ovsGenerateAstToTsCode(typescriptAst)
 
-    console.log(typescriptCode)
     return typescriptCode
 }
 

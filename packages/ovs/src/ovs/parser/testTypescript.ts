@@ -2,11 +2,9 @@ import ts from "typescript";
 import {cleanObject} from "../util/clearOtherAttr";
 import {ovsGenerateAstToTsCode} from "../parser/ovsTsParser";
 
-const id = "example.ts";  // 虚拟文件名
+const id = "_$$ovs$$temp$$ovsToTsAst.ts"  // 虚拟文件名
 const code = `
-    const x = 10;
-    const y = 20;
-    const sum = () => x + y;
+    var a = 10;
 `;
 
 const sourceFile = ts.createSourceFile(

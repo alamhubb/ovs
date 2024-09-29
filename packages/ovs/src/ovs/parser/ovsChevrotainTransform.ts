@@ -40,19 +40,23 @@ export function transformOvsAstToTsAst(programAst: ChevrotainEcma5Ast): SourceFi
     return sourceFile
 }
 
+export function transformOvsChevrotainCstToAst(chevrotainEcma5Cst: ChevrotainEcma5Cst) {
+    const chevrotainEcma5Ast: ChevrotainEcma5Ast = transformOvsChevrotainCstToAstChild(chevrotainEcma5Cst)
+    return chevrotainEcma5Ast
+}
 
 /**
  * Convert ovs Chevrotain cst to ast
- * @param code
+ * @param chevrotainEcma5Cst
  */
-export function transformOvsChevrotainCstToAst(cst: ChevrotainEcma5Cst): ChevrotainEcma5Ast {
-    const ovsChevrotainAst = {...cst, children: []};
+export function transformOvsChevrotainCstToAstChild(chevrotainEcma5Cst: ChevrotainEcma5Cst): ChevrotainEcma5Ast {
+    const ovsChevrotainAst = {...chevrotainEcma5Cst, children: []};
 
     if (ovsChevrotainAst.tokenTypeIdx) {
         ovsChevrotainAst.tokenType = tokenIndexMap.get(ovsChevrotainAst.tokenTypeIdx)
     }
     // {additionExpression:[]}
-    const childObj = cst.children
+    const childObj = chevrotainEcma5Cst.children
     if (childObj) {
         //additionExpression:[]
         Object.keys(childObj).forEach((key) => {
@@ -60,12 +64,12 @@ export function transformOvsChevrotainCstToAst(cst: ChevrotainEcma5Cst): Chevrot
             //对象属性的名字，这个属性对应的是个数组
             //数组，数组里面只有一个元素，
             //[]
-            const keyValue = cst.children[key]
+            const keyValue = chevrotainEcma5Cst.children[key]
             //得到数组里面的这个对象
             //{name: 'additionExpression', children: {…}}
             keyValue.forEach(indexChild => {
                 // {name,child}
-                const transformChild = transformOvsChevrotainCstToAst(indexChild)
+                const transformChild = transformOvsChevrotainCstToAstChild(indexChild)
                 // Object.keys(indexChild.children).forEach(realKey => {
                 //   const realChild = indexChild.children[realKey]
                 // const transformChild = transform(realKey, realChild[0], level + 1)
@@ -76,7 +80,6 @@ export function transformOvsChevrotainCstToAst(cst: ChevrotainEcma5Cst): Chevrot
     }
     return ovsChevrotainAst;
 }
-
 
 
 function transformStatementAst(statementAst: ChevrotainEcma5Ast): Statement {
