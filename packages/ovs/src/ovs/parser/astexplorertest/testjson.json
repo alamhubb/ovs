@@ -1,145 +1,25 @@
 {
-  "pos": 0,
-  "end": 48,
-  "flags": 0,
-  "modifierFlagsCache": 0,
-  "transformFlags": 4457472,
-  "kind": 308,
+  "kind": 312,
   "statements": [
     {
-      "pos": 0,
-      "end": 12,
-      "flags": 0,
-      "modifierFlagsCache": 0,
-      "transformFlags": 4457472,
-      "parent": "[Circular ~]",
-      "kind": 240,
-      "declarationList": {
-        "pos": 0,
-        "end": 12,
-        "flags": 2,
-        "modifierFlagsCache": 0,
-        "transformFlags": 4457472,
-        "parent": "[Circular ~.statements.0]",
-        "kind": 258,
-        "declarations": [
-          {
-            "pos": 5,
-            "end": 12,
-            "flags": 0,
-            "modifierFlagsCache": 0,
-            "transformFlags": 0,
-            "parent": "[Circular ~.statements.0.declarationList]",
-            "kind": 257,
-            "name": {
-              "pos": 5,
-              "end": 7,
-              "flags": 0,
-              "modifierFlagsCache": 0,
-              "transformFlags": 0,
-              "parent": "[Circular ~.statements.0.declarationList.declarations.0]",
-              "kind": 79,
-              "escapedText": "a"
-            },
-            "initializer": {
-              "pos": 9,
-              "end": 12,
-              "flags": 0,
-              "modifierFlagsCache": 0,
-              "transformFlags": 0,
-              "parent": "[Circular ~.statements.0.declarationList.declarations.0]",
-              "kind": 8,
-              "text": "10",
-              "numericLiteralFlags": 0
-            }
-          }
-        ]
-      }
-    },
-    {
-      "pos": 12,
-      "end": 35,
-      "flags": 0,
-      "modifierFlagsCache": 0,
-      "transformFlags": 0,
-      "parent": "[Circular ~]",
-      "kind": 269,
-      "importClause": {
-        "pos": 21,
-        "end": 23,
-        "flags": 0,
-        "modifierFlagsCache": 0,
-        "transformFlags": 0,
-        "parent": "[Circular ~.statements.1]",
-        "kind": 270,
-        "isTypeOnly": false,
-        "name": {
-          "pos": 21,
-          "end": 23,
-          "flags": 0,
-          "modifierFlagsCache": 0,
-          "transformFlags": 0,
-          "parent": "[Circular ~.statements.1.importClause]",
-          "kind": 79,
-          "escapedText": "a"
+      "kind": 243,
+      "modifiers": [
+        {
+          "kind": 95
         }
-      },
-      "moduleSpecifier": {
-        "pos": 28,
-        "end": 35,
-        "flags": 0,
-        "modifierFlagsCache": 0,
-        "transformFlags": 0,
-        "parent": "[Circular ~.statements.1]",
-        "kind": 10,
-        "text": "test",
-        "hasExtendedUnicodeEscape": false
-      }
-    },
-    {
-      "pos": 35,
-      "end": 48,
-      "flags": 0,
-      "modifierFlagsCache": 0,
-      "transformFlags": 4457472,
-      "parent": "[Circular ~]",
-      "kind": 240,
+      ],
       "declarationList": {
-        "pos": 35,
-        "end": 48,
-        "flags": 2,
-        "modifierFlagsCache": 0,
-        "transformFlags": 4457472,
-        "parent": "[Circular ~.statements.2]",
-        "kind": 258,
+        "kind": 261,
         "declarations": [
           {
-            "pos": 42,
-            "end": 48,
-            "flags": 0,
-            "modifierFlagsCache": 0,
-            "transformFlags": 0,
-            "parent": "[Circular ~.statements.2.declarationList]",
-            "kind": 257,
+            "kind": 260,
             "name": {
-              "pos": 42,
-              "end": 44,
-              "flags": 0,
-              "modifierFlagsCache": 0,
-              "transformFlags": 0,
-              "parent": "[Circular ~.statements.2.declarationList.declarations.0]",
-              "kind": 79,
-              "escapedText": "b"
+              "kind": 80,
+              "escapedText": "a"
             },
             "initializer": {
-              "pos": 46,
-              "end": 48,
-              "flags": 0,
-              "modifierFlagsCache": 0,
-              "transformFlags": 0,
-              "parent": "[Circular ~.statements.2.declarationList.declarations.0]",
-              "kind": 79,
-              "escapedText": "a"
+              "kind": 9,
+              "text": "10"
             }
           }
         ]
@@ -147,67 +27,32 @@
     }
   ],
   "endOfFileToken": {
-    "pos": 48,
-    "end": 48,
-    "flags": 0,
-    "modifierFlagsCache": 0,
-    "transformFlags": 0,
-    "parent": "[Circular ~]",
     "kind": 1
   },
-  "text": "const a = 10\n\n\nimport a from 'test'\n\nconst b = a",
-  "fileName": "astExplorer.tsx",
-  "path": "astExplorer.tsx",
-  "resolvedPath": "astExplorer.tsx",
-  "originalFileName": "astExplorer.tsx",
-  "languageVersion": 99,
-  "languageVariant": 1,
-  "scriptKind": 4,
-  "isDeclarationFile": false,
-  "hasNoDefaultLib": false,
-  "nodeCount": 16,
-  "identifierCount": 4,
-  "symbolCount": 0,
-  "parseDiagnostics": [],
+  "text": "\n    export var a = 10;\n",
   "bindDiagnostics": [],
   "externalModuleIndicator": {
-    "pos": 12,
-    "end": 35,
-    "flags": 0,
-    "modifierFlagsCache": 0,
-    "transformFlags": 0,
-    "parent": "[Circular ~]",
-    "kind": 269,
-    "importClause": {
-      "pos": 21,
-      "end": 23,
-      "flags": 0,
-      "modifierFlagsCache": 0,
-      "transformFlags": 0,
-      "parent": "[Circular ~.externalModuleIndicator]",
-      "kind": 270,
-      "isTypeOnly": false,
-      "name": {
-        "pos": 21,
-        "end": 23,
-        "flags": 0,
-        "modifierFlagsCache": 0,
-        "transformFlags": 0,
-        "parent": "[Circular ~.externalModuleIndicator.importClause]",
-        "kind": 79,
-        "escapedText": "a"
+    "kind": 243,
+    "modifiers": [
+      {
+        "kind": 95
       }
-    },
-    "moduleSpecifier": {
-      "pos": 28,
-      "end": 35,
-      "flags": 0,
-      "modifierFlagsCache": 0,
-      "transformFlags": 0,
-      "parent": "[Circular ~.externalModuleIndicator]",
-      "kind": 10,
-      "text": "test",
-      "hasExtendedUnicodeEscape": false
+    ],
+    "declarationList": {
+      "kind": 261,
+      "declarations": [
+        {
+          "kind": 260,
+          "name": {
+            "kind": 80,
+            "escapedText": "a"
+          },
+          "initializer": {
+            "kind": 9,
+            "text": "10"
+          }
+        }
+      ]
     }
   },
   "pragmas": {},
@@ -215,50 +60,5 @@
   "typeReferenceDirectives": [],
   "libReferenceDirectives": [],
   "amdDependencies": [],
-  "identifiers": {},
-  "imports": [
-    {
-      "pos": 28,
-      "end": 35,
-      "flags": 0,
-      "modifierFlagsCache": 0,
-      "transformFlags": 0,
-      "parent": {
-        "pos": 12,
-        "end": 35,
-        "flags": 0,
-        "modifierFlagsCache": 0,
-        "transformFlags": 0,
-        "parent": "[Circular ~]",
-        "kind": 269,
-        "importClause": {
-          "pos": 21,
-          "end": 23,
-          "flags": 0,
-          "modifierFlagsCache": 0,
-          "transformFlags": 0,
-          "parent": "[Circular ~.imports.0.parent]",
-          "kind": 270,
-          "isTypeOnly": false,
-          "name": {
-            "pos": 21,
-            "end": 23,
-            "flags": 0,
-            "modifierFlagsCache": 0,
-            "transformFlags": 0,
-            "parent": "[Circular ~.imports.0.parent.importClause]",
-            "kind": 79,
-            "escapedText": "a"
-          }
-        },
-        "moduleSpecifier": "[Circular ~.imports.0]"
-      },
-      "kind": 10,
-      "text": "test",
-      "hasExtendedUnicodeEscape": false
-    }
-  ],
-  "moduleAugmentations": [],
-  "ambientModuleNames": [],
-  "resolvedModules": {}
+  "identifiers": {}
 }

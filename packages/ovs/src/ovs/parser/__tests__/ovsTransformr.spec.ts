@@ -5,7 +5,7 @@ import {ovsTransformToTsCode} from "../ovsTransformer";
 
 
 describe('test export const a = 10', () => {
-    const code = 'const a = 10'
+    const code = 'export var a = 10'
 
     test('ovs test', () => {
         expect(ovsTransformToTsCode(code))

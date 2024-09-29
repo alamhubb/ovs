@@ -2,10 +2,7 @@ import ts, {SourceFile} from "typescript";
 import {cleanObject} from "../util/clearOtherAttr";
 
 export function ovsGenerateAstToTsCode(typescriptAst: SourceFile): string {
-    const printer = ts.createPrinter({
-        newLine: ts.NewLineKind.LineFeed, // 设置换行符
-        removeComments: false,             // 保留注释
-    });
+    const printer = ts.createPrinter();
     const tsCode = printer.printFile(typescriptAst);
 
     console.log(tsCode)

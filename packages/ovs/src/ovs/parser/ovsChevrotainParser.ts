@@ -22,7 +22,7 @@ export function parseToOvsChevrotainCst(code: string): ChevrotainEcma5Cst {
     const cst = parserInstance.Program();
     if (parserInstance.errors.length > 0) {
         console.log(parserInstance.errors)
-        throw Error("Sad Sad Panda");
+        throw Error("ChevrotainCs parser code has error");
     }
     return cst
 }

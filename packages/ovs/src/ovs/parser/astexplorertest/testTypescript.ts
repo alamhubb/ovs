@@ -4,7 +4,7 @@ import {ovsGenerateAstToTsCode} from "../ovsTsParser";
 
 const id = "_$$ovs$$temp$$ovsToTsAst.ts"  // 虚拟文件名
 const code = `
-    var a = 10;
+    export var a = 10;
 `;
 
 const sourceFile = ts.createSourceFile(

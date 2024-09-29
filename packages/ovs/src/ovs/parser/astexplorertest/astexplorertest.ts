@@ -1,5 +1,6 @@
 import {cleanObject} from "../../util/clearOtherAttr";
 import * as fs from "node:fs";
+import {ovsGenerateAstToTsCode} from "../../parser/ovsTsParser";
 
 // 读取 JSON 文件
 try {
@@ -10,6 +11,8 @@ try {
     cleanObject(sourceFile)
 
     console.log(JSON.stringify(sourceFile));
+
+    ovsGenerateAstToTsCode(sourceFile)
 } catch (error) {
     console.error('Error reading or parsing the file:', error);
 }
