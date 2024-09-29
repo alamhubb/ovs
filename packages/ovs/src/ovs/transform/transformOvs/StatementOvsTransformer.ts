@@ -13,26 +13,25 @@ import {Es5TokenName} from "../../../grammars/ecma5/ecma5_tokens.ts";
 import {ECMAScript6TokenName} from "@/grammars/es6/ECMAScript6Token";
 import {tokenIndexMap} from "../../parser/ovsChevrotainParser";
 import {Es6SyntaxName} from "@/grammars/es6/ECMAScript6Parser";
-import OvsDomRenderTransformer from "@/ovs/transform/transformOvs/OvsDomRenderTransformer";
+import OvsDomRenderTransformer from "@/ovs/transform/transformOvs/RenderDomOvsTransformer";
 import OvsChevrotainEs5VariableStatementTransformer
-    from "@/ovs/transform/transformEs5/OvsChevrotainEs5VariableStatementTransformer";
+    from "@/ovs/transform/transformEs5/VariableStatementOvsChevrotainEs5Transformer";
+import StatementOvsChevrotainEs5Transformer from "@/ovs/transform/transformEs5/StatementOvsChevrotainEs5Transformer";
 
 
-export default class OvsChevrotainEs5StatementTransformer {
+export default class StatementOvsTransformer {
     static transformStatementAst(parentStatementAst: ChevrotainEcma5Ast): Statement {
-        let ast: TypescriptAstNode<StatementExtendNode> = {}
+        let ast: TypescriptAstNode<StatementExtendNode>
+        ast = StatementOvsChevrotainEs5Transformer.transformStatementAst(parentStatementAst)
+        if (ast) {
+            return ast
+        }
         const statementAst = parentStatementAst.children[0]
-        if (statementAst.name === OvsSyntaxName.OvsDomRenderStatement) {
+        if (statementAst.name === OvsSyntaxName.OvsRenderDomStatement) {
             ast = OvsDomRenderTransformer.transformOvsRenderDomAst(statementAst);
-        } else if (statementAst.name === Es6SyntaxName.ExportStatement) {
-            throw new Error(`unknown Statement：${statementAst.name}`)
-            // ast = OvsChevrotainEs5StatementTransformer.transformVariableStatementAst(statementAst);
-        } else if (statementAst.name === Es5SyntaxName.VariableStatement) {
-            ast = OvsChevrotainEs5VariableStatementTransformer.transformVariableStatementAst(statementAst);
-        } else {
-            throw new Error(`unknown Statement：${statementAst.name}`)
         }
         return ast
+
     }
 }
 

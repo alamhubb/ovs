@@ -3,7 +3,7 @@ import {ECMAScript6Parser} from "../../grammars/es6/ECMAScript6Parser";
 import * as es6AllTokens from "../../grammars/es6/ECMAScript6Token";
 
 export enum OvsSyntaxName {
-    OvsDomRenderStatement = 'OvsDomRenderStatement',
+    OvsRenderDomStatement = 'OvsRenderDomStatement',
 }
 
 export class OvsChevrotainSyntaxDefine extends ECMAScript6Parser {
@@ -13,7 +13,7 @@ export class OvsChevrotainSyntaxDefine extends ECMAScript6Parser {
         const $ = this
 
         const StatementValue = [
-            {ALT: () => $.SUBRULE($[OvsSyntaxName.OvsDomRenderStatement])},
+            {ALT: () => $.SUBRULE($[OvsSyntaxName.OvsRenderDomStatement])},
             ...$.StatementValue
         ]
 
@@ -22,7 +22,7 @@ export class OvsChevrotainSyntaxDefine extends ECMAScript6Parser {
         });
 
 
-        $.RULE(OvsSyntaxName.OvsDomRenderStatement, () => {
+        $.RULE(OvsSyntaxName.OvsRenderDomStatement, () => {
             $.CONSUME(es6AllTokens.Identifier);
             $.OPTION(() => {
                 $.CONSUME(es6AllTokens.LParen);

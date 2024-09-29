@@ -13,10 +13,11 @@ import {Es5TokenName} from "../../../grammars/ecma5/ecma5_tokens.ts";
 import {ECMAScript6TokenName} from "@/grammars/es6/ECMAScript6Token";
 import {tokenIndexMap} from "../../parser/ovsChevrotainParser";
 import {Es6SyntaxName} from "@/grammars/es6/ECMAScript6Parser";
-import OvsChevrotainEs5StatementTransformer from "@/ovs/transform/transformEs5/OvsChevrotainEs5StatementTransformer";
+import OvsChevrotainEs5StatementTransformer from "@/ovs/transform/transformEs5/StatementOvsChevrotainEs5Transformer";
+import StatementOvsChevrotainEs5Transformer from "@/ovs/transform/transformEs5/StatementOvsChevrotainEs5Transformer";
 
 
-export default class OvsChevrotainEs5ProgrammerTransformer {
+export default class ProgrammerOvsChevrotainEs5Transformer {
     /**
      * Convert ovs Chevrotain cst to ast
      * @param programAst
@@ -35,7 +36,10 @@ export default class OvsChevrotainEs5ProgrammerTransformer {
         }
         programAst.children.forEach(sourceElements => {
             sourceElements.children.forEach(statement => {
-                const statementAst = OvsChevrotainEs5StatementTransformer.transformStatementAst(statement)
+                const statementAst = StatementOvsChevrotainEs5Transformer.transformStatementAst(statement)
+                if (!statementAst) {
+                    throw new Error(`unknown Statement：${statement.name}`)
+                }
                 statements.push(statementAst)
             })
         })

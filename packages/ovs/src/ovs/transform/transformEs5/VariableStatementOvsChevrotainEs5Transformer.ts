@@ -13,14 +13,14 @@ import {Es5TokenName} from "../../../grammars/ecma5/ecma5_tokens.ts";
 import {ECMAScript6TokenName} from "@/grammars/es6/ECMAScript6Token";
 import {tokenIndexMap} from "../../parser/ovsChevrotainParser";
 import {Es6SyntaxName} from "@/grammars/es6/ECMAScript6Parser";
-import OvsDomRenderTransformer from "@/ovs/transform/transformOvs/OvsDomRenderTransformer";
+import OvsDomRenderTransformer from "@/ovs/transform/transformOvs/RenderDomOvsTransformer";
 
 const ovsToTsTokenEs5SyntaxMap: Map<string, number> = new Map()
 ovsToTsTokenEs5SyntaxMap.set(Es5TokenName.NumericLiteral, ts.SyntaxKind.NumericLiteral)
 ovsToTsTokenEs5SyntaxMap.set(Es5TokenName.Identifier, ts.SyntaxKind.Identifier)
 
 
-export default class OvsChevrotainEs5VariableStatementTransformer {
+export default class VariableStatementOvsChevrotainEs5Transformer {
     static transformVariableStatementAst(syntax: ChevrotainEcma5Ast) {
         let astKind
         let declarationList
@@ -46,7 +46,7 @@ export default class OvsChevrotainEs5VariableStatementTransformer {
                             } else if (variableDeclarationTokenSyntax.name === Es5SyntaxName.Initialiser) {
                                 //AssignmentExpression.BinaryExpression.UnaryExpression.PostfixExpression.MemberCallNewExpression.PrimaryExpression
                                 const assignmentExpressionCst = variableDeclarationTokenSyntax.children[1]
-                                initializer = getPrimaryExpressionTokenByAssignmentExpression(assignmentExpressionCst)
+                                initializer = VariableStatementOvsChevrotainEs5Transformer.getPrimaryExpressionTokenByAssignmentExpression(assignmentExpressionCst)
                             }
                         }
                         const declaration: TypescriptAstNode<DeclarationsExtendNode> = {

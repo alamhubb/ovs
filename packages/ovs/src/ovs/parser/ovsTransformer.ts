@@ -4,7 +4,9 @@ import ChevrotainEcma5Ast from "../model/ChevrotainEcma5Ast";
 import {parseToOvsChevrotainCst} from "../parser/ovsChevrotainParser";
 import {ovsGenerateAstToTsCode} from "./ovsTsParser";
 import OvsChevrotainCstTransformer from "@/ovs/transform/transformChevrotain/OvsChevrotainCstTransformer";
-import OvsChevrotainEs5ProgrammerTransformer from "@/ovs/transform/transformEs5/OvsChevrotainEs5ProgrammerTransformer";
+import OvsChevrotainEs5ProgrammerTransformer from "@/ovs/transform/transformEs5/ProgrammerOvsChevrotainEs5Transformer";
+import StatementOvsTransformer from "@/ovs/transform/transformOvs/StatementOvsTransformer";
+import ProgrammerOvsTransformer from "@/ovs/transform/transformOvs/ProgrammerOvsTransformer";
 
 /**
  * convert ovs syntax code to typescript code
@@ -19,7 +21,7 @@ export function ovsTransformToTsCode(code: string): string {
     console.log(JSON.stringify(chevrotainEcma5Ast))
 
     // transform ovs ast  to typescript ast
-    const typescriptAst: SourceFile = OvsChevrotainEs5ProgrammerTransformer.transformOvsAstToTsAst(chevrotainEcma5Ast)
+    const typescriptAst: SourceFile = ProgrammerOvsTransformer.transformOvsAstToTsAst(chevrotainEcma5Ast)
 
     console.log(JSON.stringify(typescriptAst))
 
