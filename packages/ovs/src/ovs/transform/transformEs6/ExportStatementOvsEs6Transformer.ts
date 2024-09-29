@@ -58,7 +58,7 @@ export default class ExportStatementOvsEs6Transformer {
             if ([Es5TokenName.DefaultTok].includes(tokenSyntax.tokenTypeName)) {
                 astKind = ts.SyntaxKind.ExportAssignment
             } else if (tokenSyntax.name === Es5SyntaxName.AssignmentExpression) {
-                expression = VariableStatementOvsChevrotainEs5Transformer.getPrimaryExpressionTokenByAssignmentExpression(assignmentExpression)
+                expression = VariableStatementOvsChevrotainEs5Transformer.getPrimaryExpressionTokenByAssignmentExpression(tokenSyntax)
             }
         }
 
