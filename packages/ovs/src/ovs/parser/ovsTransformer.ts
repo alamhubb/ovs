@@ -5,7 +5,7 @@ import {parseToOvsChevrotainCst} from "../parser/ovsChevrotainParser";
 import {
     transformOvsAstToTsAst,
     transformOvsChevrotainCstToAst,
-} from "../parser/ovsChevrotainTransform";
+} from "../transform/ovsChevrotainEs5Transform";
 import {ovsGenerateAstToTsCode} from "./ovsTsParser";
 
 /**

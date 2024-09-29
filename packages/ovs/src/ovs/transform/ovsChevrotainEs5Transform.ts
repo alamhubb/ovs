@@ -1,4 +1,4 @@
-import {OvsSyntaxName} from "./OvsChevrotainSyntaxDefine.ts";
+import {OvsSyntaxName} from "../parser/OvsChevrotainSyntaxDefine.ts";
 import ChevrotainEcma5Cst from "../model/ChevrotainEcma5Cst.ts";
 import ts, {SourceFile, Statement} from "typescript";
 import {Es5SyntaxName} from "../../grammars/ecma5/ecma5_parser.ts";
@@ -14,9 +14,9 @@ import {ECMAScript6TokenName} from "@/grammars/es6/ECMAScript6Token";
 import {tokenIndexMap} from "../parser/ovsChevrotainParser";
 import {Es6SyntaxName} from "@/grammars/es6/ECMAScript6Parser";
 
-const ovsToTsTokenSyntaxMap: Map<string, number> = new Map()
-ovsToTsTokenSyntaxMap.set(Es5TokenName.NumericLiteral, ts.SyntaxKind.NumericLiteral)
-ovsToTsTokenSyntaxMap.set(Es5TokenName.Identifier, ts.SyntaxKind.Identifier)
+const ovsToTsTokenEs5SyntaxMap: Map<string, number> = new Map()
+ovsToTsTokenEs5SyntaxMap.set(Es5TokenName.NumericLiteral, ts.SyntaxKind.NumericLiteral)
+ovsToTsTokenEs5SyntaxMap.set(Es5TokenName.Identifier, ts.SyntaxKind.Identifier)
 
 // ovsToTsTokenSyntaxMap.set(ECMAScript6TokenName.ConstTok, ts.SyntaxKind.Identifier)
 
@@ -116,12 +116,12 @@ function getPrimaryExpressionTokenByAssignmentExpression(assignmentExpression: C
 
     if (primaryExpressionToken.tokenTypeName === Es5TokenName.Identifier) {
         return {
-            kind: ovsToTsTokenSyntaxMap.get(primaryExpressionToken.tokenTypeName),
+            kind: ovsToTsTokenEs5SyntaxMap.get(primaryExpressionToken.tokenTypeName),
             escapedText: primaryExpressionToken.image
         }
     } else {
         return {
-            kind: ovsToTsTokenSyntaxMap.get(primaryExpressionToken.tokenTypeName),
+            kind: ovsToTsTokenEs5SyntaxMap.get(primaryExpressionToken.tokenTypeName),
             text: String(primaryExpressionToken.image)
         }
     }
@@ -200,7 +200,7 @@ function transformVariableStatementAst(syntax: ChevrotainEcma5Ast) {
                     for (const variableDeclarationTokenSyntax of variableDeclarationCst.children) {
                         if (variableDeclarationTokenSyntax.tokenTypeName === Es5TokenName.Identifier) {
                             name = {
-                                kind: ovsToTsTokenSyntaxMap.get(variableDeclarationTokenSyntax.tokenTypeName),
+                                kind: ovsToTsTokenEs5SyntaxMap.get(variableDeclarationTokenSyntax.tokenTypeName),
                                 escapedText: variableDeclarationTokenSyntax.image
                             }
                             // 9 = NumericLiteral
