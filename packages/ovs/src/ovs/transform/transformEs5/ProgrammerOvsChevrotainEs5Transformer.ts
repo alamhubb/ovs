@@ -1,3 +1,4 @@
+/*
 import {OvsSyntaxName} from "../../parser/OvsChevrotainSyntaxDefine.ts";
 import ChevrotainEcma5Cst from "../../model/ChevrotainEcma5Cst.ts";
 import ts, {SourceFile, Statement} from "typescript";
@@ -18,10 +19,10 @@ import StatementOvsChevrotainEs5Transformer from "@/ovs/transform/transformEs5/S
 
 
 export default class ProgrammerOvsChevrotainEs5Transformer {
-    /**
+    /!**
      * Convert ovs Chevrotain cst to ast
      * @param programAst
-     */
+     *!/
     static transformOvsAstToTsAst(programAst: ChevrotainEcma5Ast): SourceFile {
         if (programAst.name !== Es5SyntaxName.Program) {
             throw "解析错误"
@@ -46,3 +47,4 @@ export default class ProgrammerOvsChevrotainEs5Transformer {
         return sourceFile
     }
 }
+*/
