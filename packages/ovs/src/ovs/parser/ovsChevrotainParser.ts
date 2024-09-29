@@ -1,6 +1,14 @@
 import ChevrotainEcma5Cst from "../model/ChevrotainEcma5Cst.ts";
 import {OvsChevrotainSyntaxDefine} from "./OvsChevrotainSyntaxDefine.ts";
 import ECMAScript6Lexer from "../../grammars/es6/ECMAScript6Lexer";
+import * as es6AllTokens from "../../grammars/es6/ECMAScript6Token";
+import type {IToken} from "@chevrotain/types";
+
+export const tokenIndexMap: Map<number, string> = Object.values(es6AllTokens).reduce((map, item: IToken) => {
+    // 将对象的 typeIndex 作为 key，值为对象本身
+    map.set(item.tokenTypeIdx, item.name);
+    return map;
+}, new Map());
 
 /**
  * Convert string code to ovs Chevrotain cst

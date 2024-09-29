@@ -14,8 +14,9 @@ import * as acorn from "acorn";
 const acornTokTypes = acorn.tokTypes;
 import * as tokens from "./ecma5_tokens.ts";
 import {Token} from "acorn";
+import type {IToken} from "@chevrotain/types";
 
-export function createChevToken(chevTokenClass, acornToken) {
+export function createChevToken(chevTokenClass, acornToken): IToken {
     return {
         tokenTypeIdx: chevTokenClass.tokenTypeIdx,
         image: acornToken.value,

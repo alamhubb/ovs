@@ -1,7 +1,7 @@
 import {OvsSyntaxName} from "./OvsChevrotainSyntaxDefine.ts";
 import ChevrotainEcma5Cst from "../model/ChevrotainEcma5Cst.ts";
 import ts, {SourceFile, Statement} from "typescript";
-import {Es5SyntaxName, tokenIndexMap} from "../../grammars/ecma5/ecma5_parser.ts";
+import {Es5SyntaxName} from "../../grammars/ecma5/ecma5_parser.ts";
 import ChevrotainEcma5Ast from "../model/ChevrotainEcma5Ast.ts";
 import {
     ArgumentsExtendNode,
@@ -10,10 +10,13 @@ import {
     TypescriptAstNode, TypescriptTextExtendAstNode
 } from "../TypescriptAstNode.ts";
 import {Es5TokenName} from "../../grammars/ecma5/ecma5_tokens.ts";
+import {ECMAScript6TokenName} from "@/grammars/es6/ECMAScript6Token";
+import {tokenIndexMap} from "../parser/ovsChevrotainParser";
 
 const ovsToTsTokenSyntaxMap: Map<string, number> = new Map()
 ovsToTsTokenSyntaxMap.set(Es5TokenName.NumericLiteral, ts.SyntaxKind.NumericLiteral)
 ovsToTsTokenSyntaxMap.set(Es5TokenName.Identifier, ts.SyntaxKind.Identifier)
+// ovsToTsTokenSyntaxMap.set(ECMAScript6TokenName.ConstTok, ts.SyntaxKind.Identifier)
 
 /**
  * Convert ovs Chevrotain cst to ast
@@ -50,10 +53,10 @@ export function transformOvsChevrotainCstToAst(chevrotainEcma5Cst: ChevrotainEcm
  * @param chevrotainEcma5Cst
  */
 export function transformOvsChevrotainCstToAstChild(chevrotainEcma5Cst: ChevrotainEcma5Cst): ChevrotainEcma5Ast {
-    const ovsChevrotainAst = {...chevrotainEcma5Cst, children: []};
+    const ovsChevrotainAst: ChevrotainEcma5Cst = {...chevrotainEcma5Cst, children: []};
 
     if (ovsChevrotainAst.tokenTypeIdx) {
-        ovsChevrotainAst.tokenType = tokenIndexMap.get(ovsChevrotainAst.tokenTypeIdx)
+        ovsChevrotainAst.tokenTypeName = tokenIndexMap.get(ovsChevrotainAst.tokenTypeIdx)
     }
     // {additionExpression:[]}
     const childObj = chevrotainEcma5Cst.children
@@ -105,14 +108,14 @@ function transformStatementAst(statementAst: ChevrotainEcma5Ast): Statement {
 function getPrimaryExpressionTokenByAssignmentExpression(assignmentExpression: ChevrotainEcma5Ast): TypescriptAstNode<TypescriptTextExtendAstNode> {
     const primaryExpressionToken = assignmentExpression.children[0].children[0].children[0].children[0].children[0].children[0];
 
-    if (primaryExpressionToken.tokenType === Es5TokenName.Identifier) {
+    if (primaryExpressionToken.tokenTypeName === Es5TokenName.Identifier) {
         return {
-            kind: ovsToTsTokenSyntaxMap.get(primaryExpressionToken.tokenType),
+            kind: ovsToTsTokenSyntaxMap.get(primaryExpressionToken.tokenTypeName),
             escapedText: primaryExpressionToken.image
         }
     } else {
         return {
-            kind: ovsToTsTokenSyntaxMap.get(primaryExpressionToken.tokenType),
+            kind: ovsToTsTokenSyntaxMap.get(primaryExpressionToken.tokenTypeName),
             text: String(primaryExpressionToken.image)
         }
     }
@@ -132,7 +135,7 @@ function transformOvsRenderDomAst(syntax: ChevrotainEcma5Ast) {
         }
     }
     for (const syntaxToken of syntax.children) {
-        if (syntaxToken.tokenType === Es5TokenName.Identifier) {
+        if (syntaxToken.tokenTypeName === Es5TokenName.Identifier) {
             //tagName 固定为 StringLiteral
             const argument: TypescriptAstNode<ArgumentsExtendNode> = {
                 // pos: syntaxToken.startOffset,
@@ -180,7 +183,8 @@ function transformVariableStatementAst(syntax: ChevrotainEcma5Ast) {
     let declarationList
     let declarations: TypescriptAstNode<DeclarationsExtendNode> [] = [];
     for (const tokenSyntax of syntax.children) {
-        if (tokenSyntax.tokenType === Es5TokenName.VarTok) {
+        //support var const
+        if ([Es5TokenName.VarTok, ECMAScript6TokenName.ConstTok].includes(tokenSyntax.tokenTypeName)) {
             astKind = ts.SyntaxKind.VariableStatement
         } else if (tokenSyntax.name === Es5SyntaxName.VariableDeclarationList) {
             //对应一条声明语句 variableDeclarationCst ,遍历 VariableDeclarationList
@@ -190,9 +194,9 @@ function transformVariableStatementAst(syntax: ChevrotainEcma5Ast) {
                     let name: TypescriptAstNode<TypescriptTextExtendAstNode> = null
                     let initializer: TypescriptAstNode<TypescriptTextExtendAstNode> = null
                     for (const variableDeclarationTokenSyntax of variableDeclarationCst.children) {
-                        if (variableDeclarationTokenSyntax.tokenType === Es5TokenName.Identifier) {
+                        if (variableDeclarationTokenSyntax.tokenTypeName === Es5TokenName.Identifier) {
                             name = {
-                                kind: ovsToTsTokenSyntaxMap.get(variableDeclarationTokenSyntax.tokenType),
+                                kind: ovsToTsTokenSyntaxMap.get(variableDeclarationTokenSyntax.tokenTypeName),
                                 escapedText: variableDeclarationTokenSyntax.image
                             }
                             // 9 = NumericLiteral
@@ -214,7 +218,7 @@ function transformVariableStatementAst(syntax: ChevrotainEcma5Ast) {
     }
 
     if (!astKind) {
-        throw '错误的Kind'
+        throw `错误的Kind:${syntax.name}:${syntax.tokenTypeName}:${syntax.image}`
     }
 
     if (!declarations.length) {

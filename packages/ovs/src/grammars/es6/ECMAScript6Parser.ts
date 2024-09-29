@@ -6,6 +6,18 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
         super();
         const $ = this;
 
+        // ES6 新增的语法规则
+        // 块级作用域和变量声明
+        $.OVERRIDE_RULE("VariableStatement", () => {
+            $.OR([
+                // { ALT: () => $.CONSUME(es6AllTokens.LetTok) },
+                { ALT: () => $.CONSUME(es6AllTokens.ConstTok) },
+                { ALT: () => $.CONSUME(es6AllTokens.VarTok) }
+            ]);
+            $.SUBRULE($.VariableDeclarationList);
+            $.CONSUME(es6AllTokens.Semicolon, ENABLE_SEMICOLON_INSERTION);
+        });
+
         // 模块导出
         $.RULE("ExportDeclaration", () => {
             $.CONSUME(es6AllTokens.ExportTok);
@@ -36,17 +48,7 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
             });
         });
 
-        // ES6 新增的语法规则
-        // 块级作用域和变量声明
-        /*$.OVERRIDE_RULE("VariableStatement", () => {
-            $.OR([
-                // { ALT: () => $.CONSUME(es6AllTokens.LetTok) },
-                { ALT: () => $.CONSUME(es6AllTokens.ConstTok) },
-                { ALT: () => $.CONSUME(es6AllTokens.VarTok) }
-            ]);
-            $.SUBRULE($.VariableDeclarationList);
-            $.CONSUME(es6AllTokens.Semicolon, ENABLE_SEMICOLON_INSERTION);
-        });
+        /*
 
         // 箭头函数
         $.RULE("ArrowFunction", () => {

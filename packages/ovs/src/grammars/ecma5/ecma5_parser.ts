@@ -1,12 +1,6 @@
 import {EOF, tokenMatcher, MismatchedTokenException, CstParser} from "chevrotain";
 import * as t from "./ecma5_tokens.ts";
 
-export const tokenIndexMap: Map<number, any> = Object.values(t).reduce((map, item) => {
-    // 将对象的 typeIndex 作为 key，值为对象本身
-    map.set(item.tokenTypeIdx, item.name);
-    return map;
-}, new Map());
-
 // console.log(tokenIndexMap.get(36))
 
 export enum Es5SyntaxName {
