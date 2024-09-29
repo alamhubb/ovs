@@ -1,11 +1,8 @@
 import {Es5SyntaxName} from "../../grammars/ecma5/ecma5_parser";
 import {ECMAScript6Parser} from "../../grammars/es6/ECMAScript6Parser";
-import * as es6AllTokens from "../../grammars/es6/ECMAScript6Token";
 import ChevrotainEcma5Cst from "../model/ChevrotainEcma5Cst.ts";
-import {OvsChevrotainParser} from "./OvsChevrotainParser.ts";
 import ECMAScript6Lexer from "../../grammars/es6/ECMAScript6Lexer";
 import * as es6AllTokens from "../../grammars/es6/ECMAScript6Token";
-import type {IToken} from "@chevrotain/types";
 
 export enum OvsSyntaxName {
     OvsRenderDomStatement = 'OvsRenderDomStatement',
