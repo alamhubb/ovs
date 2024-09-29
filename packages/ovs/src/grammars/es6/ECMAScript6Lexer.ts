@@ -15,7 +15,6 @@ const acornTokTypes = acorn.tokTypes;
 //将token对象和token符号对应上
 import * as tokens from "./ECMAScript6Token.ts";
 import {createChevToken, getEs5ChevrotainToken} from "@/grammars/ecma5/ecma5_lexer";
-import {BackQuote, DollarCurly, Ellipsis} from "./ECMAScript6Token.ts";
 
 
 export function getEs6ChevrotainToken(acornType: String) {
@@ -57,14 +56,14 @@ export function getEs6ChevrotainToken(acornType: String) {
 }
 
 
-export default class Es6Lexer {
+export default class ECMAScript6Lexer {
     static tokenize(str) {
         const result = [];
         for (let token of acorn.tokenizer(str, {ecmaVersion: 6})) {
             let acornType = token.type;
             let ctt = getEs6ChevrotainToken(acornType)
             if (!ctt) {
-                throw Error("Unknown token:" + acornType);
+                throw Error("Unknown es6 token:" + acornType);
             }
             const chevToken = createChevToken(ctt, token);
             result.push(chevToken);

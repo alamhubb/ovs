@@ -325,7 +325,7 @@ export function tokenize(str) {
         let acornType = token.type;
         let ctt = getEs5ChevrotainToken(acornType)
         if (!ctt){
-            throw Error("Unknown token:" + acornType);
+            throw Error("Unknown es5 token:" + acornType);
         }
         const chevToken = createChevToken(ctt, token);
         result.push(chevToken);

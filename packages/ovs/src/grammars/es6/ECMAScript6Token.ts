@@ -7,10 +7,10 @@ export * from "../ecma5/ecma5_tokens";
 
 // 关键字
 //未使用
-export const LetTok = createToken({name: "LetTok", pattern: /let/, categories: AbsKeyword});
-export const StaticTok = createToken({name: "StaticTok", pattern: /static/, categories: AbsKeyword});
-export const FromTok = createToken({name: "FromTok", pattern: /from/, categories: AbsKeyword});
-export const AsTok = createToken({name: "AsTok", pattern: /as/, categories: AbsKeyword});
+// export const LetTok = createToken({name: "LetTok", pattern: /let/, categories: AbsKeyword});
+// export const StaticTok = createToken({name: "StaticTok", pattern: /static/, categories: AbsKeyword});
+// export const FromTok = createToken({name: "FromTok", pattern: /from/, categories: AbsKeyword});
+// export const AsTok = createToken({name: "AsTok", pattern: /as/, categories: AbsKeyword});
 //已使用
 export const ConstTok = createToken({name: "ConstTok", pattern: /const/, categories: AbsKeyword});
 export const ClassTok = createToken({name: "ClassTok", pattern: /class/, categories: AbsKeyword});
@@ -24,9 +24,9 @@ export const Arrow = createToken({name: "Arrow", pattern: /=>/});
 
 // 模板字符串
 export const BackQuote = createToken({name: "BackTick", pattern: /`/});
-//未使用
-export const TemplateCharacters = createToken({name: "TemplateCharacters", pattern: /[^`$]+/});
 export const DollarCurly = createToken({name: "DollarCurly", pattern: /\${/});
+//未使用
+// export const TemplateCharacters = createToken({name: "TemplateCharacters", pattern: /[^`$]+/});
 
 // 扩展运算符
 export const Ellipsis = createToken({name: "Ellipsis", pattern: /\.\.\./});
