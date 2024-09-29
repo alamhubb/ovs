@@ -11,8 +11,8 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
         // 块级作用域和变量声明
         $.RULE("LetOrConst", () => {
             $.OR([
-                {ALT: () => $.CONSUME(es6AllTokens.LetTok)},
-                {ALT: () => $.CONSUME(es6AllTokens.ConstTok)}
+                { ALT: () => $.CONSUME(es6AllTokens.LetTok) },
+                { ALT: () => $.CONSUME(es6AllTokens.ConstTok) }
             ]);
             $.SUBRULE($.VariableDeclarationList);
             $.CONSUME(es6AllTokens.Semicolon, ENABLE_SEMICOLON_INSERTION);
@@ -29,8 +29,8 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
 
         $.RULE("ConciseBody", () => {
             $.OR([
-                {ALT: () => $.SUBRULE($.AssignmentExpression)},
-                {ALT: () => $.SUBRULE($.Block)}
+                { ALT: () => $.SUBRULE($.AssignmentExpression) },
+                { ALT: () => $.SUBRULE($.Block) }
             ]);
         });
 
@@ -59,8 +59,8 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
 
         $.RULE("ClassElement", () => {
             $.OR([
-                {ALT: () => $.SUBRULE($.MethodDefinition)},
-                {ALT: () => $.CONSUME(es6AllTokens.Semicolon)}
+                { ALT: () => $.SUBRULE($.MethodDefinition) },
+                { ALT: () => $.CONSUME(es6AllTokens.Semicolon) }
             ]);
         });
 
@@ -84,8 +84,8 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
             $.CONSUME(es6AllTokens.BackTick);
             $.MANY(() => {
                 $.OR([
-                    {ALT: () => $.CONSUME(es6AllTokens.TemplateCharacters)},
-                    {ALT: () => $.SUBRULE($.TemplateSubstitution)}
+                    { ALT: () => $.CONSUME(es6AllTokens.TemplateCharacters) },
+                    { ALT: () => $.SUBRULE($.TemplateSubstitution) }
                 ]);
             });
             $.CONSUME(es6AllTokens.BackTick);
@@ -100,17 +100,31 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
         // 模块导入
         $.RULE("ImportDeclaration", () => {
             $.CONSUME(es6AllTokens.ImportTok);
-            $.SUBRULE($.ImportClause);
+            $.OR([
+                { ALT: () => $.SUBRULE($.ImportClause) },
+                { ALT: () => $.CONSUME(es6AllTokens.StringLiteral) }
+            ]);
             $.CONSUME(es6AllTokens.FromTok);
-            $.CONSUME(es6AllTokens.StringLiteral);
+            $.CONSUME2(es6AllTokens.StringLiteral);
             $.CONSUME(es6AllTokens.Semicolon, ENABLE_SEMICOLON_INSERTION);
         });
 
         $.RULE("ImportClause", () => {
             $.OR([
-                {ALT: () => $.CONSUME(es6AllTokens.Identifier)},
-                {ALT: () => $.SUBRULE($.NamedImports)}
+                { ALT: () => $.SUBRULE($.ImportedDefaultBinding) },
+                { ALT: () => $.SUBRULE($.NameSpaceImport) },
+                { ALT: () => $.SUBRULE($.NamedImports) }
             ]);
+        });
+
+        $.RULE("ImportedDefaultBinding", () => {
+            $.CONSUME(es6AllTokens.Identifier);
+        });
+
+        $.RULE("NameSpaceImport", () => {
+            $.CONSUME(es6AllTokens.Multiply);
+            $.CONSUME(es6AllTokens.AsTok);
+            $.CONSUME(es6AllTokens.Identifier);
         });
 
         $.RULE("NamedImports", () => {
@@ -136,9 +150,9 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
         $.RULE("ExportDeclaration", () => {
             $.CONSUME(es6AllTokens.ExportTok);
             $.OR([
-                {ALT: () => $.SUBRULE($.ExportClause)},
-                {ALT: () => $.SUBRULE($.Declaration)},
-                {ALT: () => $.CONSUME(es6AllTokens.DefaultTok)}
+                { ALT: () => $.SUBRULE($.ExportClause) },
+                { ALT: () => $.SUBRULE($.Declaration) },
+                { ALT: () => $.CONSUME(es6AllTokens.DefaultTok) }
             ]);
             $.CONSUME(es6AllTokens.Semicolon, ENABLE_SEMICOLON_INSERTION);
         });
@@ -165,8 +179,8 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
         // 解构赋值
         $.RULE("DestructuringAssignment", () => {
             $.OR([
-                {ALT: () => $.SUBRULE($.ObjectDestructuring)},
-                {ALT: () => $.SUBRULE($.ArrayDestructuring)}
+                { ALT: () => $.SUBRULE($.ObjectDestructuring) },
+                { ALT: () => $.SUBRULE($.ArrayDestructuring) }
             ]);
         });
 
@@ -206,6 +220,14 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
         $.RULE("SpreadElement", () => {
             $.CONSUME(es6AllTokens.Ellipsis);
             $.SUBRULE($.AssignmentExpression);
+        });
+
+        // 左值表达式
+        $.RULE("LeftHandSideExpression", () => {
+            $.OR([
+                { ALT: () => $.SUBRULE($.NewExpression) },
+                { ALT: () => $.SUBRULE($.CallExpression) }
+            ]);
         });
 
         if (!isInvokedByChildConstructor) {
