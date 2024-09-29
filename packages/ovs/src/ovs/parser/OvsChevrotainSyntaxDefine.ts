@@ -1,4 +1,4 @@
-import {ECMAScript5Parser, Es5SyntaxName} from "../../grammars/ecma5/ecma5_parser";
+import {Es5SyntaxName} from "../../grammars/ecma5/ecma5_parser";
 import {ECMAScript6Parser} from "../../grammars/es6/ECMAScript6Parser";
 import * as es6AllTokens from "../../grammars/es6/ECMAScript6Token";
 

@@ -1,6 +1,10 @@
 import {ECMAScript5Parser, ENABLE_SEMICOLON_INSERTION, Es5SyntaxName} from "../ecma5/ecma5_parser";
 import * as es6AllTokens from "./ECMAScript6Token";
 
+export enum Es6SyntaxName {
+    ExportStatement = 'ExportStatement',
+}
+
 export class ECMAScript6Parser extends ECMAScript5Parser {
     constructor(isInvokedByChildConstructor = false) {
         super();
@@ -8,7 +12,7 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
 
         // ES6 新增的语法规则
         // 块级作用域和变量声明
-        $.OVERRIDE_RULE("VariableStatement", () => {
+        $.OVERRIDE_RULE(Es5SyntaxName.VariableStatement, () => {
             $.OR([
                 // { ALT: () => $.CONSUME(es6AllTokens.LetTok) },
                 { ALT: () => $.CONSUME(es6AllTokens.ConstTok) },
@@ -18,7 +22,27 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
             $.CONSUME(es6AllTokens.Semicolon, ENABLE_SEMICOLON_INSERTION);
         });
 
+        // See 12.2
+        $.RULE(Es5SyntaxName.VariableStatement, () => {
+            $.CONSUME(t.VarTok);
+            $.SUBRULE($[Es5SyntaxName.VariableDeclarationList]);
+            $.CONSUME(es6AllTokens.Semicolon, ENABLE_SEMICOLON_INSERTION);
+        });
+
         // 模块导出
+        $.RULE(Es6SyntaxName.ExportStatement, () => {
+            $.CONSUME(es6AllTokens.ExportTok);
+            $.OPTION(() => {
+                $.CONSUME(es6AllTokens.DefaultTok)
+            });
+            $.OR([
+                { ALT: () => $.SUBRULE($.ExportClause) },
+                { ALT: () => $.SUBRULE($[Es5SyntaxName.VariableDeclarationList]) },
+                { ALT: () => $.CONSUME(es6AllTokens.DefaultTok) }
+            ]);
+            $.CONSUME(es6AllTokens.Semicolon, ENABLE_SEMICOLON_INSERTION);
+        });
+
         $.RULE("ExportDeclaration", () => {
             $.CONSUME(es6AllTokens.ExportTok);
             $.OR([

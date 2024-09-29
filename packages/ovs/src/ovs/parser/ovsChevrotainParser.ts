@@ -17,9 +17,16 @@ export const tokenIndexMap: Map<number, string> = Object.values(es6AllTokens).re
 export function parseToOvsChevrotainCst(code: string): ChevrotainEcma5Cst {
     const parserInstance = new OvsChevrotainSyntaxDefine();
     const tokens = ECMAScript6Lexer.tokenize(code);
+
+    console.log(tokens)
+
+    console.log(111)
     parserInstance.input = tokens;
+    console.log(222)
     parserInstance.orgText = code;
+    console.log(33)
     const cst = parserInstance.Program();
+    console.log(44)
     if (parserInstance.errors.length > 0) {
         console.log(parserInstance.errors)
         throw Error("ChevrotainCs parser code has error");
