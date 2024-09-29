@@ -1,6 +1,6 @@
 import {describe, test, expect} from 'vitest'
 
-import {ovsGenerateCodeToTsCode} from "../ovsTsGenerator";
+import {ovsGenerateCodeToTsCode} from "../ovsTsParser";
 
 describe('ovsTransformCode', () => {
     const code = 'const a = 10'

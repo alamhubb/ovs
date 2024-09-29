@@ -3,7 +3,7 @@ import ChevrotainEcma5Cst from "../model/ChevrotainEcma5Cst";
 import ChevrotainEcma5Ast from "../model/ChevrotainEcma5Ast";
 import {parseToOvsChevrotainCst} from "../parser/ovsChevrotainParser";
 import {transformOvsAstToTsAst, transformOvsChevrotainCstToAst} from "../parser/ovsChevrotainTransform";
-import {ovsGenerateAstToTsCode} from "../parser/ovsTsGenerator";
+import {ovsGenerateAstToTsCode} from "./ovsTsParser";
 
 /**
  * convert ovs syntax code to typescript code
