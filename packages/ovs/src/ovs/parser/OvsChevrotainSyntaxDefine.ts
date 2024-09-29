@@ -1,12 +1,12 @@
 import {ECMAScript5Parser, Es5SyntaxName} from "../../grammars/ecma5/ecma5_parser";
 import * as t from "../../grammars/ecma5/ecma5_tokens";
-import {ES6Parser} from "../../grammars/es6/ES6Parser";
+import {ECMAScript6Parser} from "../../grammars/es6/ECMAScript6Parser";
 
 export enum OvsSyntaxName {
     OvsDomRenderStatement = 'OvsDomRenderStatement',
 }
 
-export class OvsChevrotainSyntaxDefine extends ES6Parser {
+export class OvsChevrotainSyntaxDefine extends ECMAScript6Parser {
     constructor() {
         super(true)
         const $ = this
