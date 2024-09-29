@@ -84,7 +84,6 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
                 {ALT: () => $.SUBRULE($[Es5SyntaxName.VariableDeclaration])},
                 {ALT: () => $.CONSUME(es6AllTokens.DefaultTok)}
             ]);
-            $.CONSUME(es6AllTokens.Semicolon, ENABLE_SEMICOLON_INSERTION);
         });
 
         $.RULE("ExportClause", () => {

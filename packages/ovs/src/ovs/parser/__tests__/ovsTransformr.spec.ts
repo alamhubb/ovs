@@ -4,7 +4,7 @@ import {ovsGenerateCodeToTsCode} from "../ovsTsParser";
 import {ovsTransformToTsCode} from "../ovsTransformer";
 
 describe('test ovs div{}', () => {
-    const code = 'div{123}'
+    const code = 'div{}'
 
     test('ovs test', () => {
         expect(ovsTransformToTsCode(code))
@@ -28,7 +28,7 @@ describe('test export default function', () => {
 })
 
 describe('test export default h', () => {
-    const code = 'export default div{123}'
+    const code = 'export default div{ 123 }'
 
     test('ovs test', () => {
         expect(ovsTransformToTsCode(code))

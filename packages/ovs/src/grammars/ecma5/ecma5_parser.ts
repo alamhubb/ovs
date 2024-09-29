@@ -175,7 +175,7 @@ export class ECMAScript5Parser extends CstParser {
             ]);
         });
 
-        // See 11.2
+        // See 11.2  why many?todo
         // merging MemberExpression, NewExpression and CallExpression into one rule
         $.RULE("MemberCallNewExpression", () => {
             $.MANY(() => {
@@ -340,7 +340,7 @@ export class ECMAScript5Parser extends CstParser {
             });
         });
 
-        // See 11.14
+        // See 11.14 many AssignmentExpression
         $.RULE("Expression", () => {
             $.SUBRULE($[Es5SyntaxName.AssignmentExpression]);
             $.MANY(() => {
