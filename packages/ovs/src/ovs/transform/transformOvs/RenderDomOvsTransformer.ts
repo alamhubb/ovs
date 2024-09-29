@@ -46,7 +46,7 @@ export default class RenderDomOvsTransformer {
                 argumentsAry.push(argument)
             } else if (syntaxToken.name === Es5SyntaxName.ElementList) {
                 function assignmentExpressionGetToken(assignmentExpression: ChevrotainEcma5Ast) {
-                    //assignmentExpression.BinaryExpression. UnaryExpression.PostfixExpression.MemberCallNewExpression.PrimaryExpression.tokenType
+
                     const token = VariableStatementOvsChevrotainEs5Transformer.getPrimaryExpressionTokenByAssignmentExpression(assignmentExpression)
 
                     return token

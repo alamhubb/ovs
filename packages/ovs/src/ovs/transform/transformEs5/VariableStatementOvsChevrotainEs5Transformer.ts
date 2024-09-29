@@ -43,7 +43,6 @@ export default class VariableStatementOvsChevrotainEs5Transformer {
                                 }
                                 // 9 = NumericLiteral
                             } else if (variableDeclarationTokenSyntax.name === Es5SyntaxName.Initialiser) {
-                                //AssignmentExpression.BinaryExpression.UnaryExpression.PostfixExpression.MemberCallNewExpression.PrimaryExpression
                                 const assignmentExpressionCst = variableDeclarationTokenSyntax.children[1]
                                 initializer = VariableStatementOvsChevrotainEs5Transformer.getPrimaryExpressionTokenByAssignmentExpression(assignmentExpressionCst)
 
@@ -81,6 +80,7 @@ export default class VariableStatementOvsChevrotainEs5Transformer {
     }
 
     static getPrimaryExpressionTokenByAssignmentExpression(assignmentExpression: ChevrotainEcma5Ast): TypescriptAstNode<TypescriptTextExtendAstNode> {
+        //assignmentExpression.BinaryExpression. UnaryExpression.PostfixExpression.MemberCallNewExpression.PrimaryExpression
         const primaryExpressionToken = assignmentExpression.children[0].children[0].children[0].children[0].children[0].children[0];
 
         if (primaryExpressionToken.tokenTypeName === Es5TokenName.Identifier) {

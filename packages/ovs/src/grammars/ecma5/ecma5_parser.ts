@@ -221,7 +221,7 @@ export class ECMAScript5Parser extends CstParser {
             $.CONSUME(t.RParen);
         });
 
-        // See 11.3
+        // See 11.3 Self-operation
         $.RULE("PostfixExpression", () => {
             // LHSExpression(see 11.2) is identical to MemberCallNewExpression
             $.SUBRULE($.MemberCallNewExpression);
@@ -236,7 +236,7 @@ export class ECMAScript5Parser extends CstParser {
             });
         });
 
-        // See 11.4
+        // See 11.4 Self-operation
         $.RULE("UnaryExpression", () => {
             $.OR([
                 {ALT: () => $.SUBRULE($.PostfixExpression)},
@@ -262,6 +262,7 @@ export class ECMAScript5Parser extends CstParser {
             ]);
         });
 
+        //Logical operations
         $.RULE("BinaryExpression", () => {
             $.SUBRULE($.UnaryExpression);
             $.MANY(() => {
@@ -317,7 +318,7 @@ export class ECMAScript5Parser extends CstParser {
             });
         });
 
-        // See 11.13
+        // See 11.13 Ternary Operation
         $.RULE(Es5SyntaxName.AssignmentExpression, () => {
             $.SUBRULE($.BinaryExpression);
             $.OPTION(() => {
