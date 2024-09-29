@@ -57,6 +57,19 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
             $.CONSUME(es6AllTokens.Semicolon, ENABLE_SEMICOLON_INSERTION);
         });
 
+        // 模块导出
+        $.RULE(Es6SyntaxName.ExportStatement, () => {
+            $.CONSUME(es6AllTokens.ExportTok);
+            $.OPTION(() => {
+                $.CONSUME(es6AllTokens.DefaultTok)
+            });
+            $.OR([
+                // { ALT: () => $.SUBRULE($.ExportClause) },
+                {ALT: () => $.SUBRULE($[Es5SyntaxName.VariableStatement])},
+                // { ALT: () => $.CONSUME(es6AllTokens.DefaultTok) }
+            ]);
+            $.CONSUME(es6AllTokens.Semicolon, ENABLE_SEMICOLON_INSERTION);
+        });
 
         // 模块导出
         $.RULE(Es6SyntaxName.ExportStatement, () => {
