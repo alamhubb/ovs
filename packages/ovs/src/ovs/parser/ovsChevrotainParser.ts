@@ -1,7 +1,6 @@
-import {tokenize} from "../../grammars/ecma5/ecma5_lexer.ts";
 import ChevrotainEcma5Cst from "../model/ChevrotainEcma5Cst.ts";
 import {OvsChevrotainSyntaxDefine} from "./OvsChevrotainSyntaxDefine.ts";
-import ECMAScript6Lexer from "@/grammars/es6/ECMAScript6Lexer";
+import ECMAScript6Lexer from "../../grammars/es6/ECMAScript6Lexer";
 
 /**
  * Convert string code to ovs Chevrotain cst
