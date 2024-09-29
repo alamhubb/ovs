@@ -1,8 +1,5 @@
-import {ECMAScript5Parser} from "../ecma5/ecma5_parser";
+import {ECMAScript5Parser, ENABLE_SEMICOLON_INSERTION} from "../ecma5/ecma5_parser";
 import * as es6AllTokens from "./ECMAScript6Token";
-
-const ENABLE_SEMICOLON_INSERTION = true;
-const DISABLE_SEMICOLON_INSERTION = false;
 
 export class ECMAScript6Parser extends ECMAScript5Parser {
     constructor(isInvokedByChildConstructor = false) {
