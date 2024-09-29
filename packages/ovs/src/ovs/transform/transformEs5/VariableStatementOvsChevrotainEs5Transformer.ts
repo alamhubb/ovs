@@ -46,6 +46,9 @@ export default class VariableStatementOvsChevrotainEs5Transformer {
                                 //AssignmentExpression.BinaryExpression.UnaryExpression.PostfixExpression.MemberCallNewExpression.PrimaryExpression
                                 const assignmentExpressionCst = variableDeclarationTokenSyntax.children[1]
                                 initializer = VariableStatementOvsChevrotainEs5Transformer.getPrimaryExpressionTokenByAssignmentExpression(assignmentExpressionCst)
+
+                                console.log(33333)
+                                console.log(initializer)
                             }
                         }
                         const declaration: TypescriptAstNode<DeclarationsExtendNode> = {

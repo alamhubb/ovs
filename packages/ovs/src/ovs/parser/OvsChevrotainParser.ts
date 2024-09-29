@@ -13,7 +13,7 @@ export class OvsChevrotainParser extends ECMAScript6Parser {
         super(true)
         const $ = this
 
-        const StatementValue = [
+        /*const StatementValue = [
             {ALT: () => $.SUBRULE($[OvsSyntaxName.OvsRenderDomStatement])},
             ...$.StatementValue
         ]
@@ -39,7 +39,7 @@ export class OvsChevrotainParser extends ECMAScript6Parser {
                 });
                 $.CONSUME(es6AllTokens.RCurly);
             });
-        });
+        });*/
 
         this.performSelfAnalysis()
     }
