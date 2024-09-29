@@ -12,10 +12,12 @@ import {
 import {Es5TokenName} from "../../grammars/ecma5/ecma5_tokens.ts";
 import {ECMAScript6TokenName} from "@/grammars/es6/ECMAScript6Token";
 import {tokenIndexMap} from "../parser/ovsChevrotainParser";
+import {Es6SyntaxName} from "@/grammars/es6/ECMAScript6Parser";
 
 const ovsToTsTokenSyntaxMap: Map<string, number> = new Map()
 ovsToTsTokenSyntaxMap.set(Es5TokenName.NumericLiteral, ts.SyntaxKind.NumericLiteral)
 ovsToTsTokenSyntaxMap.set(Es5TokenName.Identifier, ts.SyntaxKind.Identifier)
+
 // ovsToTsTokenSyntaxMap.set(ECMAScript6TokenName.ConstTok, ts.SyntaxKind.Identifier)
 
 /**
@@ -85,13 +87,17 @@ export function transformOvsChevrotainCstToAstChild(chevrotainEcma5Cst: Chevrota
 }
 
 
-function transformStatementAst(statementAst: ChevrotainEcma5Ast): Statement {
+function transformStatementAst(parentStatementAst: ChevrotainEcma5Ast): Statement {
     let ast: TypescriptAstNode<StatementExtendNode> = {}
-    const syntax = statementAst.children[0]
-    if (syntax.name === OvsSyntaxName.OvsDomRenderStatement) {
-        ast = transformOvsRenderDomAst(syntax);
-    } else if (syntax.name === Es5SyntaxName.VariableStatement) {
-        ast = transformVariableStatementAst(syntax);
+    const statementAst = parentStatementAst.children[0]
+    if (statementAst.name === OvsSyntaxName.OvsDomRenderStatement) {
+        ast = transformOvsRenderDomAst(statementAst);
+    } else if (statementAst.name === Es5SyntaxName.VariableStatement) {
+        ast = transformVariableStatementAst(statementAst);
+    } else if (statementAst.name === Es6SyntaxName.ExportStatement) {
+        ast = transformVariableStatementAst(statementAst);
+    } else {
+        throw `unknown Statement：${statementAst.name}`
     }
     return ast
 }
@@ -177,8 +183,6 @@ function transformOvsRenderDomAst(syntax: ChevrotainEcma5Ast) {
 
 
 function transformVariableStatementAst(syntax: ChevrotainEcma5Ast) {
-
-
     let astKind
     let declarationList
     let declarations: TypescriptAstNode<DeclarationsExtendNode> [] = [];

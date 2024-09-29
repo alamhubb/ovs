@@ -5,6 +5,7 @@ import * as t from "./ecma5_tokens.ts";
 
 export enum Es5SyntaxName {
     Program = 'Program',
+    Statement = 'Statement',
     ElementList = 'ElementList',
     VariableDeclarationList = 'VariableDeclarationList',
     VariableDeclaration = 'VariableDeclaration',
@@ -357,7 +358,7 @@ export class ECMAScript5Parser extends CstParser {
 
         // A.4 Statements
         // See clause 12
-        $.RULE("Statement", () => {
+        $.RULE(Es5SyntaxName.Statement, () => {
             $.OR(
                 $.c2 ||
                 ($.c2 = [

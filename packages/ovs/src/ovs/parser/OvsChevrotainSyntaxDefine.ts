@@ -7,38 +7,20 @@ export enum OvsSyntaxName {
 }
 
 export class OvsChevrotainSyntaxDefine extends ECMAScript6Parser {
+
     constructor() {
         super(true)
         const $ = this
 
-        $.OVERRIDE_RULE("Statement", () => {
-            $.OR([
-                    {ALT: () => $.SUBRULE($[OvsSyntaxName.OvsDomRenderStatement])},
-                    {ALT: () => $.SUBRULE($.Block)},
-                    {ALT: () => $.SUBRULE($[Es5SyntaxName.VariableStatement])},
-                    {ALT: () => $.SUBRULE($.EmptyStatement)},
-                    // "LabelledStatement" must appear before "ExpressionStatement" due to common lookahead prefix ("inner :" vs "inner")
-                    {ALT: () => $.SUBRULE($.LabelledStatement)},
-                    // The ambiguity is resolved by the ordering of the alternatives
-                    // See: https://ecma-international.org/ecma-262/5.1/#sec-12.4
-                    //   - [lookahead ∉ {{, function}]
-                    {
-                        ALT: () => $.SUBRULE($.ExpressionStatement),
-                        IGNORE_AMBIGUITIES: true,
-                    },
-                    {ALT: () => $.SUBRULE($.IfStatement)},
-                    {ALT: () => $.SUBRULE($.IterationStatement)},
-                    {ALT: () => $.SUBRULE($.ContinueStatement)},
-                    {ALT: () => $.SUBRULE($.BreakStatement)},
-                    {ALT: () => $.SUBRULE($.ReturnStatement)},
-                    {ALT: () => $.SUBRULE($.WithStatement)},
-                    {ALT: () => $.SUBRULE($.SwitchStatement)},
-                    {ALT: () => $.SUBRULE($.ThrowStatement)},
-                    {ALT: () => $.SUBRULE($.TryStatement)},
-                    {ALT: () => $.SUBRULE($.DebuggerStatement)},
-                ]
-            );
+        const StatementValue = [
+            {ALT: () => $.SUBRULE($[OvsSyntaxName.OvsDomRenderStatement])},
+            ...$.StatementValue
+        ]
+
+        $.OVERRIDE_RULE(Es5SyntaxName.Statement, () => {
+            $.OR(StatementValue);
         });
+
 
         $.RULE(OvsSyntaxName.OvsDomRenderStatement, () => {
             $.CONSUME(es6AllTokens.Identifier);

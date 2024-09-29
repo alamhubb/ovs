@@ -23,6 +23,8 @@ export function ovsTransformToTsCode(code: string): string {
     // transform ovs ast  to typescript ast
     const typescriptAst: SourceFile = transformOvsAstToTsAst(chevrotainEcma5Ast)
 
+    console.log(JSON.stringify(typescriptAst))
+
     const typescriptCode: string = ovsGenerateAstToTsCode(typescriptAst)
 
     return typescriptCode

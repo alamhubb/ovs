@@ -1,33 +1,62 @@
 import {ECMAScript5Parser, ENABLE_SEMICOLON_INSERTION, Es5SyntaxName} from "../ecma5/ecma5_parser";
 import * as es6AllTokens from "./ECMAScript6Token";
+import {OvsSyntaxName} from "@/ovs/parser/OvsChevrotainSyntaxDefine";
 
 export enum Es6SyntaxName {
     ExportStatement = 'ExportStatement',
 }
 
 export class ECMAScript6Parser extends ECMAScript5Parser {
+
+    readonly StatementValue = []
+
     constructor(isInvokedByChildConstructor = false) {
         super();
         const $ = this;
+
+        this.StatementValue = [
+            // {ALT: () => $.SUBRULE($[OvsSyntaxName.OvsDomRenderStatement])},
+            {ALT: () => $.SUBRULE($.Block)},
+            {ALT: () => $.SUBRULE($[Es6SyntaxName.ExportStatement])},
+            {ALT: () => $.SUBRULE($[Es5SyntaxName.VariableStatement])},
+            {ALT: () => $.SUBRULE($.EmptyStatement)},
+            // "LabelledStatement" must appear before "ExpressionStatement" due to common lookahead prefix ("inner :" vs "inner")
+            {ALT: () => $.SUBRULE($.LabelledStatement)},
+            // The ambiguity is resolved by the ordering of the alternatives
+            // See: https://ecma-international.org/ecma-262/5.1/#sec-12.4
+            //   - [lookahead ∉ {{, function}]
+            {
+                ALT: () => $.SUBRULE($.ExpressionStatement),
+                IGNORE_AMBIGUITIES: true,
+            },
+            {ALT: () => $.SUBRULE($.IfStatement)},
+            {ALT: () => $.SUBRULE($.IterationStatement)},
+            {ALT: () => $.SUBRULE($.ContinueStatement)},
+            {ALT: () => $.SUBRULE($.BreakStatement)},
+            {ALT: () => $.SUBRULE($.ReturnStatement)},
+            {ALT: () => $.SUBRULE($.WithStatement)},
+            {ALT: () => $.SUBRULE($.SwitchStatement)},
+            {ALT: () => $.SUBRULE($.ThrowStatement)},
+            {ALT: () => $.SUBRULE($.TryStatement)},
+            {ALT: () => $.SUBRULE($.DebuggerStatement)},
+        ]
+
+        $.OVERRIDE_RULE(Es5SyntaxName.Statement, () => {
+            $.OR(this.StatementValue);
+        });
 
         // ES6 新增的语法规则
         // 块级作用域和变量声明
         $.OVERRIDE_RULE(Es5SyntaxName.VariableStatement, () => {
             $.OR([
                 // { ALT: () => $.CONSUME(es6AllTokens.LetTok) },
-                { ALT: () => $.CONSUME(es6AllTokens.ConstTok) },
-                { ALT: () => $.CONSUME(es6AllTokens.VarTok) }
+                {ALT: () => $.CONSUME(es6AllTokens.ConstTok)},
+                {ALT: () => $.CONSUME(es6AllTokens.VarTok)}
             ]);
             $.SUBRULE($.VariableDeclarationList);
             $.CONSUME(es6AllTokens.Semicolon, ENABLE_SEMICOLON_INSERTION);
         });
 
-        // See 12.2
-        $.RULE(Es5SyntaxName.VariableStatement, () => {
-            $.CONSUME(t.VarTok);
-            $.SUBRULE($[Es5SyntaxName.VariableDeclarationList]);
-            $.CONSUME(es6AllTokens.Semicolon, ENABLE_SEMICOLON_INSERTION);
-        });
 
         // 模块导出
         $.RULE(Es6SyntaxName.ExportStatement, () => {
@@ -36,9 +65,9 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
                 $.CONSUME(es6AllTokens.DefaultTok)
             });
             $.OR([
-                { ALT: () => $.SUBRULE($.ExportClause) },
-                { ALT: () => $.SUBRULE($[Es5SyntaxName.VariableDeclarationList]) },
-                { ALT: () => $.CONSUME(es6AllTokens.DefaultTok) }
+                // { ALT: () => $.SUBRULE($.ExportClause) },
+                {ALT: () => $.SUBRULE($[Es5SyntaxName.VariableStatement])},
+                // { ALT: () => $.CONSUME(es6AllTokens.DefaultTok) }
             ]);
             $.CONSUME(es6AllTokens.Semicolon, ENABLE_SEMICOLON_INSERTION);
         });
@@ -46,9 +75,9 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
         $.RULE("ExportDeclaration", () => {
             $.CONSUME(es6AllTokens.ExportTok);
             $.OR([
-                { ALT: () => $.SUBRULE($.ExportClause) },
-                { ALT: () => $.SUBRULE($[Es5SyntaxName.VariableDeclaration]) },
-                { ALT: () => $.CONSUME(es6AllTokens.DefaultTok) }
+                {ALT: () => $.SUBRULE($.ExportClause)},
+                {ALT: () => $.SUBRULE($[Es5SyntaxName.VariableDeclaration])},
+                {ALT: () => $.CONSUME(es6AllTokens.DefaultTok)}
             ]);
             $.CONSUME(es6AllTokens.Semicolon, ENABLE_SEMICOLON_INSERTION);
         });
