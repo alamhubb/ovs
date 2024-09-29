@@ -20,7 +20,7 @@ import OvsChevrotainEs5VariableStatementTransformer
 
 export default class StatementOvsChevrotainEs5Transformer {
     static transformStatementAst(parentStatementAst: ChevrotainEcma5Ast): Statement {
-        let ast: TypescriptAstNode<StatementExtendNode> = {}
+        let ast: TypescriptAstNode<StatementExtendNode>
         const statementAst = parentStatementAst.children[0]
         if (statementAst.name === Es5SyntaxName.VariableStatement) {
             ast = OvsChevrotainEs5VariableStatementTransformer.transformVariableStatementAst(statementAst);
