@@ -12,6 +12,7 @@ import {createToken} from "chevrotain";
 export enum Es5TokenName {
     Identifier = 'Identifier',
     VarTok = 'VarTok',
+    DefaultTok = 'DefaultTok',
     NumericLiteral = 'NumericLiteral',
 }
 
@@ -124,7 +125,7 @@ export const ThisTok = createToken({name: "ThisTok", categories: AbsKeyword});
 export const WithTok = createToken({name: "WithTok", categories: AbsKeyword});
 
 export const DefaultTok = createToken({
-    name: "DefaultTok",
+    name: Es5TokenName.DefaultTok,
     categories: AbsKeyword,
 });
 

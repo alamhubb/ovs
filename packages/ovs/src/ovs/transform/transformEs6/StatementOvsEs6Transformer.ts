@@ -1,4 +1,4 @@
-import {OvsSyntaxName} from "../../parser/OvsChevrotainSyntaxDefine.ts";
+import {OvsSyntaxName} from "../../parser/OvsChevrotainParser.ts";
 import ChevrotainEcma5Cst from "../../model/ChevrotainEcma5Cst.ts";
 import ts, {SourceFile, Statement} from "typescript";
 import {Es5SyntaxName} from "../../../grammars/ecma5/ecma5_parser.ts";
@@ -11,7 +11,6 @@ import {
 } from "../../TypescriptAstNode.ts";
 import {Es5TokenName} from "../../../grammars/ecma5/ecma5_tokens.ts";
 import {ECMAScript6TokenName} from "@/grammars/es6/ECMAScript6Token";
-import {tokenIndexMap} from "../../parser/ovsChevrotainParser";
 import {Es6SyntaxName} from "@/grammars/es6/ECMAScript6Parser";
 import OvsDomRenderTransformer from "@/ovs/transform/transformOvs/RenderDomOvsTransformer";
 import OvsChevrotainEs5VariableStatementTransformer
@@ -30,6 +29,8 @@ export default class StatementOvsEs6Transformer {
         const statementAst = parentStatementAst.children[0]
         if (statementAst.name === Es6SyntaxName.ExportStatement) {
             ast = ExportStatementOvsEs6Transformer.transformExportStatementAst(statementAst);
+        } else if (statementAst.name === Es6SyntaxName.ExportDefaultStatement) {
+            ast = ExportStatementOvsEs6Transformer.transformDefaultExportStatementAst(statementAst);
         }
         return ast
 

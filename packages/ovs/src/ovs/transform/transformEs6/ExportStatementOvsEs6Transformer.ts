@@ -1,4 +1,4 @@
-import {OvsSyntaxName} from "../../parser/OvsChevrotainSyntaxDefine.ts";
+import {OvsSyntaxName} from "../../parser/OvsChevrotainParser.ts";
 import ChevrotainEcma5Cst from "../../model/ChevrotainEcma5Cst.ts";
 import ts, {SourceFile, Statement} from "typescript";
 import {Es5SyntaxName} from "../../../grammars/ecma5/ecma5_parser.ts";
@@ -11,7 +11,6 @@ import {
 } from "../../TypescriptAstNode.ts";
 import {Es5TokenName} from "../../../grammars/ecma5/ecma5_tokens.ts";
 import {ECMAScript6TokenName} from "@/grammars/es6/ECMAScript6Token";
-import {tokenIndexMap} from "../../parser/ovsChevrotainParser";
 import {Es6SyntaxName} from "@/grammars/es6/ECMAScript6Parser";
 import OvsDomRenderTransformer from "@/ovs/transform/transformOvs/RenderDomOvsTransformer";
 import VariableStatementOvsChevrotainEs5Transformer
@@ -48,6 +47,32 @@ export default class ExportStatementOvsEs6Transformer {
             modifiers: [{
                 kind: astKind
             }],
+        }
+    }
+
+
+    static transformDefaultExportStatementAst(syntax: ChevrotainEcma5Ast) {
+        let astKind
+        let expression
+        for (const tokenSyntax of syntax.children) {
+            if ([Es5TokenName.DefaultTok].includes(tokenSyntax.tokenTypeName)) {
+                astKind = ts.SyntaxKind.ExportAssignment
+            } else if (tokenSyntax.name === Es5SyntaxName.AssignmentExpression) {
+                expression = VariableStatementOvsChevrotainEs5Transformer.getPrimaryExpressionTokenByAssignmentExpression(assignmentExpression)
+            }
+        }
+
+        if (!astKind) {
+            throw new Error(`错误的Kind:${syntax.name}:${syntax.tokenTypeName}:${syntax.image}`)
+        }
+
+        if (!expression) {
+            throw new Error('错误的' + Es5SyntaxName.AssignmentExpression)
+        }
+
+        return {
+            kind: astKind,
+            expression: expression
         }
     }
 }

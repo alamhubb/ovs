@@ -1,4 +1,3 @@
-import {OvsSyntaxName} from "../../parser/OvsChevrotainSyntaxDefine.ts";
 import ChevrotainEcma5Cst from "../../model/ChevrotainEcma5Cst.ts";
 import ts, {SourceFile, Statement} from "typescript";
 import {Es5SyntaxName} from "../../../grammars/ecma5/ecma5_parser.ts";
@@ -11,8 +10,8 @@ import {
 } from "../../TypescriptAstNode.ts";
 import {Es5TokenName} from "../../../grammars/ecma5/ecma5_tokens.ts";
 import {ECMAScript6TokenName} from "@/grammars/es6/ECMAScript6Token";
-import {tokenIndexMap} from "../../parser/ovsChevrotainParser";
 import {Es6SyntaxName} from "@/grammars/es6/ECMAScript6Parser";
+import Es6TokenMap from "@/ovs/parser/Es6TokenMap";
 
 
 //      EndOfFileToken = 1,
@@ -39,7 +38,7 @@ export default class OvsChevrotainCstTransformer {
         const ovsChevrotainAst: ChevrotainEcma5Cst = {...chevrotainEcma5Cst, children: []};
 
         if (ovsChevrotainAst.tokenTypeIdx) {
-            ovsChevrotainAst.tokenTypeName = tokenIndexMap.get(ovsChevrotainAst.tokenTypeIdx)
+            ovsChevrotainAst.tokenTypeName = Es6TokenMap.get(ovsChevrotainAst.tokenTypeIdx)
         }
         // {additionExpression:[]}
         const childObj = chevrotainEcma5Cst.children

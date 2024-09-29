@@ -1,4 +1,4 @@
-import {OvsSyntaxName} from "../../parser/OvsChevrotainSyntaxDefine.ts";
+import {OvsSyntaxName} from "../../parser/OvsChevrotainParser.ts";
 import ChevrotainEcma5Cst from "../../model/ChevrotainEcma5Cst.ts";
 import ts, {SourceFile, Statement} from "typescript";
 import {Es5SyntaxName} from "../../../grammars/ecma5/ecma5_parser.ts";
@@ -11,7 +11,6 @@ import {
 } from "../../TypescriptAstNode.ts";
 import {Es5TokenName} from "../../../grammars/ecma5/ecma5_tokens.ts";
 import {ECMAScript6TokenName} from "@/grammars/es6/ECMAScript6Token";
-import {tokenIndexMap} from "../../parser/ovsChevrotainParser";
 import {Es6SyntaxName} from "@/grammars/es6/ECMAScript6Parser";
 import OvsDomRenderTransformer from "@/ovs/transform/transformOvs/RenderDomOvsTransformer";
 
@@ -86,10 +85,16 @@ export default class VariableStatementOvsChevrotainEs5Transformer {
                 kind: ovsToTsTokenEs5SyntaxMap.get(primaryExpressionToken.tokenTypeName),
                 escapedText: primaryExpressionToken.image
             }
-        } else {
+        } else if (primaryExpressionToken.tokenTypeName === Es5TokenName.NumericLiteral) {
             return {
                 kind: ovsToTsTokenEs5SyntaxMap.get(primaryExpressionToken.tokenTypeName),
-                text: String(primaryExpressionToken.image)
+                escapedText: String(primaryExpressionToken.image)
+            }
+        } else {
+            console.warn(`unexpected tokenTypeName:${primaryExpressionToken.tokenTypeName}:${primaryExpressionToken.image}`)
+            return {
+                kind: ovsToTsTokenEs5SyntaxMap.get(primaryExpressionToken.tokenTypeName),
+                text: primaryExpressionToken.image
             }
         }
     }

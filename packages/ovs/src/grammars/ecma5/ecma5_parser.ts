@@ -11,6 +11,7 @@ export enum Es5SyntaxName {
     VariableDeclaration = 'VariableDeclaration',
     VariableStatement = 'VariableStatement',
     Initialiser = 'Initialiser',
+    AssignmentExpression = 'AssignmentExpression',
 }
 
 export const ENABLE_SEMICOLON_INSERTION = true;
@@ -97,10 +98,10 @@ export class ECMAScript5Parser extends CstParser {
             // this create an ambiguity in the ArrayLiteral rule.
             // removing the Elision from this here does not modify the grammar
             // as the ElementList rule is only invoked from ArrayLiteral rule
-            $.SUBRULE($.AssignmentExpression);
+            $.SUBRULE($[Es5SyntaxName.AssignmentExpression]);
             $.MANY(() => {
                 $.SUBRULE2($.Elision);
-                $.SUBRULE2($.AssignmentExpression);
+                $.SUBRULE2($[Es5SyntaxName.AssignmentExpression]);
             });
         });
 
@@ -140,7 +141,7 @@ export class ECMAScript5Parser extends CstParser {
         $.RULE("RegularPropertyAssignment", () => {
             $.SUBRULE($.PropertyName);
             $.CONSUME(t.Colon);
-            $.SUBRULE($.AssignmentExpression);
+            $.SUBRULE($[Es5SyntaxName.AssignmentExpression]);
         });
 
         $.RULE("GetPropertyAssignment", () => {
@@ -211,10 +212,10 @@ export class ECMAScript5Parser extends CstParser {
         $.RULE("Arguments", () => {
             $.CONSUME(t.LParen);
             $.OPTION(() => {
-                $.SUBRULE($.AssignmentExpression);
+                $.SUBRULE($[Es5SyntaxName.AssignmentExpression]);
                 $.MANY(() => {
                     $.CONSUME(t.Comma);
-                    $.SUBRULE2($.AssignmentExpression);
+                    $.SUBRULE2($[Es5SyntaxName.AssignmentExpression]);
                 });
             });
             $.CONSUME(t.RParen);
@@ -317,13 +318,13 @@ export class ECMAScript5Parser extends CstParser {
         });
 
         // See 11.13
-        $.RULE("AssignmentExpression", () => {
+        $.RULE(Es5SyntaxName.AssignmentExpression, () => {
             $.SUBRULE($.BinaryExpression);
             $.OPTION(() => {
                 $.CONSUME(t.Question);
-                $.SUBRULE($.AssignmentExpression);
+                $.SUBRULE($[Es5SyntaxName.AssignmentExpression]);
                 $.CONSUME(t.Colon);
-                $.SUBRULE2($.AssignmentExpression);
+                $.SUBRULE2($[Es5SyntaxName.AssignmentExpression]);
             });
         });
 
@@ -332,7 +333,7 @@ export class ECMAScript5Parser extends CstParser {
             $.SUBRULE($.BinaryExpressionNoIn);
             $.OPTION(() => {
                 $.CONSUME(t.Question);
-                $.SUBRULE($.AssignmentExpression);
+                $.SUBRULE($[Es5SyntaxName.AssignmentExpression]);
                 $.CONSUME(t.Colon);
                 $.SUBRULE2($.AssignmentExpressionNoIn);
             });
@@ -340,10 +341,10 @@ export class ECMAScript5Parser extends CstParser {
 
         // See 11.14
         $.RULE("Expression", () => {
-            $.SUBRULE($.AssignmentExpression);
+            $.SUBRULE($[Es5SyntaxName.AssignmentExpression]);
             $.MANY(() => {
                 $.CONSUME(t.Comma);
-                $.SUBRULE2($.AssignmentExpression);
+                $.SUBRULE2($[Es5SyntaxName.AssignmentExpression]);
             });
         });
 
@@ -452,7 +453,7 @@ export class ECMAScript5Parser extends CstParser {
         // See 12.2
         $.RULE(Es5SyntaxName.Initialiser, () => {
             $.CONSUME(t.Eq);
-            $.SUBRULE($.AssignmentExpression);
+            $.SUBRULE($[Es5SyntaxName.AssignmentExpression]);
         });
 
         // See 12.2

@@ -1,9 +1,10 @@
 import {ECMAScript5Parser, ENABLE_SEMICOLON_INSERTION, Es5SyntaxName} from "../ecma5/ecma5_parser";
 import * as es6AllTokens from "./ECMAScript6Token";
-import {OvsSyntaxName} from "@/ovs/parser/OvsChevrotainSyntaxDefine";
+import {OvsSyntaxName} from "@/ovs/parser/OvsChevrotainParser";
 
 export enum Es6SyntaxName {
     ExportStatement = 'ExportStatement',
+    ExportDefaultStatement = 'ExportDefaultStatement',
 }
 
 export class ECMAScript6Parser extends ECMAScript5Parser {
@@ -17,6 +18,7 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
         this.StatementValue = [
             // {ALT: () => $.SUBRULE($[OvsSyntaxName.OvsDomRenderStatement])},
             {ALT: () => $.SUBRULE($.Block)},
+            {ALT: () => $.SUBRULE($[Es6SyntaxName.ExportDefaultStatement])},
             {ALT: () => $.SUBRULE($[Es6SyntaxName.ExportStatement])},
             {ALT: () => $.SUBRULE($[Es5SyntaxName.VariableStatement])},
             {ALT: () => $.SUBRULE($.EmptyStatement)},
@@ -60,9 +62,6 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
         // 模块导出
         $.RULE(Es6SyntaxName.ExportStatement, () => {
             $.CONSUME(es6AllTokens.ExportTok);
-            $.OPTION(() => {
-                $.CONSUME(es6AllTokens.DefaultTok)
-            });
             $.OR([
                 // { ALT: () => $.SUBRULE($.ExportClause) },
                 {ALT: () => $.SUBRULE($[Es5SyntaxName.VariableStatement])},
@@ -72,16 +71,10 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
         });
 
         // 模块导出
-        $.RULE(Es6SyntaxName.ExportStatement, () => {
+        $.RULE(Es6SyntaxName.ExportDefaultStatement, () => {
             $.CONSUME(es6AllTokens.ExportTok);
-            $.OPTION(() => {
-                $.CONSUME(es6AllTokens.DefaultTok)
-            });
-            $.OR([
-                // { ALT: () => $.SUBRULE($.ExportClause) },
-                {ALT: () => $.SUBRULE($[Es5SyntaxName.VariableStatement])},
-                // { ALT: () => $.CONSUME(es6AllTokens.DefaultTok) }
-            ]);
+            $.CONSUME(es6AllTokens.DefaultTok)
+            $.SUBRULE($[Es5SyntaxName.AssignmentExpression])
             $.CONSUME(es6AllTokens.Semicolon, ENABLE_SEMICOLON_INSERTION);
         });
 
