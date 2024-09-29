@@ -55,7 +55,7 @@ export default class OvsChevrotainCstTransformer {
                 //{name: 'additionExpression', children: {…}}
                 keyValue.forEach(indexChild => {
                     // {name,child}
-                    const transformChild = transformOvsChevrotainCstToAstChild(indexChild)
+                    const transformChild = OvsChevrotainCstTransformer.transformOvsChevrotainCstToAstChild(indexChild)
                     // Object.keys(indexChild.children).forEach(realKey => {
                     //   const realChild = indexChild.children[realKey]
                     // const transformChild = transform(realKey, realChild[0], level + 1)

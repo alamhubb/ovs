@@ -15,17 +15,13 @@ import {tokenIndexMap} from "../../parser/ovsChevrotainParser";
 import {Es6SyntaxName} from "@/grammars/es6/ECMAScript6Parser";
 import OvsChevrotainEs5StatementTransformer from "@/ovs/transform/transformEs5/OvsChevrotainEs5StatementTransformer";
 
-const ovsToTsTokenEs5SyntaxMap: Map<string, number> = new Map()
-ovsToTsTokenEs5SyntaxMap.set(Es5TokenName.NumericLiteral, ts.SyntaxKind.NumericLiteral)
-ovsToTsTokenEs5SyntaxMap.set(Es5TokenName.Identifier, ts.SyntaxKind.Identifier)
-
 
 export default class OvsChevrotainEs5ProgrammerTransformer {
     /**
      * Convert ovs Chevrotain cst to ast
      * @param programAst
      */
-    transformOvsAstToTsAst(programAst: ChevrotainEcma5Ast): SourceFile {
+    static transformOvsAstToTsAst(programAst: ChevrotainEcma5Ast): SourceFile {
         if (programAst.name !== Es5SyntaxName.Program) {
             throw "解析错误"
         }
