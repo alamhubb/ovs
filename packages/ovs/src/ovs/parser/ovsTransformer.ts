@@ -14,8 +14,14 @@ export function ovsTransformToTsCode(code: string): string {
     const chevrotainEcma5Cst: ChevrotainEcma5Cst = parseToOvsChevrotainCst(code)
     // transform ovs chevrotain cst to ovs ast
     const chevrotainEcma5Ast: ChevrotainEcma5Ast = transformOvsChevrotainCstToAst(chevrotainEcma5Cst)
+
+    console.log(JSON.stringify(chevrotainEcma5Ast))
+
     // transform ovs ast  to typescript ast
     const typescriptAst: SourceFile = transformOvsAstToTsAst(chevrotainEcma5Ast)
+
     const typescriptCode: string = ovsGenerateTsCode(typescriptAst)
+
+    console.log(typescriptCode)
     return typescriptCode
 }

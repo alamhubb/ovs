@@ -7,7 +7,7 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
         const $ = this;
 
         // 模块导出
-        /*$.RULE("ExportDeclaration", () => {
+        $.RULE("ExportDeclaration", () => {
             $.CONSUME(es6AllTokens.ExportTok);
             $.OR([
                 { ALT: () => $.SUBRULE($.ExportClause) },
@@ -26,7 +26,15 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
                 }
             });
             $.CONSUME(es6AllTokens.RCurly);
-        });*/
+        });
+
+        $.RULE("ExportSpecifier", () => {
+            $.CONSUME(es6AllTokens.Identifier);
+            $.OPTION(() => {
+                // $.CONSUME(es6AllTokens.AsTok);
+                $.CONSUME2(es6AllTokens.Identifier);
+            });
+        });
 
         // ES6 新增的语法规则
         // 块级作用域和变量声明
@@ -169,14 +177,6 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
         });
 
 
-
-        $.RULE("ExportSpecifier", () => {
-            $.CONSUME(es6AllTokens.Identifier);
-            $.OPTION(() => {
-                // $.CONSUME(es6AllTokens.AsTok);
-                $.CONSUME2(es6AllTokens.Identifier);
-            });
-        });
 
         // 解构赋值
         $.RULE("DestructuringAssignment", () => {
