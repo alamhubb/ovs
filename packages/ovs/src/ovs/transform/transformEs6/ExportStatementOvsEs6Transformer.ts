@@ -1,0 +1,54 @@
+import {OvsSyntaxName} from "../../parser/OvsChevrotainSyntaxDefine.ts";
+import ChevrotainEcma5Cst from "../../model/ChevrotainEcma5Cst.ts";
+import ts, {SourceFile, Statement} from "typescript";
+import {Es5SyntaxName} from "../../../grammars/ecma5/ecma5_parser.ts";
+import ChevrotainEcma5Ast from "../../model/ChevrotainEcma5Ast.ts";
+import {
+    ArgumentsExtendNode,
+    DeclarationsExtendNode,
+    StatementExtendNode,
+    TypescriptAstNode, TypescriptTextExtendAstNode
+} from "../../TypescriptAstNode.ts";
+import {Es5TokenName} from "../../../grammars/ecma5/ecma5_tokens.ts";
+import {ECMAScript6TokenName} from "@/grammars/es6/ECMAScript6Token";
+import {tokenIndexMap} from "../../parser/ovsChevrotainParser";
+import {Es6SyntaxName} from "@/grammars/es6/ECMAScript6Parser";
+import OvsDomRenderTransformer from "@/ovs/transform/transformOvs/RenderDomOvsTransformer";
+import VariableStatementOvsChevrotainEs5Transformer
+    from "@/ovs/transform/transformEs5/VariableStatementOvsChevrotainEs5Transformer";
+
+const ovsToTsTokenEs5SyntaxMap: Map<string, number> = new Map()
+ovsToTsTokenEs5SyntaxMap.set(Es5TokenName.NumericLiteral, ts.SyntaxKind.NumericLiteral)
+ovsToTsTokenEs5SyntaxMap.set(Es5TokenName.Identifier, ts.SyntaxKind.Identifier)
+
+
+export default class ExportStatementOvsEs6Transformer {
+    static transformExportStatementAst(syntax: ChevrotainEcma5Ast) {
+        let astKind
+        let variableStatement
+        for (const tokenSyntax of syntax.children) {
+            if ([ECMAScript6TokenName.ExportTok].includes(tokenSyntax.tokenTypeName)) {
+                astKind = ts.SyntaxKind.ExportKeyword
+            } else if (tokenSyntax.name === Es5SyntaxName.VariableStatement) {
+                variableStatement = VariableStatementOvsChevrotainEs5Transformer.transformVariableStatementAst(tokenSyntax)
+            }
+        }
+
+        if (!astKind) {
+            throw new Error(`错误的Kind:${syntax.name}:${syntax.tokenTypeName}:${syntax.image}`)
+        }
+
+        if (!variableStatement) {
+            throw new Error('错误的' + Es5SyntaxName.VariableStatement)
+        }
+
+
+        return {
+            ...variableStatement,
+            modifiers: [{
+                kind: astKind
+            }],
+        }
+    }
+}
+

@@ -17,6 +17,7 @@ import OvsDomRenderTransformer from "@/ovs/transform/transformOvs/RenderDomOvsTr
 import OvsChevrotainEs5VariableStatementTransformer
     from "@/ovs/transform/transformEs5/VariableStatementOvsChevrotainEs5Transformer";
 import StatementOvsChevrotainEs5Transformer from "@/ovs/transform/transformEs5/StatementOvsChevrotainEs5Transformer";
+import ExportStatementOvsEs6Transformer from "@/ovs/transform/transformEs6/ExportStatementOvsEs6Transformer";
 
 
 export default class StatementOvsEs6Transformer {
@@ -26,10 +27,10 @@ export default class StatementOvsEs6Transformer {
         if (ast) {
             return ast
         }
-        /*const statementAst = parentStatementAst.children[0]
-        if (statementAst.name === OvsSyntaxName.OvsRenderDomStatement) {
-            ast = OvsDomRenderTransformer.transformOvsRenderDomAst(statementAst);
-        }*/
+        const statementAst = parentStatementAst.children[0]
+        if (statementAst.name === Es6SyntaxName.ExportStatement) {
+            ast = ExportStatementOvsEs6Transformer.transformExportStatementAst(statementAst);
+        }
         return ast
 
     }
