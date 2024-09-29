@@ -1,4 +1,4 @@
-import {ECMAScript5Parser, ENABLE_SEMICOLON_INSERTION} from "../ecma5/ecma5_parser";
+import {ECMAScript5Parser, ENABLE_SEMICOLON_INSERTION, Es5SyntaxName} from "../ecma5/ecma5_parser";
 import * as es6AllTokens from "./ECMAScript6Token";
 
 export class ECMAScript6Parser extends ECMAScript5Parser {
@@ -6,13 +6,35 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
         super();
         const $ = this;
 
-        // ES6 新增的语法规则
-
-        // 块级作用域和变量声明
-        $.RULE("LetOrConst", () => {
+        // 模块导出
+        /*$.RULE("ExportDeclaration", () => {
+            $.CONSUME(es6AllTokens.ExportTok);
             $.OR([
-                { ALT: () => $.CONSUME(es6AllTokens.LetTok) },
-                { ALT: () => $.CONSUME(es6AllTokens.ConstTok) }
+                { ALT: () => $.SUBRULE($.ExportClause) },
+                { ALT: () => $.SUBRULE($[Es5SyntaxName.VariableDeclaration]) },
+                { ALT: () => $.CONSUME(es6AllTokens.DefaultTok) }
+            ]);
+            $.CONSUME(es6AllTokens.Semicolon, ENABLE_SEMICOLON_INSERTION);
+        });
+
+        $.RULE("ExportClause", () => {
+            $.CONSUME(es6AllTokens.LCurly);
+            $.MANY_SEP({
+                SEP: es6AllTokens.Comma,
+                DEF: () => {
+                    $.SUBRULE($.ExportSpecifier);
+                }
+            });
+            $.CONSUME(es6AllTokens.RCurly);
+        });*/
+
+        // ES6 新增的语法规则
+        // 块级作用域和变量声明
+        /*$.OVERRIDE_RULE("VariableStatement", () => {
+            $.OR([
+                // { ALT: () => $.CONSUME(es6AllTokens.LetTok) },
+                { ALT: () => $.CONSUME(es6AllTokens.ConstTok) },
+                { ALT: () => $.CONSUME(es6AllTokens.VarTok) }
             ]);
             $.SUBRULE($.VariableDeclarationList);
             $.CONSUME(es6AllTokens.Semicolon, ENABLE_SEMICOLON_INSERTION);
@@ -46,7 +68,7 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
 
         $.RULE("ClassHeritage", () => {
             $.CONSUME(es6AllTokens.ExtendsTok);
-            $.SUBRULE($.LeftHandSideExpression);
+            // $.SUBRULE($.LeftHandSideExpression);
         });
 
         $.RULE("ClassBody", () => {
@@ -65,9 +87,9 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
         });
 
         $.RULE("MethodDefinition", () => {
-            $.OPTION(() => {
-                $.CONSUME(es6AllTokens.StaticTok);
-            });
+            // $.OPTION(() => {
+            //     $.CONSUME(es6AllTokens.StaticTok);
+            // });
             $.SUBRULE($.PropertyName);
             $.CONSUME(es6AllTokens.LParen);
             $.OPTION(() => {
@@ -84,7 +106,7 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
             $.CONSUME(es6AllTokens.BackQuote);
             $.MANY(() => {
                 $.OR([
-                    { ALT: () => $.CONSUME(es6AllTokens.TemplateCharacters) },
+                    // { ALT: () => $.CONSUME(es6AllTokens.TemplateCharacters) },
                     { ALT: () => $.SUBRULE($.TemplateSubstitution) }
                 ]);
             });
@@ -104,7 +126,7 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
                 { ALT: () => $.SUBRULE($.ImportClause) },
                 { ALT: () => $.CONSUME(es6AllTokens.StringLiteral) }
             ]);
-            $.CONSUME(es6AllTokens.FromTok);
+            // $.CONSUME(es6AllTokens.FromTok);
             $.CONSUME2(es6AllTokens.StringLiteral);
             $.CONSUME(es6AllTokens.Semicolon, ENABLE_SEMICOLON_INSERTION);
         });
@@ -123,7 +145,7 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
 
         $.RULE("NameSpaceImport", () => {
             $.CONSUME(es6AllTokens.Asterisk);
-            $.CONSUME(es6AllTokens.AsTok);
+            // $.CONSUME(es6AllTokens.AsTok);
             $.CONSUME(es6AllTokens.Identifier);
         });
 
@@ -141,37 +163,17 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
         $.RULE("ImportSpecifier", () => {
             $.CONSUME(es6AllTokens.Identifier);
             $.OPTION(() => {
-                $.CONSUME(es6AllTokens.AsTok);
+                // $.CONSUME(es6AllTokens.AsTok);
                 $.CONSUME2(es6AllTokens.Identifier);
             });
         });
 
-        // 模块导出
-        $.RULE("ExportDeclaration", () => {
-            $.CONSUME(es6AllTokens.ExportTok);
-            $.OR([
-                { ALT: () => $.SUBRULE($.ExportClause) },
-                { ALT: () => $.SUBRULE($.Declaration) },
-                { ALT: () => $.CONSUME(es6AllTokens.DefaultTok) }
-            ]);
-            $.CONSUME(es6AllTokens.Semicolon, ENABLE_SEMICOLON_INSERTION);
-        });
 
-        $.RULE("ExportClause", () => {
-            $.CONSUME(es6AllTokens.LCurly);
-            $.MANY_SEP({
-                SEP: es6AllTokens.Comma,
-                DEF: () => {
-                    $.SUBRULE($.ExportSpecifier);
-                }
-            });
-            $.CONSUME(es6AllTokens.RCurly);
-        });
 
         $.RULE("ExportSpecifier", () => {
             $.CONSUME(es6AllTokens.Identifier);
             $.OPTION(() => {
-                $.CONSUME(es6AllTokens.AsTok);
+                // $.CONSUME(es6AllTokens.AsTok);
                 $.CONSUME2(es6AllTokens.Identifier);
             });
         });
@@ -220,15 +222,15 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
         $.RULE("SpreadElement", () => {
             $.CONSUME(es6AllTokens.Ellipsis);
             $.SUBRULE($.AssignmentExpression);
-        });
+        });*/
 
         // 左值表达式
-        $.RULE("LeftHandSideExpression", () => {
+        /*$.RULE("LeftHandSideExpression", () => {
             $.OR([
                 { ALT: () => $.SUBRULE($.NewExpression) },
                 { ALT: () => $.SUBRULE($.CallExpression) }
             ]);
-        });
+        });*/
 
         if (!isInvokedByChildConstructor) {
             this.performSelfAnalysis();

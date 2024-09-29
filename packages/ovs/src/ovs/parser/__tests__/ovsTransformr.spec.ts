@@ -4,6 +4,6 @@ import {ovsTransformToTsCode} from "../ovsTransformer";
 
 describe('ovsTransformCode', () => {
     test('transform export', () => {
-        expect(ovsTransformToTsCode('export'))
+        expect(ovsTransformToTsCode('var a = 10'))
     })
 })

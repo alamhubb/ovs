@@ -15,10 +15,10 @@ const acornTokTypes = acorn.tokTypes;
 //将token对象和token符号对应上
 import * as tokens from "./ECMAScript6Token.ts";
 import {createChevToken, getEs5ChevrotainToken} from "@/grammars/ecma5/ecma5_lexer";
+import {Token} from "acorn";
 
-
-export function getEs6ChevrotainToken(acornType: String) {
-    let ctt = getEs5ChevrotainToken(acornType)
+export function getEs6ChevrotainToken(acornType: String, token: Token) {
+    let ctt = getEs5ChevrotainToken(acornType, token)
     if (!ctt) {
         switch (acornType) {
             case acornTokTypes._const:
@@ -61,7 +61,7 @@ export default class ECMAScript6Lexer {
         const result = [];
         for (let token of acorn.tokenizer(str, {ecmaVersion: 6})) {
             let acornType = token.type;
-            let ctt = getEs6ChevrotainToken(acornType)
+            let ctt = getEs6ChevrotainToken(acornType, token)
             if (!ctt) {
                 throw Error("Unknown es6 token:" + acornType);
             }

@@ -12,7 +12,7 @@ export enum ECMAScript6TokenName {
     ImportTok = 'ImportTok',
 
     Arrow = 'Arrow',
-    BackTick = 'BackTick',
+    BackQuote = 'BackQuote',
     DollarCurly = 'DollarCurly',
     Ellipsis = 'Ellipsis',
 }
@@ -37,7 +37,7 @@ export const ImportTok = createToken({name: ECMAScript6TokenName.ImportTok, cate
 export const Arrow = createToken({name: ECMAScript6TokenName.Arrow, categories: Question});
 
 // 模板字符串
-export const BackQuote = createToken({name: ECMAScript6TokenName.BackTick, categories: Question});
+export const BackQuote = createToken({name: ECMAScript6TokenName.BackQuote, categories: Question});
 export const DollarCurly = createToken({name: ECMAScript6TokenName.DollarCurly, categories: Question});
 //未使用
 // export const TemplateCharacters = createToken({name: "TemplateCharacters", pattern: /[^`$]+/});

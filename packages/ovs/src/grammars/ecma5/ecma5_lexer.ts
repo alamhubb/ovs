@@ -13,6 +13,7 @@ import * as acorn from "acorn";
 
 const acornTokTypes = acorn.tokTypes;
 import * as tokens from "./ecma5_tokens.ts";
+import {Token} from "acorn";
 
 export function createChevToken(chevTokenClass, acornToken) {
     return {
@@ -24,7 +25,7 @@ export function createChevToken(chevTokenClass, acornToken) {
 }
 
 
-export function getEs5ChevrotainToken(acornType:String){
+export function getEs5ChevrotainToken(acornType: String, token: Token) {
     let ctt;
     switch (acornType) {
         case acornTokTypes._var:
@@ -323,8 +324,8 @@ export function tokenize(str) {
     const result = [];
     for (let token of acorn.tokenizer(str, {ecmaVersion: 6})) {
         let acornType = token.type;
-        let ctt = getEs5ChevrotainToken(acornType)
-        if (!ctt){
+        let ctt = getEs5ChevrotainToken(acornType, token)
+        if (!ctt) {
             throw Error("Unknown es5 token:" + acornType);
         }
         const chevToken = createChevToken(ctt, token);
