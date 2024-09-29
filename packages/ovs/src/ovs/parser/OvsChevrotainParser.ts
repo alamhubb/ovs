@@ -3,7 +3,7 @@ import {ECMAScript6Parser} from "../../grammars/es6/ECMAScript6Parser";
 import ChevrotainEcma5Cst from "../model/ChevrotainEcma5Cst.ts";
 import ECMAScript6Lexer from "../../grammars/es6/ECMAScript6Lexer";
 import * as es6AllTokens from "../../grammars/es6/ECMAScript6Token";
-import * as t from "@/grammars/ecma5/ecma5_tokens";
+import * as t from "../../grammars/ecma5/ecma5_tokens";
 
 export enum OvsSyntaxName {
     OvsRenderDomStatement = 'OvsRenderDomStatement',
@@ -29,11 +29,16 @@ export class OvsChevrotainParser extends ECMAScript6Parser {
                 // { ALT: () => $.CONSUME(es6AllTokens.LetTok) },
                 {
                     ALT: () => {
-                        console.log('chufale')
+                        console.log('chufale111111')
                         return $.SUBRULE($[OvsSyntaxName.OvsRenderDomStatement])
                     }
                 },
-                {ALT: () => $.SUBRULE($.BinaryExpression)}
+                {
+                    ALT: () => {
+                        console.log('chufale222222')
+                        return $.SUBRULE($.BinaryExpression)
+                    }
+                }
             ]);
             $.OPTION(() => {
                 $.CONSUME(t.Question);
