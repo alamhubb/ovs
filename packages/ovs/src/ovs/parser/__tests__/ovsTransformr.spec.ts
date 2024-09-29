@@ -3,6 +3,17 @@ import {describe, test, expect} from 'vitest'
 import {ovsGenerateCodeToTsCode} from "../ovsTsParser";
 import {ovsTransformToTsCode} from "../ovsTransformer";
 
+describe('test export default h', () => {
+    const code = 'export default div { 123 }'
+
+    test('ovs test', () => {
+        expect(ovsTransformToTsCode(code))
+    })
+
+    test('ts test', () => {
+        expect(ovsGenerateCodeToTsCode(code))
+    })
+})
 
 describe('test export default', () => {
     const code = 'export default 10'
