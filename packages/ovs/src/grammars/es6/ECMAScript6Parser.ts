@@ -75,20 +75,20 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
             });
             $.CONSUME(es6AllTokens.RParen);
             $.CONSUME(es6AllTokens.LCurly);
-            $.SUBRULE($.FunctionBody);
+            $.SUBRULE($.SourceElements);
             $.CONSUME(es6AllTokens.RCurly);
         });
 
         // 模板字符串
         $.RULE("TemplateLiteral", () => {
-            $.CONSUME(es6AllTokens.BackTick);
+            $.CONSUME(es6AllTokens.BackQuote);
             $.MANY(() => {
                 $.OR([
                     { ALT: () => $.CONSUME(es6AllTokens.TemplateCharacters) },
                     { ALT: () => $.SUBRULE($.TemplateSubstitution) }
                 ]);
             });
-            $.CONSUME(es6AllTokens.BackTick);
+            $.CONSUME(es6AllTokens.BackQuote);
         });
 
         $.RULE("TemplateSubstitution", () => {
@@ -122,7 +122,7 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
         });
 
         $.RULE("NameSpaceImport", () => {
-            $.CONSUME(es6AllTokens.Multiply);
+            $.CONSUME(es6AllTokens.Asterisk);
             $.CONSUME(es6AllTokens.AsTok);
             $.CONSUME(es6AllTokens.Identifier);
         });
