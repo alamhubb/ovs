@@ -14,7 +14,7 @@
             },
             "initializer": {
               "kind": 9,
-              "escapedText": "10"
+              "text": "10"
             }
           }
         ]
@@ -26,6 +26,8 @@
       ]
     }
   ],
-  "text": "",
-  "fileName": "_$$ovs$$temp$$ovsToTsAst.ts"
+  "endOfFileToken": {
+    "kind": 1
+  },
+  "text": ""
 }

@@ -91,13 +91,14 @@ export default class VariableStatementOvsChevrotainEs5Transformer {
         } else if (primaryExpressionToken.tokenTypeName === Es5TokenName.NumericLiteral) {
             return {
                 kind: ovsToTsTokenEs5SyntaxMap.get(primaryExpressionToken.tokenTypeName),
-                escapedText: String(primaryExpressionToken.image)
+                text: String(primaryExpressionToken.image)
             }
         } else {
             console.warn(`unexpected tokenTypeName:${primaryExpressionToken.tokenTypeName}:${primaryExpressionToken.image}`)
             return {
                 kind: ovsToTsTokenEs5SyntaxMap.get(primaryExpressionToken.tokenTypeName),
-                text: primaryExpressionToken.image
+                //这里应该为 text，todo 待确认
+                escapedText: primaryExpressionToken.image
             }
         }
     }
