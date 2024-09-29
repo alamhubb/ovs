@@ -3,7 +3,7 @@ import ChevrotainEcma5Cst from "../model/ChevrotainEcma5Cst";
 import ChevrotainEcma5Ast from "../model/ChevrotainEcma5Ast";
 import {parseToOvsChevrotainCst} from "../parser/ovsChevrotainParser";
 import {transformOvsAstToTsAst, transformOvsChevrotainCstToAst} from "../parser/ovsChevrotainTransform";
-import {ovsGenerateTsCode} from "../parser/ovsTsGenerator";
+import {ovsGenerateAstToTsCode} from "../parser/ovsTsGenerator";
 
 /**
  * convert ovs syntax code to typescript code
@@ -20,8 +20,10 @@ export function ovsTransformToTsCode(code: string): string {
     // transform ovs ast  to typescript ast
     const typescriptAst: SourceFile = transformOvsAstToTsAst(chevrotainEcma5Ast)
 
-    const typescriptCode: string = ovsGenerateTsCode(typescriptAst)
+    const typescriptCode: string = ovsGenerateAstToTsCode(typescriptAst)
 
     console.log(typescriptCode)
     return typescriptCode
 }
+
+//需要得到渲染后的代码，通过ts执行得到的语法树，和执行后的结果

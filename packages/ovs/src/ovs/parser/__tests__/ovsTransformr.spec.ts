@@ -1,9 +1,15 @@
 import {describe, test, expect} from 'vitest'
 
-import {ovsTransformToTsCode} from "../ovsTransformer";
+import {ovsGenerateCodeToTsCode} from "../ovsTsGenerator";
 
 describe('ovsTransformCode', () => {
-    test('transform export', () => {
-        expect(ovsTransformToTsCode('var a = 10'))
+    const code = 'const a = 10'
+
+    /*test('transform export', () => {
+        expect(ovsTransformToTsCode(code))
+    })*/
+
+    test('get ts ast', () => {
+        expect(ovsGenerateCodeToTsCode(code))
     })
 })
