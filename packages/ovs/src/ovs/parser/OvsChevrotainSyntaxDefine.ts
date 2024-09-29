@@ -1,6 +1,6 @@
 import {ECMAScript5Parser, Es5SyntaxName} from "../../grammars/ecma5/ecma5_parser";
-import * as t from "../../grammars/ecma5/ecma5_tokens";
 import {ECMAScript6Parser} from "../../grammars/es6/ECMAScript6Parser";
+import * as es6AllTokens from "../../grammars/es6/ECMAScript6Token";
 
 export enum OvsSyntaxName {
     OvsDomRenderStatement = 'OvsDomRenderStatement',
@@ -41,20 +41,20 @@ export class OvsChevrotainSyntaxDefine extends ECMAScript6Parser {
         });
 
         $.RULE(OvsSyntaxName.OvsDomRenderStatement, () => {
-            $.CONSUME(t.Identifier);
+            $.CONSUME(es6AllTokens.Identifier);
             $.OPTION(() => {
-                $.CONSUME(t.LParen);
+                $.CONSUME(es6AllTokens.LParen);
                 $.OPTION1(() => {
                     $.SUBRULE($.FormalParameterList);
                 });
-                $.CONSUME(t.RParen);
+                $.CONSUME(es6AllTokens.RParen);
             });
-            $.CONSUME(t.LCurly);
+            $.CONSUME(es6AllTokens.LCurly);
             $.OPTION2(() => {
                 $.MANY(() => {
                     $.SUBRULE($.ElementList)
                 });
-                $.CONSUME(t.RCurly);
+                $.CONSUME(es6AllTokens.RCurly);
             });
         });
 

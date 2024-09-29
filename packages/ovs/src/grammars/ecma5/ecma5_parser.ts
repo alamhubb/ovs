@@ -18,8 +18,8 @@ export enum Es5SyntaxName {
     Initialiser = 'Initialiser',
 }
 
-const ENABLE_SEMICOLON_INSERTION = true;
-const DISABLE_SEMICOLON_INSERTION = false;
+export const ENABLE_SEMICOLON_INSERTION = true;
+export const DISABLE_SEMICOLON_INSERTION = false;
 
 // as defined in https://www.ecma-international.org/ecma-262/5.1/index.html
 export class ECMAScript5Parser extends CstParser {
