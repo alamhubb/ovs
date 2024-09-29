@@ -29,36 +29,5 @@
   "endOfFileToken": {
     "kind": 1
   },
-  "text": "\n    export var a = 10;\n",
-  "bindDiagnostics": [],
-  "externalModuleIndicator": {
-    "kind": 243,
-    "modifiers": [
-      {
-        "kind": 95
-      }
-    ],
-    "declarationList": {
-      "kind": 261,
-      "declarations": [
-        {
-          "kind": 260,
-          "name": {
-            "kind": 80,
-            "escapedText": "a"
-          },
-          "initializer": {
-            "kind": 9,
-            "text": "10"
-          }
-        }
-      ]
-    }
-  },
-  "pragmas": {},
-  "referencedFiles": [],
-  "typeReferenceDirectives": [],
-  "libReferenceDirectives": [],
-  "amdDependencies": [],
-  "identifiers": {}
+  "text": ""
 }
