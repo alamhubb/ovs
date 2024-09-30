@@ -1,5 +1,6 @@
-import {EOF, tokenMatcher, MismatchedTokenException, CstParser} from "chevrotain";
+import {EOF, tokenMatcher, MismatchedTokenException, CstParser} from "@/chevotain/src/api";
 import * as t from "./ecma5_tokens.ts";
+
 
 // console.log(tokenIndexMap.get(36))
 
