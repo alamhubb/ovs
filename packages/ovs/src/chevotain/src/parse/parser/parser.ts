@@ -148,10 +148,8 @@ export class Parser {
   }
 
   public performSelfAnalysis(this: MixedInParser): void {
-    console.log(11111)
 
     this.TRACE_INIT("performSelfAnalysis", () => {
-      console.log(2222)
       let defErrorsMsgs;
 
       this.selfAnalysisDone = true;

@@ -39,9 +39,13 @@ export class OvsChevrotainParser extends ECMAScript6Parser {
         });
 
         $.RULE(OvsSyntaxName.OvsRenderDomStatement, () => {
-            $.SUBRULE($.MemberCallNewExpression)
-            $.CONSUME(es6AllTokens.LCurly);
+            // $.SUBRULE($.MemberCallNewExpression)
+            $.CONSUME(es6AllTokens.Identifier);
             $.OPTION(() => {
+                $.SUBRULE($.Arguments);
+            });
+            $.CONSUME(es6AllTokens.LCurly);
+            $.OPTION2(() => {
                 $.SUBRULE($[Es5SyntaxName.ElementList])
             });
             $.CONSUME(es6AllTokens.RCurly);
@@ -65,13 +69,9 @@ export function parseCodeToOvsCst(code: string): ChevrotainEcma5Cst {
 
     console.log(tokens)
 
-    console.log(111)
     parserInstance.input = tokens;
-    console.log(222)
     parserInstance.orgText = code;
-    console.log(33)
     const cst = parserInstance.Program();
-    console.log(44)
     if (parserInstance.errors.length > 0) {
         for (const error of parserInstance.errors) {
             console.log(error)

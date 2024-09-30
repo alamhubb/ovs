@@ -45,9 +45,6 @@ export class LLkLookaheadStrategy implements ILookaheadStrategy {
         options.rules,
         this.maxLookahead,
       );
-      if (ambiguousAltsErrors.length){
-        console.log(2323)
-      }
       const emptyRepetitionErrors = this.validateSomeNonEmptyLookaheadPath(
         options.rules,
         this.maxLookahead,

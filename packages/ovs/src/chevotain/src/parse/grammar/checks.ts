@@ -443,13 +443,6 @@ export function validateAmbiguousAlternationAlternatives(
       topLevelRule,
       errMsgProvider,
     );
-    if (altsAmbiguityErrors.length){
-      console.log(3333)
-    }
-
-    if (altsPrefixAmbiguityErrors.length){
-      console.log(444)
-    }
 
     return altsAmbiguityErrors.concat(altsPrefixAmbiguityErrors);
   });
@@ -608,12 +601,6 @@ function checkAlternativesAmbiguities(
     },
     [] as { alts: number[]; path: TokenType[] }[],
   );
-  console.log(4444)
-  console.log(identicalAmbiguities.length)
-  if (identicalAmbiguities.length){
-    console.log(2222)
-  }
-
   const currErrors = map(identicalAmbiguities, (currAmbDescriptor) => {
     const ambgIndices = map(
       currAmbDescriptor.alts,
@@ -635,10 +622,6 @@ function checkAlternativesAmbiguities(
       alternatives: currAmbDescriptor.alts,
     };
   });
-
-  if (currErrors.length){
-    console.log(123)
-  }
   return currErrors;
 }
 
