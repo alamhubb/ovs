@@ -13,9 +13,9 @@ export enum OvsSyntaxName {
 // (	parentheses
 // [	bracket
 // {	brace ,curly brace ,curly bracket
-export class OvsChevrotainParser extends ECMAScript5Parser {
+export class OvsChevrotainParser extends ECMAScript6Parser {
     constructor() {
-        super()
+        super(true)
         const $ = this
 
         $.OVERRIDE_RULE(Es5SyntaxName.AssignmentExpression, () => {
