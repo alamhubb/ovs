@@ -21,7 +21,7 @@ export class OvsChevrotainParser extends ECMAScript5Parser {
         $.OVERRIDE_RULE(Es5SyntaxName.AssignmentExpression, () => {
             $.OR([
                 {
-                    ALT: () => {  $.SUBRULE($[OvsSyntaxName.OvsRenderDomStatement])}
+                    ALT: () => {  $.SUBRULE($[OvsSyntaxName.OvsRenderDomStatement])}, IGNORE_AMBIGUITIES: true
                 },
                 {
                     ALT: () => {
@@ -61,16 +61,16 @@ export class OvsChevrotainParser extends ECMAScript5Parser {
  */
 export function parseCodeToOvsCst(code: string): ChevrotainEcma5Cst {
     const parserInstance = new OvsChevrotainParser();
-    // const tokens = ECMAScript6Lexer.tokenize(code);
+    const tokens = ECMAScript6Lexer.tokenize(code);
 
-    // console.log(tokens)
+    console.log(tokens)
 
-    // console.log(111)
-    // parserInstance.input = tokens;
-    // console.log(222)
-    // parserInstance.orgText = code;
-    // console.log(33)
-    /*const cst = parserInstance.Program();
+    console.log(111)
+    parserInstance.input = tokens;
+    console.log(222)
+    parserInstance.orgText = code;
+    console.log(33)
+    const cst = parserInstance.Program();
     console.log(44)
     if (parserInstance.errors.length > 0) {
         for (const error of parserInstance.errors) {
@@ -78,5 +78,6 @@ export function parseCodeToOvsCst(code: string): ChevrotainEcma5Cst {
         }
         throw Error("ChevrotainCs parser code has error");
     }
-    return cst*/
+    console.log(JSON.stringify(cst))
+    return cst
 }
