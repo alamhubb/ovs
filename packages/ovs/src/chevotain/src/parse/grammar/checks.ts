@@ -71,6 +71,7 @@ export function validateLookahead(options: {
     tokenTypes: options.tokenTypes,
     grammarName: options.grammarName,
   });
+
   return map(lookaheadValidationErrorMessages, (errorMessage) => ({
     type: ParserDefinitionErrorType.CUSTOM_LOOKAHEAD_VALIDATION,
     ...errorMessage,
@@ -435,15 +436,26 @@ export function validateAmbiguousAlternationAlternatives(
       topLevelRule,
       errMsgProvider,
     );
+
     const altsPrefixAmbiguityErrors = checkPrefixAlternativesAmbiguities(
       alternatives,
       currOr,
       topLevelRule,
       errMsgProvider,
     );
+    if (altsAmbiguityErrors.length){
+      console.log(3333)
+    }
+
+    if (altsPrefixAmbiguityErrors.length){
+      console.log(444)
+    }
 
     return altsAmbiguityErrors.concat(altsPrefixAmbiguityErrors);
   });
+  if (errors.length){
+    const a = 1;
+  }
 
   return errors;
 }
@@ -569,6 +581,15 @@ function checkAlternativesAmbiguities(
             alternation.definition[currOtherAltIdx].ignoreAmbiguities !== true
           ) {
             altsCurrPathAppearsIn.push(currOtherAltIdx);
+
+            for (const currOtherAltElement of currOtherAlt) {
+              let bbb = ''
+              for (const currOtherAltElementElement of currOtherAltElement) {
+                bbb+= (currOtherAltElementElement.name+'-')
+              }
+              console.log(bbb)
+              console.log('--------------------')
+            }
           }
         });
 
@@ -587,6 +608,11 @@ function checkAlternativesAmbiguities(
     },
     [] as { alts: number[]; path: TokenType[] }[],
   );
+  console.log(4444)
+  console.log(identicalAmbiguities.length)
+  if (identicalAmbiguities.length){
+    console.log(2222)
+  }
 
   const currErrors = map(identicalAmbiguities, (currAmbDescriptor) => {
     const ambgIndices = map(
@@ -610,6 +636,9 @@ function checkAlternativesAmbiguities(
     };
   });
 
+  if (currErrors.length){
+    console.log(123)
+  }
   return currErrors;
 }
 
@@ -682,6 +711,10 @@ export function checkPrefixAlternativesAmbiguities(
       return currPathPrefixErrors;
     }),
   );
+
+  if (errors.length){
+    const a = 1;
+  }
 
   return errors;
 }

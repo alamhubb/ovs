@@ -140,6 +140,7 @@ export class Parser {
    *  @deprecated use the **instance** method with the same name instead
    */
   static performSelfAnalysis(parserInstance: Parser): void {
+    console.log('static performSelfAnalysis')
     throw Error(
       "The **static** `performSelfAnalysis` method has been deprecated." +
         "\t\nUse the **instance** method with the same name instead.",
@@ -147,7 +148,10 @@ export class Parser {
   }
 
   public performSelfAnalysis(this: MixedInParser): void {
+    console.log(11111)
+
     this.TRACE_INIT("performSelfAnalysis", () => {
+      console.log(2222)
       let defErrorsMsgs;
 
       this.selfAnalysisDone = true;
