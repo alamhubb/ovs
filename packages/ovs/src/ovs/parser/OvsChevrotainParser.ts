@@ -39,9 +39,13 @@ export class OvsChevrotainParser extends ECMAScript6Parser {
         });
 
         $.RULE(OvsSyntaxName.OvsRenderDomStatement, () => {
-            $.SUBRULE($.MemberCallNewExpression)
-            $.CONSUME(es6AllTokens.LCurly);
+            // $.SUBRULE($.MemberCallNewExpression)
+            $.CONSUME(es6AllTokens.Identifier);
             $.OPTION(() => {
+                $.SUBRULE($.Arguments);
+            });
+            $.CONSUME(es6AllTokens.LCurly);
+            $.OPTION2(() => {
                 $.SUBRULE($[Es5SyntaxName.ElementList])
             });
             $.CONSUME(es6AllTokens.RCurly);
