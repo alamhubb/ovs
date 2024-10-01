@@ -16,5 +16,3 @@ export default class Es6TokenMap {
         return tokenIndexMap.get(key)
     }
 }
-console.log(Es6TokenMap.get(99))
-console.log(JSON.stringify(data))

@@ -39,9 +39,6 @@ export default class ProgrammerOvsTransformer {
         programAst.children.forEach(sourceElements => {
             sourceElements.children.forEach(statement => {
                 const statementAst = StatementOvsTransformer.transformStatementAst(statement)
-                console.log(11111)
-                console.log(statementAst)
-                console.log(222222)
                 if (!statementAst) {
                     throw new Error(`unknown Statement：${statement.name}`)
                 }
