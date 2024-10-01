@@ -30,9 +30,10 @@ export function ovsParserToTsAst(code: string): SourceFile {
     );
 
     const sourceFileAst = sourceFile
-
+console.log(121233)
     cleanObject(sourceFileAst)
 
     console.log(JSON.stringify(sourceFileAst))
+    console.log(456456)
     return sourceFileAst
 }
