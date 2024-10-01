@@ -1,4 +1,4 @@
-import { ovsGenerateCodeToTsCode } from '@/ovs/parser/ovsTsParser'
 import { code } from '@/ovs/ovsTest/alltest/getcode'
+import { ovsTransformToTsCode } from '@/ovs/parser/ovsTransformer'
 
-ovsGenerateCodeToTsCode(code)
+ovsTransformToTsCode(code)

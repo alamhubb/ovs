@@ -1,10 +1,7 @@
 import {SourceFile} from "typescript";
 import ChevrotainEcma5Cst from "../model/ChevrotainEcma5Cst";
 import ChevrotainEcma5Ast from "../model/ChevrotainEcma5Ast";
-import {ovsGenerateAstToTsCode} from "./ovsTsParser";
 import OvsChevrotainCstTransformer from "@/ovs/transform/transformChevrotain/OvsChevrotainCstTransformer";
-import OvsChevrotainEs5ProgrammerTransformer from "@/ovs/transform/transformEs5/ProgrammerOvsChevrotainEs5Transformer";
-import StatementOvsTransformer from "@/ovs/transform/transformOvs/StatementOvsTransformer";
 import ProgrammerOvsTransformer from "@/ovs/transform/transformOvs/ProgrammerOvsTransformer";
 import {parseCodeToOvsCst} from "./OvsChevrotainParser";
 
