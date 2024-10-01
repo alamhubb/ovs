@@ -1,0 +1,42 @@
+{
+  "kind": 312,
+  "statements": [
+    {
+      "kind": 277,
+      "expression": {
+        "kind": 213,
+        "expression": {
+          "kind": 80,
+          "escapedText": "div"
+        },
+        "arguments": []
+      }
+    },
+    {
+      "kind": 241,
+      "statements": []
+    }
+  ],
+  "endOfFileToken": {
+    "kind": 1
+  },
+  "text": "export default div(){}",
+  "bindDiagnostics": [],
+  "externalModuleIndicator": {
+    "kind": 277,
+    "expression": {
+      "kind": 213,
+      "expression": {
+        "kind": 80,
+        "escapedText": "div"
+      },
+      "arguments": []
+    }
+  },
+  "pragmas": {},
+  "referencedFiles": [],
+  "typeReferenceDirectives": [],
+  "libReferenceDirectives": [],
+  "amdDependencies": [],
+  "identifiers": {}
+}
