@@ -10,7 +10,7 @@ import {
     TypescriptAstNode, TypescriptTextExtendAstNode
 } from "../../TypescriptAstNode.ts";
 import {Es5TokenName} from "../../../grammars/ecma5/ecma5_tokens.ts";
-import {ECMAScript6TokenName} from "@/grammars/es6/ECMAScript6Token";
+import {ES6TokenName} from "@/grammars/es6/ECMAScript6Token";
 import {Es6SyntaxName} from "@/grammars/es6/ECMAScript6Parser";
 import OvsDomRenderTransformer from "@/ovs/transform/transformOvs/RenderDomOvsTransformer";
 
@@ -26,7 +26,7 @@ export default class VariableStatementOvsChevrotainEs5Transformer {
         let declarations: TypescriptAstNode<DeclarationsExtendNode> [] = [];
         for (const tokenSyntax of syntax.children) {
             //support var const
-            if ([Es5TokenName.VarTok, ECMAScript6TokenName.ConstTok].includes(tokenSyntax.tokenTypeName)) {
+            if ([Es5TokenName.VarTok, ES6TokenName.ConstTok].includes(tokenSyntax.tokenTypeName)) {
                 astKind = ts.SyntaxKind.VariableStatement
             } else if (tokenSyntax.name === Es5SyntaxName.VariableDeclarationList) {
                 //对应一条声明语句 variableDeclarationCst ,遍历 VariableDeclarationList

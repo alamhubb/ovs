@@ -10,7 +10,7 @@ import {
     TypescriptAstNode, TypescriptTextExtendAstNode
 } from "../../TypescriptAstNode.ts";
 import {Es5TokenName} from "../../../grammars/ecma5/ecma5_tokens.ts";
-import {ECMAScript6TokenName} from "@/grammars/es6/ECMAScript6Token";
+import {ES6TokenName} from "@/grammars/es6/ECMAScript6Token";
 import {Es6SyntaxName} from "@/grammars/es6/ECMAScript6Parser";
 import OvsChevrotainEs5StatementTransformer from "@/ovs/transform/transformEs5/StatementOvsChevrotainEs5Transformer";
 import StatementOvsTransformer from "@/ovs/transform/transformOvs/StatementOvsTransformer";

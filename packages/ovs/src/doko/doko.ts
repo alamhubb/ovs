@@ -1,13 +1,11 @@
 class A {
-  constructor() {
-    console.log('Original A constructor');
+  static aaa() {
+    console.log('ddd')
   }
 }
 
-// 重写构造函数
-A.prototype.constructor = function() {
-  console.log('Overridden A constructor');
-};
 
+const a = new A()
 
-new A()
+console.log(a)
+console.log(a.aaa)
