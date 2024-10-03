@@ -15,7 +15,7 @@ import {Es6SyntaxName} from "@/grammars/es6/ECMAScript6Parser";
 import OvsDomRenderTransformer from "@/ovs/transform/transformOvs/RenderDomOvsTransformer";
 import OvsChevrotainEs5VariableStatementTransformer
     from "@/ovs/transform/transformEs5/VariableStatementOvsChevrotainEs5Transformer";
-import StatementOvsChevrotainEs5Transformer from "@/ovs/transform/transformEs5/StatementOvsChevrotainEs5Transformer";
+import StatementEs5Transformer from "@/ovs/transform/transformEs5/StatementEs5Transformer";
 import StatementOvsEs6Transformer from "@/ovs/transform/transformEs6/StatementOvsEs6Transformer";
 
 

@@ -7,11 +7,63 @@
         "kind": 210,
         "properties": [
           {
-            "kind": 174,
+            "kind": 303,
             "name": {
               "kind": 80,
               "escapedText": "render"
             },
+            "initializer": {
+              "kind": 218,
+              "parameters": [],
+              "body": {
+                "kind": 241,
+                "statements": [
+                  {
+                    "kind": 253,
+                    "expression": {
+                      "kind": 213,
+                      "expression": {
+                        "kind": 80,
+                        "escapedText": "h"
+                      },
+                      "arguments": [
+                        {
+                          "kind": 11,
+                          "text": "div"
+                        },
+                        {
+                          "kind": 9,
+                          "text": "123"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "endOfFileToken": {
+    "kind": 1
+  },
+  "text": "export default {\n    render: function (){\n        return h('div',123)\n    }\n}",
+  "bindDiagnostics": [],
+  "externalModuleIndicator": {
+    "kind": 277,
+    "expression": {
+      "kind": 210,
+      "properties": [
+        {
+          "kind": 303,
+          "name": {
+            "kind": 80,
+            "escapedText": "render"
+          },
+          "initializer": {
+            "kind": 218,
             "parameters": [],
             "body": {
               "kind": 241,
@@ -39,15 +91,10 @@
               ]
             }
           }
-        ]
-      }
+        }
+      ]
     }
-  ],
-  "endOfFileToken": {
-    "kind": 1
   },
-  "text": "export default {\n    render(){\n        return h('div',123)\n    }\n}",
-  "bindDiagnostics": [],
   "pragmas": {},
   "referencedFiles": [],
   "typeReferenceDirectives": [],
@@ -55,3 +102,4 @@
   "amdDependencies": [],
   "identifiers": {}
 }
+

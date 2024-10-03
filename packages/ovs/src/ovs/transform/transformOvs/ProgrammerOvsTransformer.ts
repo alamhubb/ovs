@@ -12,12 +12,11 @@ import {
 import {Es5TokenName} from "../../../grammars/ecma5/ecma5_tokens.ts";
 import {ES6TokenName} from "@/grammars/es6/ECMAScript6Token";
 import {Es6SyntaxName} from "@/grammars/es6/ECMAScript6Parser";
-import OvsChevrotainEs5StatementTransformer from "@/ovs/transform/transformEs5/StatementOvsChevrotainEs5Transformer";
+import OvsChevrotainEs5StatementTransformer from "@/ovs/transform/transformEs5/StatementEs5Transformer";
 import StatementOvsTransformer from "@/ovs/transform/transformOvs/StatementOvsTransformer";
 import OvsDomRenderTransformer from "@/ovs/transform/transformOvs/RenderDomOvsTransformer";
 import OvsChevrotainEs5VariableStatementTransformer
     from "@/ovs/transform/transformEs5/VariableStatementOvsChevrotainEs5Transformer";
-import "./VariableStatementOvsTransformer"
 
 
 export default class ProgrammerOvsTransformer {

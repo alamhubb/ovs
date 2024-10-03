@@ -14,6 +14,8 @@ export enum Es5TokenName {
     VarTok = 'VarTok',
     DefaultTok = 'DefaultTok',
     NumericLiteral = 'NumericLiteral',
+    ObjectLiteral = 'ObjectLiteral',
+    ReturnTok = 'ReturnTok',
 }
 
 export const Whitespace = createToken({name: "Whitespace"});

@@ -16,8 +16,6 @@ export function ovsTransformToTsCode(code: string): string {
     // transform ovs chevrotain cst to ovs ast
     const chevrotainEcma5Ast: ChevrotainEcma5Ast = OvsChevrotainCstTransformer.transformOvsChevrotainCstToAst(chevrotainEcma5Cst)
 
-    console.log(JSON.stringify(chevrotainEcma5Ast))
-
     // transform ovs ast  to typescript ast
     const typescriptAst: SourceFile = ProgrammerOvsTransformer.transformOvsAstToTsAst(chevrotainEcma5Ast)
 

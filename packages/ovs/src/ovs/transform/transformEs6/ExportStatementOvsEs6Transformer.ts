@@ -16,10 +16,6 @@ import OvsDomRenderTransformer from "@/ovs/transform/transformOvs/RenderDomOvsTr
 import VariableStatementOvsChevrotainEs5Transformer
   from "@/ovs/transform/transformEs5/VariableStatementOvsChevrotainEs5Transformer"
 
-const ovsToTsTokenEs5SyntaxMap: Map<string, number> = new Map()
-ovsToTsTokenEs5SyntaxMap.set(Es5TokenName.NumericLiteral, ts.SyntaxKind.NumericLiteral)
-ovsToTsTokenEs5SyntaxMap.set(Es5TokenName.Identifier, ts.SyntaxKind.Identifier)
-
 
 export default class ExportStatementOvsEs6Transformer {
   static transformExportStatementAst(syntax: ChevrotainEcma5Ast) {
@@ -59,11 +55,12 @@ export default class ExportStatementOvsEs6Transformer {
       console.log(tokenSyntax.tokenTypeName)
       console.log(tokenSyntax.name)
       if ([Es5TokenName.DefaultTok].includes(tokenSyntax.tokenTypeName)) {
+        console.log(5555)
+        //277
         astKind = ts.SyntaxKind.ExportAssignment
       } else if (tokenSyntax.name === Es5SyntaxName.AssignmentExpression) {
-        console.log(123)
+        console.log(4444)
         expression = VariableStatementOvsChevrotainEs5Transformer.getPrimaryExpressionTokenByAssignmentExpression(tokenSyntax)
-        console.log(456)
       } else if ([ES6TokenName.ExportTok].includes(tokenSyntax.tokenTypeName)) {
         // console.log(tokenSyntax.tokenTypeName)
       } else {

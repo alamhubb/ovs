@@ -13,6 +13,7 @@ import {Es5TokenName} from "../../../grammars/ecma5/ecma5_tokens.ts";
 import {ES6TokenName} from "@/grammars/es6/ECMAScript6Token";
 import {Es6SyntaxName} from "@/grammars/es6/ECMAScript6Parser";
 import OvsDomRenderTransformer from "@/ovs/transform/transformOvs/RenderDomOvsTransformer";
+import ObjectLiteralEs5Transformer from "@/ovs/transform/transformEs5/ObjectLiteralEs5Transformer";
 
 const ovsToTsTokenEs5SyntaxMap: Map<string, number> = new Map()
 ovsToTsTokenEs5SyntaxMap.set(Es5TokenName.NumericLiteral, ts.SyntaxKind.NumericLiteral)
@@ -80,18 +81,10 @@ export default class VariableStatementOvsChevrotainEs5Transformer {
     }
 
     static getPrimaryExpressionTokenByAssignmentExpression(assignmentExpression: ChevrotainEcma5Ast): TypescriptAstNode<TypescriptTextExtendAstNode> {
-        //assignmentExpression.BinaryExpression. UnaryExpression.PostfixExpression.MemberCallNewExpression.PrimaryExpression
-        console.log(555555)
-        console.log('执行了es5 ')
-        console.log(assignmentExpression.children[0])
-
-        const assignmentExpressionChild = assignmentExpression.children[0]
-        if (assignmentExpressionChild.name === OvsSyntaxName.OvsRenderDomStatement) {
-            console.log('render dom')
-        }
-
+        //assignmentExpression.BinaryExpression. UnaryExpression.PostfixExpression.MemberCallNewExpression.PrimaryExpression.child[0]
         const primaryExpressionToken = assignmentExpression.children[0].children[0].children[0].children[0].children[0].children[0];
-        console.log('执行了es5 ')
+        console.log(99898989)
+        console.log(primaryExpressionToken.name)
         if (primaryExpressionToken.tokenTypeName === Es5TokenName.Identifier) {
             return {
                 kind: ovsToTsTokenEs5SyntaxMap.get(primaryExpressionToken.tokenTypeName),
@@ -102,8 +95,10 @@ export default class VariableStatementOvsChevrotainEs5Transformer {
                 kind: ovsToTsTokenEs5SyntaxMap.get(primaryExpressionToken.tokenTypeName),
                 text: String(primaryExpressionToken.image)
             }
+        }  else if (primaryExpressionToken.name === Es5SyntaxName.ObjectLiteral) {
+            return ObjectLiteralEs5Transformer.transformObjectLiteralAst(primaryExpressionToken)
         } else {
-            console.warn(`unexpected tokenTypeName:${primaryExpressionToken.tokenTypeName}:${primaryExpressionToken.image}`)
+            console.warn(`unexpected tokenTypeName:${primaryExpressionToken.tokenTypeName}:${primaryExpressionToken.name}`)
             return {
                 kind: ovsToTsTokenEs5SyntaxMap.get(primaryExpressionToken.tokenTypeName),
                 //这里应该为 text，todo 待确认

@@ -1,4 +1,4 @@
-import { doke } from '@/doko/doko'
+import { Doko } from '@/doko/doko'
 
 class BeClass{
   static hello() {
@@ -6,7 +6,7 @@ class BeClass{
   }
 }
 
-@doke(BeClass)
+@Doko(BeClass)
 class doClass {
   static hello() {
     console.log('doClass')

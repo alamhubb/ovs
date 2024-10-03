@@ -15,14 +15,19 @@ import {Es6SyntaxName} from "@/grammars/es6/ECMAScript6Parser";
 import OvsDomRenderTransformer from "@/ovs/transform/transformOvs/RenderDomOvsTransformer";
 import OvsChevrotainEs5VariableStatementTransformer
     from "@/ovs/transform/transformEs5/VariableStatementOvsChevrotainEs5Transformer";
+import ReturnStatementEs5Transformer from "@/ovs/transform/transformEs5/ReturnStatementEs5Transformer";
+import VariableStatementOvsChevrotainEs5Transformer
+    from "@/ovs/transform/transformEs5/VariableStatementOvsChevrotainEs5Transformer";
 
 
-export default class StatementOvsChevrotainEs5Transformer {
+export default class StatementEs5Transformer {
     static transformStatementAst(parentStatementAst: ChevrotainEcma5Ast): Statement {
         let ast: TypescriptAstNode<StatementExtendNode>
         const statementAst = parentStatementAst.children[0]
         if (statementAst.name === Es5SyntaxName.VariableStatement) {
             ast = OvsChevrotainEs5VariableStatementTransformer.transformVariableStatementAst(statementAst);
+        } else if (statementChild.name === Es5SyntaxName.ReturnStatement) {
+            ast = ReturnStatementEs5Transformer.transformEs5ReturnStatement(statementChild)
         }
         return ast
     }

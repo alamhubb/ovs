@@ -15,14 +15,14 @@ import {Es6SyntaxName} from "@/grammars/es6/ECMAScript6Parser";
 import OvsDomRenderTransformer from "@/ovs/transform/transformOvs/RenderDomOvsTransformer";
 import OvsChevrotainEs5VariableStatementTransformer
     from "@/ovs/transform/transformEs5/VariableStatementOvsChevrotainEs5Transformer";
-import StatementOvsChevrotainEs5Transformer from "@/ovs/transform/transformEs5/StatementOvsChevrotainEs5Transformer";
+import StatementEs5Transformer from "@/ovs/transform/transformEs5/StatementEs5Transformer";
 import ExportStatementOvsEs6Transformer from "@/ovs/transform/transformEs6/ExportStatementOvsEs6Transformer";
 
 
 export default class StatementOvsEs6Transformer {
     static transformStatementAst(parentStatementAst: ChevrotainEcma5Ast): Statement {
         let ast: TypescriptAstNode<StatementExtendNode>
-        ast = StatementOvsChevrotainEs5Transformer.transformStatementAst(parentStatementAst)
+        ast = StatementEs5Transformer.transformStatementAst(parentStatementAst)
         if (ast) {
             return ast
         }

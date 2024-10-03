@@ -67,7 +67,7 @@ export function parseCodeToOvsCst(code: string): ChevrotainEcma5Cst {
     const parserInstance = new OvsChevrotainParser();
     const tokens = ECMAScript6Lexer.tokenize(code);
 
-    console.log(tokens)
+    // console.log(tokens)
 
     parserInstance.input = tokens;
     parserInstance.orgText = code;
@@ -78,6 +78,6 @@ export function parseCodeToOvsCst(code: string): ChevrotainEcma5Cst {
         }
         throw Error("ChevrotainCs parser code has error");
     }
-    console.log(JSON.stringify(cst))
+    // console.log(JSON.stringify(cst))
     return cst
 }

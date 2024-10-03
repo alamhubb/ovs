@@ -12,6 +12,7 @@ import {Es5TokenName} from "../../../grammars/ecma5/ecma5_tokens.ts";
 import {ES6TokenName} from "@/grammars/es6/ECMAScript6Token";
 import {Es6SyntaxName} from "@/grammars/es6/ECMAScript6Parser";
 import Es6TokenMap from "@/ovs/parser/Es6TokenMap";
+import {parseCodeToOvsCst} from "@/ovs/parser/OvsChevrotainParser";
 
 
 //      EndOfFileToken = 1,
@@ -23,10 +24,20 @@ import Es6TokenMap from "@/ovs/parser/Es6TokenMap";
 // SourceFile = 307,
 
 
-
 export default class OvsChevrotainCstTransformer {
+
+    static transformCodeToAst(code: string) {
+        const cst: ChevrotainEcma5Cst = parseCodeToOvsCst(code)
+        const chevrotainEcma5Ast: ChevrotainEcma5Ast = OvsChevrotainCstTransformer.transformOvsChevrotainCstToAst(cst)
+
+        // console.log(JSON.stringify(chevrotainEcma5Ast))
+        return chevrotainEcma5Ast
+    }
+
     static transformOvsChevrotainCstToAst(chevrotainEcma5Cst: ChevrotainEcma5Cst) {
         const chevrotainEcma5Ast: ChevrotainEcma5Ast = OvsChevrotainCstTransformer.transformOvsChevrotainCstToAstChild(chevrotainEcma5Cst)
+
+        console.log(JSON.stringify(chevrotainEcma5Ast))
         return chevrotainEcma5Ast
     }
 

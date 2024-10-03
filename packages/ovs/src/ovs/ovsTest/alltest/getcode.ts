@@ -7,7 +7,7 @@ export const code1 = `export default {
 }
 `
 export const code2 = `export default {
-    render(){
+    render: function (){
         return h('div',123)
     }
 }`

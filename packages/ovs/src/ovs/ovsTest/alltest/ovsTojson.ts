@@ -1,4 +1,6 @@
 import { code1 } from '@/ovs/ovsTest/alltest/getcode'
-import { parseCodeToOvsCst } from '@/ovs/parser/OvsChevrotainParser'
+import "../../transform/transformOvs/VariableStatementOvsTransformer"
+import "../../transform/transformEs6/ObjectLiteralEs6Transformer"
+import OvsChevrotainCstTransformer from "@/ovs/transform/transformChevrotain/OvsChevrotainCstTransformer";
 
-parseCodeToOvsCst(code1)
+OvsChevrotainCstTransformer.transformCodeToAst(code1)

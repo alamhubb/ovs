@@ -9,9 +9,9 @@ function getAllProperties(cls) {
   ownProps.forEach(prop => properties.add(prop))
 
   // 获取构造函数（如果有）
-  if (cls.constructor) {
+  /*if (cls.constructor) {
     properties.add('constructor')
-  }
+  }*/
   /*let proto = Object.getPrototypeOf(cls);
   while (proto) {
     const protoProps = Object.getOwnPropertyNames(proto);
@@ -36,17 +36,25 @@ export function dokoFun(target, classt) {
       writable: false
     })
   }
+  let dokoObj = {}
   for (const staticProp of staticProps) {
     if (!['length', 'name', 'prototype'].includes(staticProp)) {
       if (classt[staticProp]) {
         console.log(staticProp)
+        dokoObj[staticProp] = target[staticProp]
         target[staticProp] = classt[staticProp]
       }
     }
   }
+  Object.defineProperty(classt, 'dokoObj', {
+    configurable: false,
+    enumerable: false,
+    value: dokoObj,
+    writable: false
+  })
 }
-
-export function doke(target) {
+// Dokodemo Door
+export function Doko(target) {
   // 保存原有的 hello 方法
   // 替换 hello 方法
   // target.hello = function() {

@@ -7,14 +7,20 @@ import * as t from "./ecma5_tokens.ts";
 export enum Es5SyntaxName {
     Program = 'Program',
     Statement = 'Statement',
+    SourceElements = 'SourceElements',
     ElementList = 'ElementList',
+    ObjectLiteral = 'ObjectLiteral',
     Arguments = 'Arguments',
     VariableDeclarationList = 'VariableDeclarationList',
     VariableDeclaration = 'VariableDeclaration',
     VariableStatement = 'VariableStatement',
     Initialiser = 'Initialiser',
     AssignmentExpression = 'AssignmentExpression',
+    Expression = 'Expression',
     RegularPropertyAssignment = 'RegularPropertyAssignment',
+    PropertyAssignment = 'PropertyAssignment',
+    PropertyName = 'PropertyName',
+    ReturnStatement = 'ReturnStatement',
 }
 
 export const ENABLE_SEMICOLON_INSERTION = true;
@@ -69,7 +75,7 @@ export class ECMAScript5Parser extends CstParser {
                     {ALT: () => $.CONSUME(t.Identifier)},
                     {ALT: () => $.CONSUME(t.AbsLiteral)},
                     {ALT: () => $.SUBRULE($.ArrayLiteral)},
-                    {ALT: () => $.SUBRULE($.ObjectLiteral)},
+                    {ALT: () => $.SUBRULE($[Es5SyntaxName.ObjectLiteral])},
                     {ALT: () => $.SUBRULE($.ParenthesisExpression)},
                 ]),
             );
@@ -77,7 +83,7 @@ export class ECMAScript5Parser extends CstParser {
 
         $.RULE("ParenthesisExpression", () => {
             $.CONSUME(t.LParen);
-            $.SUBRULE($.Expression);
+            $.SUBRULE($[Es5SyntaxName.Expression]);
             $.CONSUME(t.RParen);
         });
 
@@ -117,13 +123,13 @@ export class ECMAScript5Parser extends CstParser {
 
         // See 11.1.5
         // this inlines PropertyNameAndValueList
-        $.RULE("ObjectLiteral", () => {
+        $.RULE(Es5SyntaxName.ObjectLiteral, () => {
             $.CONSUME(t.LCurly);
             $.OPTION(() => {
-                $.SUBRULE($.PropertyAssignment);
+                $.SUBRULE($[Es5SyntaxName.PropertyAssignment]);
                 $.MANY(() => {
                     $.CONSUME(t.Comma);
-                    $.SUBRULE2($.PropertyAssignment);
+                    $.SUBRULE2($[Es5SyntaxName.PropertyAssignment]);
                 });
                 $.OPTION2(() => {
                     $.CONSUME2(t.Comma);
@@ -133,7 +139,7 @@ export class ECMAScript5Parser extends CstParser {
         });
 
         // See 11.1.5
-        $.RULE("PropertyAssignment", () => {
+        $.RULE(Es5SyntaxName.PropertyAssignment, () => {
             $.OR([
                 {ALT: () => $.SUBRULE($.RegularPropertyAssignment)},
                 {ALT: () => $.SUBRULE($.GetPropertyAssignment)},
@@ -142,35 +148,35 @@ export class ECMAScript5Parser extends CstParser {
         });
 
         $.RULE("RegularPropertyAssignment", () => {
-            $.SUBRULE($.PropertyName);
+            $.SUBRULE($[Es5SyntaxName.PropertyName]);
             $.CONSUME(t.Colon);
             $.SUBRULE($[Es5SyntaxName.AssignmentExpression]);
         });
 
         $.RULE("GetPropertyAssignment", () => {
             $.CONSUME(t.GetTok);
-            $.SUBRULE($.PropertyName);
+            $.SUBRULE($[Es5SyntaxName.PropertyName]);
             $.CONSUME(t.LParen);
             $.CONSUME(t.RParen);
             $.CONSUME(t.LCurly);
-            $.SUBRULE($.SourceElements); // FunctionBody(clause 13) is equivalent to SourceElements
+            $.SUBRULE($[Es5SyntaxName.SourceElements]); // FunctionBody(clause 13) is equivalent to SourceElements
             $.CONSUME(t.RCurly);
         });
 
         $.RULE("SetPropertyAssignment", () => {
             $.CONSUME(t.SetTok);
-            $.SUBRULE($.PropertyName);
+            $.SUBRULE($[Es5SyntaxName.PropertyName]);
             $.CONSUME2(t.LParen);
             $.CONSUME(t.Identifier);
             $.CONSUME(t.RParen);
             $.CONSUME(t.LCurly);
-            $.SUBRULE($.SourceElements); // FunctionBody(clause 13) is equivalent to SourceElements
+            $.SUBRULE($[Es5SyntaxName.SourceElements]); // FunctionBody(clause 13) is equivalent to SourceElements
             $.CONSUME(t.RCurly);
         });
 
         // See 11.1.5
         // this inlines PropertySetParameterList
-        $.RULE("PropertyName", () => {
+        $.RULE(Es5SyntaxName.PropertyName, () => {
             $.OR([
                 {ALT: () => $.CONSUME(t.IdentifierName)},
                 {ALT: () => $.CONSUME(t.StringLiteral)},
@@ -201,7 +207,7 @@ export class ECMAScript5Parser extends CstParser {
 
         $.RULE("BoxMemberExpression", () => {
             $.CONSUME(t.LBracket);
-            $.SUBRULE($.Expression);
+            $.SUBRULE($[Es5SyntaxName.Expression]);
             $.CONSUME(t.RBracket);
         });
 
@@ -344,7 +350,7 @@ export class ECMAScript5Parser extends CstParser {
         });
 
         // See 11.14 many AssignmentExpression
-        $.RULE("Expression", () => {
+        $.RULE(Es5SyntaxName.Expression, () => {
             $.SUBRULE($[Es5SyntaxName.AssignmentExpression]);
             $.MANY(() => {
                 $.CONSUME(t.Comma);
@@ -383,7 +389,7 @@ export class ECMAScript5Parser extends CstParser {
                     {ALT: () => $.SUBRULE($.IterationStatement)},
                     {ALT: () => $.SUBRULE($.ContinueStatement)},
                     {ALT: () => $.SUBRULE($.BreakStatement)},
-                    {ALT: () => $.SUBRULE($.ReturnStatement)},
+                    {ALT: () => $.SUBRULE($[Es5SyntaxName.ReturnStatement])},
                     {ALT: () => $.SUBRULE($.WithStatement)},
                     {ALT: () => $.SUBRULE($.SwitchStatement)},
                     {ALT: () => $.SUBRULE($.ThrowStatement)},
@@ -478,7 +484,7 @@ export class ECMAScript5Parser extends CstParser {
             // because in a BNF grammar there is no priority between alternatives. This implementation however, is deterministic
             // the first alternative found to match will be taken. thus these ambiguities can be resolved
             // by ordering the alternatives
-            $.SUBRULE($.Expression);
+            $.SUBRULE($[Es5SyntaxName.Expression]);
             $.CONSUME(t.Semicolon, ENABLE_SEMICOLON_INSERTION);
         });
 
@@ -486,7 +492,7 @@ export class ECMAScript5Parser extends CstParser {
         $.RULE("IfStatement", () => {
             $.CONSUME(t.IfTok);
             $.CONSUME(t.LParen);
-            $.SUBRULE($.Expression);
+            $.SUBRULE($[Es5SyntaxName.Expression]);
             $.CONSUME(t.RParen);
             $.SUBRULE($.Statement);
             // refactoring spec to use an OPTION production for the 'else'
@@ -512,7 +518,7 @@ export class ECMAScript5Parser extends CstParser {
             $.SUBRULE($.Statement);
             $.CONSUME(t.WhileTok);
             $.CONSUME(t.LParen);
-            $.SUBRULE($.Expression);
+            $.SUBRULE($[Es5SyntaxName.Expression]);
             $.CONSUME(t.RParen);
             $.CONSUME(t.Semicolon, ENABLE_SEMICOLON_INSERTION);
         });
@@ -520,7 +526,7 @@ export class ECMAScript5Parser extends CstParser {
         $.RULE("WhileIteration", () => {
             $.CONSUME(t.WhileTok);
             $.CONSUME(t.LParen);
-            $.SUBRULE($.Expression);
+            $.SUBRULE($[Es5SyntaxName.Expression]);
             $.CONSUME(t.RParen);
             $.SUBRULE($.Statement);
         });
@@ -569,12 +575,12 @@ export class ECMAScript5Parser extends CstParser {
                             // no semicolon insertion in for header
                             $.CONSUME(t.Semicolon, DISABLE_SEMICOLON_INSERTION);
                             $.OPTION(() => {
-                                $.SUBRULE($.Expression);
+                                $.SUBRULE($[Es5SyntaxName.Expression]);
                             });
                             // no semicolon insertion in for header
                             $.CONSUME2(t.Semicolon, DISABLE_SEMICOLON_INSERTION);
                             $.OPTION2(() => {
-                                $.SUBRULE2($.Expression);
+                                $.SUBRULE2($[Es5SyntaxName.Expression]);
                             });
                         },
                     },
@@ -582,7 +588,7 @@ export class ECMAScript5Parser extends CstParser {
                         GATE: () => inPossible,
                         ALT: () => {
                             $.CONSUME(t.InTok);
-                            $.SUBRULE3($.Expression);
+                            $.SUBRULE3($[Es5SyntaxName.Expression]);
                         },
                     },
                 ]);
@@ -614,12 +620,12 @@ export class ECMAScript5Parser extends CstParser {
         });
 
         // See 12.9
-        $.RULE("ReturnStatement", () => {
+        $.RULE(Es5SyntaxName.ReturnStatement, () => {
             $.CONSUME(t.ReturnTok);
             $.OPTION({
                 GATE: this.noLineTerminatorHere,
                 DEF: () => {
-                    $.SUBRULE($.Expression);
+                    $.SUBRULE($[Es5SyntaxName.Expression]);
                 },
             });
             $.CONSUME(t.Semicolon, ENABLE_SEMICOLON_INSERTION);
@@ -629,7 +635,7 @@ export class ECMAScript5Parser extends CstParser {
         $.RULE("WithStatement", () => {
             $.CONSUME(t.WithTok);
             $.CONSUME(t.LParen);
-            $.SUBRULE($.Expression);
+            $.SUBRULE($[Es5SyntaxName.Expression]);
             $.CONSUME(t.RParen);
             $.SUBRULE($.Statement);
         });
@@ -638,7 +644,7 @@ export class ECMAScript5Parser extends CstParser {
         $.RULE("SwitchStatement", () => {
             $.CONSUME(t.SwitchTok);
             $.CONSUME(t.LParen);
-            $.SUBRULE($.Expression);
+            $.SUBRULE($[Es5SyntaxName.Expression]);
             $.CONSUME(t.RParen);
             $.SUBRULE($.CaseBlock);
         });
@@ -668,7 +674,7 @@ export class ECMAScript5Parser extends CstParser {
         // See 12.11
         $.RULE("CaseClause", () => {
             $.CONSUME(t.CaseTok);
-            $.SUBRULE($.Expression);
+            $.SUBRULE($[Es5SyntaxName.Expression]);
             $.CONSUME(t.Colon);
             $.OPTION(() => {
                 $.SUBRULE($.StatementList);
@@ -707,7 +713,7 @@ export class ECMAScript5Parser extends CstParser {
                     ),
                 );
             }
-            $.SUBRULE($.Expression);
+            $.SUBRULE($[Es5SyntaxName.Expression]);
             $.CONSUME(t.Semicolon, ENABLE_SEMICOLON_INSERTION);
         });
 
@@ -762,23 +768,23 @@ export class ECMAScript5Parser extends CstParser {
             });
             $.CONSUME(t.RParen);
             $.CONSUME(t.LCurly);
-            $.SUBRULE($.SourceElements); // FunctionBody(clause 13) is equivalent to SourceElements
+            $.SUBRULE($[Es5SyntaxName.SourceElements]); // FunctionBody(clause 13) is equivalent to SourceElements
             $.CONSUME(t.RCurly);
         });
 
         // See clause 13
         $.RULE("FunctionExpression", () => {
             $.CONSUME(t.FunctionTok);
-            $.OPTION1(() => {
+            /*$.OPTION1(() => {
                 $.CONSUME(t.Identifier);
-            });
+            });*/
             $.CONSUME(t.LParen);
-            $.OPTION2(() => {
+            $.OPTION(() => {
                 $.SUBRULE($.FormalParameterList);
             });
             $.CONSUME(t.RParen);
             $.CONSUME(t.LCurly);
-            $.SUBRULE($.SourceElements); // FunctionBody(clause 13) is equivalent to SourceElements
+            $.SUBRULE($[Es5SyntaxName.SourceElements]); // FunctionBody(clause 13) is equivalent to SourceElements
             $.CONSUME(t.RCurly);
         });
 
@@ -793,12 +799,12 @@ export class ECMAScript5Parser extends CstParser {
 
         // See clause 14
         $.RULE(Es5SyntaxName.Program, () => {
-            $.SUBRULE($.SourceElements);
+            $.SUBRULE($[Es5SyntaxName.SourceElements]);
         });
 
         // See clause 14
         // this inlines SourceElementRule rule from the spec
-        $.RULE("SourceElements", () => {
+        $.RULE(Es5SyntaxName.SourceElements, () => {
             $.MANY(() => {
                 $.OR([
                     // FunctionDeclaration appearing before statement implements [lookahead != {{, function}] in ExpressionStatement

@@ -106,28 +106,25 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
             });
         });
 
-        $.OVERRIDE_RULE("RegularPropertyAssignment", () => {
-            $.SUBRULE($.PropertyName);
+        $.OVERRIDE_RULE(Es5SyntaxName.PropertyAssignment, () => {
             $.OR([
-                {
-                    ALT: () => {
-                        $.CONSUME(t.Colon);
-                        $.SUBRULE($[Es5SyntaxName.AssignmentExpression]);
-                    }
-                },
-                {
-                    ALT: () => {
-                        $.CONSUME(t.LParen);
-                        $.OPTION(() => {
-                            $.SUBRULE($.FormalParameterList);
-                        });
-                        $.CONSUME(t.RParen);
-                        $.CONSUME(t.LCurly);
-                        $.SUBRULE($.SourceElements); // FunctionBody(clause 13) is equivalent to SourceElements
-                        $.CONSUME(t.RCurly);
-                    }
-                },
+                {ALT: () => $.SUBRULE($.ConciseMethodAssignment)},
+                {ALT: () => $.SUBRULE($.RegularPropertyAssignment)},
+                {ALT: () => $.SUBRULE($.GetPropertyAssignment)},
+                {ALT: () => $.SUBRULE($.SetPropertyAssignment)},
             ]);
+        });
+
+        $.RULE("ConciseMethodAssignment", () => {
+            $.SUBRULE($.PropertyName);
+            $.CONSUME(t.LParen);
+            $.OPTION(() => {
+                $.SUBRULE($.FormalParameterList);
+            });
+            $.CONSUME(t.RParen);
+            $.CONSUME(t.LCurly);
+            $.SUBRULE($.SourceElements); // FunctionBody(clause 13) is equivalent to SourceElements
+            $.CONSUME(t.RCurly);
         });
 
         /*
