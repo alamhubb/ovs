@@ -4,27 +4,54 @@
     {
       "kind": 277,
       "expression": {
-        "kind": 244,
-        "expression": {
-          "kind": 213,
-          "expression": {
-            "kind": 80,
-            "escapedText": "h"
-          },
-          "arguments": [
-            {
-              "kind": 11,
-              "text": "div"
+        "kind": 210,
+        "properties": [
+          {
+            "kind": 174,
+            "name": {
+              "kind": 80,
+              "escapedText": "render"
             },
-            {
-              "kind": 9,
-              "text": "123"
+            "parameters": [],
+            "body": {
+              "kind": 241,
+              "statements": [
+                {
+                  "kind": 253,
+                  "expression": {
+                    "kind": 213,
+                    "expression": {
+                      "kind": 80,
+                      "escapedText": "h"
+                    },
+                    "arguments": [
+                      {
+                        "kind": 11,
+                        "text": "div"
+                      },
+                      {
+                        "kind": 9,
+                        "text": "123"
+                      }
+                    ]
+                  }
+                }
+              ]
             }
-          ]
-        }
+          }
+        ]
       }
     }
   ],
-  "text": "",
-  "fileName": "_$$ovs$$temp$$ovsToTsAst.ts"
+  "endOfFileToken": {
+    "kind": 1
+  },
+  "text": "export default {\n    render(){\n        return h('div',123)\n    }\n}",
+  "bindDiagnostics": [],
+  "pragmas": {},
+  "referencedFiles": [],
+  "typeReferenceDirectives": [],
+  "libReferenceDirectives": [],
+  "amdDependencies": [],
+  "identifiers": {}
 }
