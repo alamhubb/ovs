@@ -22,14 +22,8 @@ import RenderDomOvsTransformer from "@/ovs/transform/transformOvs/RenderDomOvsTr
 @Doko(VariableStatementOvsChevrotainEs5Transformer)
 export default class VariableStatementOvsTransformer {
     static getPrimaryExpressionTokenByAssignmentExpression(assignmentExpression: ChevrotainEcma5Ast): TypescriptAstNode<TypescriptTextExtendAstNode> {
-        console.log('执行了ovs ')
-        //assignmentExpression.BinaryExpression. UnaryExpression.PostfixExpression.MemberCallNewExpression.PrimaryExpression
-        console.log(555555)
-        console.log(assignmentExpression.children[0])
-
         const assignmentExpressionChild = assignmentExpression.children[0]
         if (assignmentExpressionChild.name === OvsSyntaxName.OvsRenderDomStatement) {
-            console.log('render dom')
             return RenderDomOvsTransformer.transformOvsRenderDomAst(assignmentExpressionChild)
         } else {
             return VariableStatementOvsTransformer.dokoObj.getPrimaryExpressionTokenByAssignmentExpression(assignmentExpression)

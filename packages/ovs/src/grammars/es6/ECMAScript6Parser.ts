@@ -5,6 +5,7 @@ import * as t from "@/grammars/ecma5/ecma5_tokens";
 export enum Es6SyntaxName {
     ExportStatement = 'ExportStatement',
     ExportDefaultStatement = 'ExportDefaultStatement',
+    ConciseMethodAssignment = 'ConciseMethodAssignment',
 }
 
 export class ECMAScript6Parser extends ECMAScript5Parser {
@@ -108,14 +109,14 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
 
         $.OVERRIDE_RULE(Es5SyntaxName.PropertyAssignment, () => {
             $.OR([
-                {ALT: () => $.SUBRULE($.ConciseMethodAssignment)},
+                {ALT: () => $.SUBRULE($[Es6SyntaxName.ConciseMethodAssignment])},
                 {ALT: () => $.SUBRULE($.RegularPropertyAssignment)},
                 {ALT: () => $.SUBRULE($.GetPropertyAssignment)},
                 {ALT: () => $.SUBRULE($.SetPropertyAssignment)},
             ]);
         });
 
-        $.RULE("ConciseMethodAssignment", () => {
+        $.RULE(Es6SyntaxName.ConciseMethodAssignment, () => {
             $.SUBRULE($.PropertyName);
             $.CONSUME(t.LParen);
             $.OPTION(() => {

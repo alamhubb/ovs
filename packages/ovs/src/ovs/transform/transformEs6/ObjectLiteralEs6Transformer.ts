@@ -17,6 +17,7 @@ import {Doko, dokoFun} from "@/doko/doko";
 import ObjectLiteralEs5Transformer from "@/ovs/transform/transformEs5/ObjectLiteralEs5Transformer";
 import VariableStatementOvsChevrotainEs5Transformer
     from "@/ovs/transform/transformEs5/VariableStatementOvsChevrotainEs5Transformer";
+import ConciseMethodAssignmentEs6Transformer from "@/ovs/transform/transformEs6/ConciseMethodAssignmentEs6Transformer";
 
 
 
@@ -27,51 +28,21 @@ export default class ObjectLiteralEs6Transformer {
         console.log(88888)
         console.log(syntax)
 
-        let nameKind
+        let propertiesObj
         const objectLiteralChildren = syntax.children
         for (const objectLiteralChild of objectLiteralChildren) {
             if (objectLiteralChild.name === Es5SyntaxName.PropertyAssignment) {
                 const regularPropertyAssignment = objectLiteralChild.children[0]
-                const regularPropertyAssignmentChildren = regularPropertyAssignment.children
-                for (const regularPropertyAssignmentChild of regularPropertyAssignmentChildren) {
-                    if (regularPropertyAssignmentChild.name === Es5SyntaxName.PropertyName) {
-                        const token = regularPropertyAssignmentChild.children[0]
-                        nameKind = VariableStatementOvsChevrotainEs5Transformer.getPrimaryExpressionTokenByAssignmentExpression(token)
-                    }
-
+                if (regularPropertyAssignment.name === Es6SyntaxName.ConciseMethodAssignment){
+                    propertiesObj = ConciseMethodAssignmentEs6Transformer.transformEs6ConciseMethodAssignment(regularPropertyAssignment)
                 }
+
             }
         }
-
+        console.log(555555)
         return {
             kind: ts.SyntaxKind.ObjectLiteralExpression,
-            "properties": [{
-                kind: ts.SyntaxKind.MethodDeclaration,
-                name: nameKind,
-                "parameters": [],
-                "body": {
-                    "kind": 241, //Block
-                    "statements": [{
-                        "kind": 253,
-                        "expression": {
-                            "kind": 213,
-                            "expression": {
-                                "kind": 80,
-                                "escapedText": "h"
-                            },
-                            "arguments": [{
-                                "kind": 11,
-                                "text": "div"
-                            },
-                                {
-                                    "kind": 9,
-                                    "text": "123"
-                                }
-                            ]
-                        }
-                    }]
-                }
-            }]
+            properties: [propertiesObj]
         }
     }
 }

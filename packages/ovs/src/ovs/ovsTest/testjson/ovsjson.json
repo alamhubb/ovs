@@ -1,223 +1,143 @@
 {
-  "name": "Program",
+  "name": "ObjectLiteral",
   "children": [
     {
-      "name": "SourceElements",
+      "tokenTypeIdx": 40,
+      "startOffset": 15,
+      "endOffset": 16,
+      "children": [],
+      "tokenTypeName": "LCurly"
+    },
+    {
+      "name": "PropertyAssignment",
       "children": [
         {
-          "name": "Statement",
+          "name": "ConciseMethodAssignment",
           "children": [
             {
-              "name": "ExportDefaultStatement",
+              "name": "PropertyName",
               "children": [
                 {
-                  "tokenTypeIdx": 105,
-                  "image": "export",
-                  "startOffset": 0,
-                  "endOffset": 6,
+                  "tokenTypeIdx": 36,
+                  "image": "render",
+                  "startOffset": 21,
+                  "endOffset": 27,
                   "children": [],
-                  "tokenTypeName": "ExportTok"
-                },
+                  "tokenTypeName": "Identifier"
+                }
+              ]
+            },
+            {
+              "tokenTypeIdx": 42,
+              "startOffset": 27,
+              "endOffset": 28,
+              "children": [],
+              "tokenTypeName": "LParen"
+            },
+            {
+              "tokenTypeIdx": 43,
+              "startOffset": 28,
+              "endOffset": 29,
+              "children": [],
+              "tokenTypeName": "RParen"
+            },
+            {
+              "tokenTypeIdx": 40,
+              "startOffset": 29,
+              "endOffset": 30,
+              "children": [],
+              "tokenTypeName": "LCurly"
+            },
+            {
+              "name": "SourceElements",
+              "children": [
                 {
-                  "tokenTypeIdx": 30,
-                  "image": "default",
-                  "startOffset": 7,
-                  "endOffset": 14,
-                  "children": [],
-                  "tokenTypeName": "DefaultTok"
-                },
-                {
-                  "name": "AssignmentExpression",
+                  "name": "Statement",
                   "children": [
                     {
-                      "name": "BinaryExpression",
+                      "name": "ReturnStatement",
                       "children": [
                         {
-                          "name": "UnaryExpression",
+                          "tokenTypeIdx": 20,
+                          "image": "return",
+                          "startOffset": 39,
+                          "endOffset": 45,
+                          "children": [],
+                          "tokenTypeName": "ReturnTok"
+                        },
+                        {
+                          "name": "Expression",
                           "children": [
                             {
-                              "name": "PostfixExpression",
+                              "name": "AssignmentExpression",
                               "children": [
                                 {
-                                  "name": "MemberCallNewExpression",
+                                  "name": "OvsRenderDomStatement",
                                   "children": [
                                     {
-                                      "name": "PrimaryExpression",
+                                      "tokenTypeIdx": 36,
+                                      "image": "div",
+                                      "startOffset": 46,
+                                      "endOffset": 49,
+                                      "children": [],
+                                      "tokenTypeName": "Identifier"
+                                    },
+                                    {
+                                      "tokenTypeIdx": 40,
+                                      "startOffset": 49,
+                                      "endOffset": 50,
+                                      "children": [],
+                                      "tokenTypeName": "LCurly"
+                                    },
+                                    {
+                                      "name": "ElementList",
                                       "children": [
                                         {
-                                          "name": "ObjectLiteral",
+                                          "name": "AssignmentExpression",
                                           "children": [
                                             {
-                                              "tokenTypeIdx": 40,
-                                              "startOffset": 15,
-                                              "endOffset": 16,
-                                              "children": [],
-                                              "tokenTypeName": "LCurly"
-                                            },
-                                            {
-                                              "name": "PropertyAssignment",
+                                              "name": "BinaryExpression",
                                               "children": [
                                                 {
-                                                  "name": "ConciseMethodAssignment",
+                                                  "name": "UnaryExpression",
                                                   "children": [
                                                     {
-                                                      "name": "PropertyName",
+                                                      "name": "PostfixExpression",
                                                       "children": [
                                                         {
-                                                          "tokenTypeIdx": 36,
-                                                          "image": "render",
-                                                          "startOffset": 21,
-                                                          "endOffset": 27,
-                                                          "children": [],
-                                                          "tokenTypeName": "Identifier"
-                                                        }
-                                                      ]
-                                                    },
-                                                    {
-                                                      "tokenTypeIdx": 42,
-                                                      "startOffset": 27,
-                                                      "endOffset": 28,
-                                                      "children": [],
-                                                      "tokenTypeName": "LParen"
-                                                    },
-                                                    {
-                                                      "tokenTypeIdx": 43,
-                                                      "startOffset": 28,
-                                                      "endOffset": 29,
-                                                      "children": [],
-                                                      "tokenTypeName": "RParen"
-                                                    },
-                                                    {
-                                                      "tokenTypeIdx": 40,
-                                                      "startOffset": 29,
-                                                      "endOffset": 30,
-                                                      "children": [],
-                                                      "tokenTypeName": "LCurly"
-                                                    },
-                                                    {
-                                                      "name": "SourceElements",
-                                                      "children": [
-                                                        {
-                                                          "name": "Statement",
+                                                          "name": "MemberCallNewExpression",
                                                           "children": [
                                                             {
-                                                              "name": "ReturnStatement",
+                                                              "name": "PrimaryExpression",
                                                               "children": [
                                                                 {
-                                                                  "tokenTypeIdx": 20,
-                                                                  "image": "return",
-                                                                  "startOffset": 39,
-                                                                  "endOffset": 45,
+                                                                  "tokenTypeIdx": 99,
+                                                                  "image": 123,
+                                                                  "startOffset": 64,
+                                                                  "endOffset": 67,
                                                                   "children": [],
-                                                                  "tokenTypeName": "ReturnTok"
-                                                                },
-                                                                {
-                                                                  "name": "Expression",
-                                                                  "children": [
-                                                                    {
-                                                                      "name": "AssignmentExpression",
-                                                                      "children": [
-                                                                        {
-                                                                          "name": "OvsRenderDomStatement",
-                                                                          "children": [
-                                                                            {
-                                                                              "tokenTypeIdx": 36,
-                                                                              "image": "div",
-                                                                              "startOffset": 46,
-                                                                              "endOffset": 49,
-                                                                              "children": [],
-                                                                              "tokenTypeName": "Identifier"
-                                                                            },
-                                                                            {
-                                                                              "tokenTypeIdx": 40,
-                                                                              "startOffset": 49,
-                                                                              "endOffset": 50,
-                                                                              "children": [],
-                                                                              "tokenTypeName": "LCurly"
-                                                                            },
-                                                                            {
-                                                                              "name": "ElementList",
-                                                                              "children": [
-                                                                                {
-                                                                                  "name": "AssignmentExpression",
-                                                                                  "children": [
-                                                                                    {
-                                                                                      "name": "BinaryExpression",
-                                                                                      "children": [
-                                                                                        {
-                                                                                          "name": "UnaryExpression",
-                                                                                          "children": [
-                                                                                            {
-                                                                                              "name": "PostfixExpression",
-                                                                                              "children": [
-                                                                                                {
-                                                                                                  "name": "MemberCallNewExpression",
-                                                                                                  "children": [
-                                                                                                    {
-                                                                                                      "name": "PrimaryExpression",
-                                                                                                      "children": [
-                                                                                                        {
-                                                                                                          "tokenTypeIdx": 99,
-                                                                                                          "image": 123,
-                                                                                                          "startOffset": 64,
-                                                                                                          "endOffset": 67,
-                                                                                                          "children": [],
-                                                                                                          "tokenTypeName": "NumericLiteral"
-                                                                                                        }
-                                                                                                      ]
-                                                                                                    }
-                                                                                                  ]
-                                                                                                }
-                                                                                              ]
-                                                                                            }
-                                                                                          ]
-                                                                                        }
-                                                                                      ]
-                                                                                    }
-                                                                                  ]
-                                                                                }
-                                                                              ]
-                                                                            },
-                                                                            {
-                                                                              "tokenTypeIdx": 41,
-                                                                              "startOffset": 76,
-                                                                              "endOffset": 77,
-                                                                              "children": [],
-                                                                              "tokenTypeName": "RCurly"
-                                                                            }
-                                                                          ]
-                                                                        }
-                                                                      ]
-                                                                    }
-                                                                  ]
+                                                                  "tokenTypeName": "NumericLiteral"
                                                                 }
                                                               ]
                                                             }
                                                           ]
                                                         }
                                                       ]
-                                                    },
-                                                    {
-                                                      "tokenTypeIdx": 41,
-                                                      "startOffset": 82,
-                                                      "endOffset": 83,
-                                                      "children": [],
-                                                      "tokenTypeName": "RCurly"
                                                     }
                                                   ]
                                                 }
                                               ]
-                                            },
-                                            {
-                                              "tokenTypeIdx": 41,
-                                              "startOffset": 84,
-                                              "endOffset": 85,
-                                              "children": [],
-                                              "tokenTypeName": "RCurly"
                                             }
                                           ]
                                         }
                                       ]
+                                    },
+                                    {
+                                      "tokenTypeIdx": 41,
+                                      "startOffset": 76,
+                                      "endOffset": 77,
+                                      "children": [],
+                                      "tokenTypeName": "RCurly"
                                     }
                                   ]
                                 }
@@ -230,10 +150,24 @@
                   ]
                 }
               ]
+            },
+            {
+              "tokenTypeIdx": 41,
+              "startOffset": 82,
+              "endOffset": 83,
+              "children": [],
+              "tokenTypeName": "RCurly"
             }
           ]
         }
       ]
+    },
+    {
+      "tokenTypeIdx": 41,
+      "startOffset": 84,
+      "endOffset": 85,
+      "children": [],
+      "tokenTypeName": "RCurly"
     }
   ]
 }
