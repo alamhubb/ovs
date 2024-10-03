@@ -7,20 +7,21 @@
         "kind": 213,
         "expression": {
           "kind": 80,
-          "escapedText": "div"
+          "escapedText": "h"
         },
-        "arguments": []
+        "arguments": [
+          {
+            "kind": 11,
+            "text": "div"
+          }
+        ]
       }
-    },
-    {
-      "kind": 241,
-      "statements": []
     }
   ],
   "endOfFileToken": {
     "kind": 1
   },
-  "text": "export default div(){}",
+  "text": "export default h('div')",
   "bindDiagnostics": [],
   "externalModuleIndicator": {
     "kind": 277,
@@ -28,9 +29,14 @@
       "kind": 213,
       "expression": {
         "kind": 80,
-        "escapedText": "div"
+        "escapedText": "h"
       },
-      "arguments": []
+      "arguments": [
+        {
+          "kind": 11,
+          "text": "div"
+        }
+      ]
     }
   },
   "pragmas": {},

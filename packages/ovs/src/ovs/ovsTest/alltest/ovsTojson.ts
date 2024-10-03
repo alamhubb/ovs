@@ -1,4 +1,4 @@
-import { code } from '@/ovs/ovsTest/alltest/getcode'
+import { code1 } from '@/ovs/ovsTest/alltest/getcode'
 import { parseCodeToOvsCst } from '@/ovs/parser/OvsChevrotainParser'
 
-parseCodeToOvsCst(code)
+parseCodeToOvsCst(code1)
