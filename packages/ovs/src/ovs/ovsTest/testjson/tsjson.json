@@ -11,8 +11,12 @@
         },
         "arguments": [
           {
-            "kind": 11, //StringLiteral
+            "kind": 11,//StringLiteral
             "text": "div"
+          },
+          {
+            "kind": 9,
+            "text": "123"
           }
         ]
       }
@@ -21,7 +25,7 @@
   "endOfFileToken": {
     "kind": 1
   },
-  "text": "export default h('div')",
+  "text": "export default h('div',123)",
   "bindDiagnostics": [],
   "externalModuleIndicator": {
     "kind": 277,
@@ -35,6 +39,10 @@
         {
           "kind": 11,
           "text": "div"
+        },
+        {
+          "kind": 9,
+          "text": "123"
         }
       ]
     }
