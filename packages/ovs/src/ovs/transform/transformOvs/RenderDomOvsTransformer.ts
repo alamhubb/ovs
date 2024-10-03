@@ -24,15 +24,12 @@ export default class RenderDomOvsTransformer {
     static transformOvsRenderDomAst(syntax: ChevrotainEcma5Ast) {
         const argumentsAry: TypescriptAstNode<ArgumentsExtendNode>[] = []
         let ast: TypescriptAstNode<StatementExtendNode> = {
-            kind: ts.SyntaxKind.ExpressionStatement,
+            kind: ts.SyntaxKind.CallExpression,
             expression: {
-                kind: ts.SyntaxKind.CallExpression,
-                expression: {
-                    kind: ts.SyntaxKind.Identifier,
-                    escapedText: "h",
-                },
-                arguments: argumentsAry
-            }
+                kind: ts.SyntaxKind.Identifier,
+                escapedText: "h",
+            },
+            arguments: argumentsAry
         }
         for (const syntaxToken of syntax.children) {
             if (syntaxToken.tokenTypeName === Es5TokenName.Identifier) {

@@ -1,56 +1,30 @@
 {
-  "kind": 312, //SourceFile
+  "kind": 312,
   "statements": [
     {
-      "kind": 277, //ExportAssignment
+      "kind": 277,
       "expression": {
-        "kind": 213, //CallExpression
+        "kind": 244,
         "expression": {
-          "kind": 80, //Identifier
-          "escapedText": "h"
-        },
-        "arguments": [
-          {
-            "kind": 11,//StringLiteral
-            "text": "div"
+          "kind": 213,
+          "expression": {
+            "kind": 80,
+            "escapedText": "h"
           },
-          {
-            "kind": 9,
-            "text": "123"
-          }
-        ]
+          "arguments": [
+            {
+              "kind": 11,
+              "text": "div"
+            },
+            {
+              "kind": 9,
+              "text": "123"
+            }
+          ]
+        }
       }
     }
   ],
-  "endOfFileToken": {
-    "kind": 1
-  },
-  "text": "export default h('div',123)",
-  "bindDiagnostics": [],
-  "externalModuleIndicator": {
-    "kind": 277,
-    "expression": {
-      "kind": 213,
-      "expression": {
-        "kind": 80,
-        "escapedText": "h"
-      },
-      "arguments": [
-        {
-          "kind": 11,
-          "text": "div"
-        },
-        {
-          "kind": 9,
-          "text": "123"
-        }
-      ]
-    }
-  },
-  "pragmas": {},
-  "referencedFiles": [],
-  "typeReferenceDirectives": [],
-  "libReferenceDirectives": [],
-  "amdDependencies": [],
-  "identifiers": {}
+  "text": "",
+  "fileName": "_$$ovs$$temp$$ovsToTsAst.ts"
 }
