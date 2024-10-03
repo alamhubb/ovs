@@ -5,6 +5,7 @@ import vue from '@vitejs/plugin-vue'
 // import vuePlugin from "./plugin-vue/src";
 import Inspect from 'vite-plugin-inspect'
 import type {Plugin} from 'vite'
+import vitePluginOvs from "@/ovs/vitePluginOvs";
 // import vitePluginOvs from "./src/ovs/vitePluginOvs";
 
 // https://vitejs.dev/config/
@@ -13,7 +14,7 @@ export default defineConfig({
     vue({
       include: [/\.vue$/, /\.ovs$/]
     }),
-    // vitePluginOvs(),
+    vitePluginOvs(),
     // Inspect(),
     // pluginAspect1()
   ],

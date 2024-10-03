@@ -27,12 +27,7 @@ export default function vitePluginOvs(): Plugin {
             return `
 <script lang="ts">
 import {h} from "vue";
-
-export default {
-  render() {
     ${result}
-  }
-}
 </script>
 `
         }

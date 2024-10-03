@@ -44,6 +44,6 @@ if (parserInstance.errors.length > 0) {
 <template>
 <!--  123-->
 <!--    <test-ovs></test-ovs>-->
-<!--  <hello></hello>-->
-  <testdoko></testdoko>
+  <hello></hello>
+<!--  <testdoko></testdoko>-->
 </template>

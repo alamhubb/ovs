@@ -1,5 +1,6 @@
 import {ECMAScript5Parser, ENABLE_SEMICOLON_INSERTION, Es5SyntaxName} from "../ecma5/ecma5_parser";
 import * as es6AllTokens from "./ECMAScript6Token";
+import * as t from "@/grammars/ecma5/ecma5_tokens";
 
 export enum Es6SyntaxName {
     ExportStatement = 'ExportStatement',
@@ -103,6 +104,30 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
                 // $.CONSUME(es6AllTokens.AsTok);
                 $.CONSUME2(es6AllTokens.Identifier);
             });
+        });
+
+        $.OVERRIDE_RULE("RegularPropertyAssignment", () => {
+            $.SUBRULE($.PropertyName);
+            $.OR([
+                {
+                    ALT: () => {
+                        $.CONSUME(t.Colon);
+                        $.SUBRULE($[Es5SyntaxName.AssignmentExpression]);
+                    }
+                },
+                {
+                    ALT: () => {
+                        $.CONSUME(t.LParen);
+                        $.OPTION(() => {
+                            $.SUBRULE($.FormalParameterList);
+                        });
+                        $.CONSUME(t.RParen);
+                        $.CONSUME(t.LCurly);
+                        $.SUBRULE($.SourceElements); // FunctionBody(clause 13) is equivalent to SourceElements
+                        $.CONSUME(t.RCurly);
+                    }
+                },
+            ]);
         });
 
         /*

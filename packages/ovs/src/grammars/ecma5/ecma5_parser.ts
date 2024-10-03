@@ -14,6 +14,7 @@ export enum Es5SyntaxName {
     VariableStatement = 'VariableStatement',
     Initialiser = 'Initialiser',
     AssignmentExpression = 'AssignmentExpression',
+    RegularPropertyAssignment = 'RegularPropertyAssignment',
 }
 
 export const ENABLE_SEMICOLON_INSERTION = true;
