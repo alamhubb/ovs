@@ -3,7 +3,7 @@ import TestOvs from "@/components/TestOvs.vue";
 import hello from "@/components/hello.ovs";
 
 // console.log(TestOvs)
-console.log(hello)
+// console.log(hello)
 
 /*import * as ts from 'typescript';
 
@@ -44,5 +44,5 @@ if (parserInstance.errors.length > 0) {
 <template>
 <!--  123-->
 <!--    <test-ovs></test-ovs>-->
-  <hello></hello>
+<!--  <hello></hello>-->
 </template>

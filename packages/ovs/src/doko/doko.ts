@@ -22,6 +22,29 @@ function getAllProperties(cls) {
   return Array.from(properties)
 }
 
+
+export function dokoFun(target, classt) {
+  const staticProps = getAllProperties(classt)
+  if (classt['DokoReverseProxyName']) {
+    classt['DokoReverseProxyName'].push(target.name)
+  } else {
+    Object.defineProperty(classt, 'DokoReverseProxyName', {
+      configurable: false,
+      enumerable: false,
+      value: [target.name],
+      writable: false
+    })
+  }
+  for (const staticProp of staticProps) {
+    if (!['length', 'name', 'prototype'].includes(staticProp)) {
+      if (target[staticProp]) {
+        // console.log(staticProp)
+        classt[staticProp] = target[staticProp]
+      }
+    }
+  }
+}
+
 export function doke(classt) {
   // 保存原有的 hello 方法
   // 替换 hello 方法
@@ -30,24 +53,6 @@ export function doke(classt) {
   //   doClass.hello();
   // };
   return (target) => {
-    const staticProps = getAllProperties(classt)
-    if (classt['DokoReverseProxyName']) {
-      classt['DokoReverseProxyName'].push(target.name)
-    } else {
-      Object.defineProperty(classt, 'DokoReverseProxyName', {
-        configurable: false,
-        enumerable: false,
-        value: [target.name],
-        writable: false
-      })
-    }
-    for (const staticProp of staticProps) {
-      if (!['length', 'name', 'prototype'].includes(staticProp)) {
-        if (target[staticProp]) {
-          // console.log(staticProp)
-          classt[staticProp] = target[staticProp]
-        }
-      }
-    }
+    dokoFun(classt, target)
   }
 }
