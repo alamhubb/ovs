@@ -1,87 +1,156 @@
 {
   "name": "Program",
-  "children": [
-    {
-      "name": "SourceElements",
-      "children": [
-        {
-          "name": "Statement",
-          "children": [
+  "children": {
+    "SourceElements": [
+      {
+        "name": "SourceElements",
+        "children": {
+          "Statement": [
             {
-              "name": "ExportDefaultStatement",
-              "children": [
-                {
-                  "tokenTypeIdx": 105,
-                  "image": "export",
-                  "startOffset": 0,
-                  "endOffset": 6,
-                  "children": [],
-                  "tokenTypeName": "ExportTok"
-                },
-                {
-                  "tokenTypeIdx": 30,
-                  "image": "default",
-                  "startOffset": 7,
-                  "endOffset": 14,
-                  "children": [],
-                  "tokenTypeName": "DefaultTok"
-                },
-                {
-                  "name": "AssignmentExpression",
-                  "children": [
-                    {
-                      "name": "OvsRenderDomStatement",
-                      "children": [
+              "name": "Statement",
+              "children": {
+                "ExportDefaultStatement": [
+                  {
+                    "name": "ExportDefaultStatement",
+                    "children": {
+                      "ExportTok": [
                         {
-                          "tokenTypeIdx": 36,
-                          "image": "div",
-                          "startOffset": 15,
-                          "endOffset": 18,
-                          "children": [],
-                          "tokenTypeName": "Identifier"
-                        },
+                          "tokenTypeIdx": 105,
+                          "image": "export",
+                          "startOffset": 0,
+                          "endOffset": 6
+                        }
+                      ],
+                      "DefaultTok": [
                         {
-                          "name": "Arguments",
-                          "children": [
-                            {
-                              "tokenTypeIdx": 42,
-                              "startOffset": 18,
-                              "endOffset": 19,
-                              "children": [],
-                              "tokenTypeName": "LParen"
-                            },
-                            {
-                              "tokenTypeIdx": 43,
-                              "startOffset": 19,
-                              "endOffset": 20,
-                              "children": [],
-                              "tokenTypeName": "RParen"
-                            }
-                          ]
-                        },
+                          "tokenTypeIdx": 30,
+                          "image": "default",
+                          "startOffset": 7,
+                          "endOffset": 14
+                        }
+                      ],
+                      "AssignmentExpression": [
                         {
-                          "tokenTypeIdx": 40,
-                          "startOffset": 20,
-                          "endOffset": 21,
-                          "children": [],
-                          "tokenTypeName": "LCurly"
-                        },
-                        {
-                          "tokenTypeIdx": 41,
-                          "startOffset": 21,
-                          "endOffset": 22,
-                          "children": [],
-                          "tokenTypeName": "RCurly"
+                          "name": "AssignmentExpression",
+                          "children": {
+                            "OvsRenderDomStatement": [
+                              {
+                                "name": "OvsRenderDomStatement",
+                                "children": {
+                                  "Identifier": [
+                                    {
+                                      "tokenTypeIdx": 36,
+                                      "image": "div",
+                                      "startOffset": 15,
+                                      "endOffset": 18
+                                    }
+                                  ],
+                                  "Arguments": [
+                                    {
+                                      "name": "Arguments",
+                                      "children": {
+                                        "LParen": [
+                                          {
+                                            "tokenTypeIdx": 42,
+                                            "startOffset": 18,
+                                            "endOffset": 19
+                                          }
+                                        ],
+                                        "RParen": [
+                                          {
+                                            "tokenTypeIdx": 43,
+                                            "startOffset": 19,
+                                            "endOffset": 20
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ],
+                                  "LCurly": [
+                                    {
+                                      "tokenTypeIdx": 40,
+                                      "startOffset": 20,
+                                      "endOffset": 21
+                                    }
+                                  ],
+                                  "ElementList": [
+                                    {
+                                      "name": "ElementList",
+                                      "children": {
+                                        "AssignmentExpression": [
+                                          {
+                                            "name": "AssignmentExpression",
+                                            "children": {
+                                              "BinaryExpression": [
+                                                {
+                                                  "name": "BinaryExpression",
+                                                  "children": {
+                                                    "UnaryExpression": [
+                                                      {
+                                                        "name": "UnaryExpression",
+                                                        "children": {
+                                                          "PostfixExpression": [
+                                                            {
+                                                              "name": "PostfixExpression",
+                                                              "children": {
+                                                                "MemberCallNewExpression": [
+                                                                  {
+                                                                    "name": "MemberCallNewExpression",
+                                                                    "children": {
+                                                                      "PrimaryExpression": [
+                                                                        {
+                                                                          "name": "PrimaryExpression",
+                                                                          "children": {
+                                                                            "AbsLiteral": [
+                                                                              {
+                                                                                "tokenTypeIdx": 99,
+                                                                                "image": 123,
+                                                                                "startOffset": 21,
+                                                                                "endOffset": 24
+                                                                              }
+                                                                            ]
+                                                                          }
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  }
+                                                                ]
+                                                              }
+                                                            }
+                                                          ]
+                                                        }
+                                                      }
+                                                    ]
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ],
+                                  "RCurly": [
+                                    {
+                                      "tokenTypeIdx": 41,
+                                      "startOffset": 24,
+                                      "endOffset": 25
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
                         }
                       ]
                     }
-                  ]
-                }
-              ]
+                  }
+                ]
+              }
             }
           ]
         }
-      ]
-    }
-  ]
+      }
+    ]
+  }
 }

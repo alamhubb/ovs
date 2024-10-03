@@ -54,15 +54,20 @@ export default class ExportStatementOvsEs6Transformer {
   static transformDefaultExportStatementAst(syntax: ChevrotainEcma5Ast) {
     let astKind
     let expression
+    console.log(6666)
     for (const tokenSyntax of syntax.children) {
+      console.log(tokenSyntax.tokenTypeName)
+      console.log(tokenSyntax.name)
       if ([Es5TokenName.DefaultTok].includes(tokenSyntax.tokenTypeName)) {
         astKind = ts.SyntaxKind.ExportAssignment
       } else if (tokenSyntax.name === Es5SyntaxName.AssignmentExpression) {
+        console.log(123)
         expression = VariableStatementOvsChevrotainEs5Transformer.getPrimaryExpressionTokenByAssignmentExpression(tokenSyntax)
+        console.log(456)
       } else if ([ES6TokenName.ExportTok].includes(tokenSyntax.tokenTypeName)) {
-        console.log(tokenSyntax.tokenTypeName)
+        // console.log(tokenSyntax.tokenTypeName)
       } else {
-        throw new Error(JSON.stringify(tokenSyntax))
+        // throw new Error(JSON.stringify(tokenSyntax))
       }
     }
 

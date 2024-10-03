@@ -17,6 +17,7 @@ import StatementOvsTransformer from "@/ovs/transform/transformOvs/StatementOvsTr
 import OvsDomRenderTransformer from "@/ovs/transform/transformOvs/RenderDomOvsTransformer";
 import OvsChevrotainEs5VariableStatementTransformer
     from "@/ovs/transform/transformEs5/VariableStatementOvsChevrotainEs5Transformer";
+import "./VariableStatementOvsTransformer"
 
 
 export default class ProgrammerOvsTransformer {

@@ -81,8 +81,17 @@ export default class VariableStatementOvsChevrotainEs5Transformer {
 
     static getPrimaryExpressionTokenByAssignmentExpression(assignmentExpression: ChevrotainEcma5Ast): TypescriptAstNode<TypescriptTextExtendAstNode> {
         //assignmentExpression.BinaryExpression. UnaryExpression.PostfixExpression.MemberCallNewExpression.PrimaryExpression
-        const primaryExpressionToken = assignmentExpression.children[0].children[0].children[0].children[0].children[0].children[0];
+        console.log(555555)
+        console.log('执行了es5 ')
+        console.log(assignmentExpression.children[0])
 
+        const assignmentExpressionChild = assignmentExpression.children[0]
+        if (assignmentExpressionChild.name === OvsSyntaxName.OvsRenderDomStatement) {
+            console.log('render dom')
+        }
+
+        const primaryExpressionToken = assignmentExpression.children[0].children[0].children[0].children[0].children[0].children[0];
+        console.log('执行了es5 ')
         if (primaryExpressionToken.tokenTypeName === Es5TokenName.Identifier) {
             return {
                 kind: ovsToTsTokenEs5SyntaxMap.get(primaryExpressionToken.tokenTypeName),

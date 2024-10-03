@@ -1,5 +1,4 @@
 function c(...args){
-  console.log(args)
 }
 
 @c

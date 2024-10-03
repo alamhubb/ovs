@@ -8,6 +8,7 @@ export enum Es5SyntaxName {
     Program = 'Program',
     Statement = 'Statement',
     ElementList = 'ElementList',
+    Arguments = 'Arguments',
     VariableDeclarationList = 'VariableDeclarationList',
     VariableDeclaration = 'VariableDeclaration',
     VariableStatement = 'VariableStatement',
@@ -192,7 +193,7 @@ export class ECMAScript5Parser extends CstParser {
                 $.OR2([
                     {ALT: () => $.SUBRULE($.BoxMemberExpression)},
                     {ALT: () => $.SUBRULE($.DotMemberExpression)},
-                    {ALT: () => $.SUBRULE($.Arguments)},
+                    {ALT: () => $.SUBRULE($[Es5SyntaxName.Arguments])},
                 ]);
             });
         });
@@ -210,7 +211,7 @@ export class ECMAScript5Parser extends CstParser {
 
         // See 11.2
         // this inlines ArgumentList
-        $.RULE("Arguments", () => {
+        $.RULE(Es5SyntaxName.Arguments, () => {
             $.CONSUME(t.LParen);
             $.OPTION(() => {
                 $.SUBRULE($[Es5SyntaxName.AssignmentExpression]);

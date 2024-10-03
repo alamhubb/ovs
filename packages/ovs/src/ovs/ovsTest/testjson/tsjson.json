@@ -1,17 +1,17 @@
 {
-  "kind": 312,
+  "kind": 312, //SourceFile
   "statements": [
     {
-      "kind": 277,
+      "kind": 277, //ExportAssignment
       "expression": {
-        "kind": 213,
+        "kind": 213, //CallExpression
         "expression": {
-          "kind": 80,
+          "kind": 80, //Identifier
           "escapedText": "h"
         },
         "arguments": [
           {
-            "kind": 11,
+            "kind": 11, //StringLiteral
             "text": "div"
           }
         ]
