@@ -24,35 +24,36 @@ function getAllProperties(cls) {
 
 
 export function dokoFun(target, classt) {
-  const staticProps = getAllProperties(classt)
-  if (classt['DokoReverseProxyName']) {
-    classt['DokoReverseProxyName'].push(target.name)
+  console.log('zhixingle1111')
+  const staticProps = getAllProperties(target)
+  if (target['DokoReverseProxyName']) {
+    target['DokoReverseProxyName'].push(classt.name)
   } else {
-    Object.defineProperty(classt, 'DokoReverseProxyName', {
+    Object.defineProperty(target, 'DokoReverseProxyName', {
       configurable: false,
       enumerable: false,
-      value: [target.name],
+      value: [classt.name],
       writable: false
     })
   }
   for (const staticProp of staticProps) {
     if (!['length', 'name', 'prototype'].includes(staticProp)) {
-      if (target[staticProp]) {
-        // console.log(staticProp)
-        classt[staticProp] = target[staticProp]
+      if (classt[staticProp]) {
+        console.log(staticProp)
+        target[staticProp] = classt[staticProp]
       }
     }
   }
 }
 
-export function doke(classt) {
+export function doke(target) {
   // 保存原有的 hello 方法
   // 替换 hello 方法
   // target.hello = function() {
   //   // 调用 doClass 的 hello 方法
   //   doClass.hello();
   // };
-  return (target) => {
-    dokoFun(classt, target)
+  return (classt) => {
+    dokoFun(target, classt)
   }
 }

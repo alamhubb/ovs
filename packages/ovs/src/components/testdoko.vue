@@ -1,14 +1,15 @@
 <script lang="ts">
 import { h } from 'vue'
 
-export const testDokoVue = {
+export const Testdoko = {
   renderHeader() {
     return h('div', 'header')
   },
   render() {
     console.log('zhixingle')
-    // return this.renderHeader()
-    return h('div', 'header')
+    return Testdoko.renderHeader()
+    // return h('div', 'header')
   }
 }
+export default Testdoko
 </script>

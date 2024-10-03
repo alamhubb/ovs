@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import TestOvs from "@/components/TestOvs.vue";
 import hello from "@/components/hello.ovs";
-
+import Testdoko from '@/components/testdoko.vue'
 // console.log(TestOvs)
 // console.log(hello)
 
@@ -45,4 +45,5 @@ if (parserInstance.errors.length > 0) {
 <!--  123-->
 <!--    <test-ovs></test-ovs>-->
 <!--  <hello></hello>-->
+  <testdoko></testdoko>
 </template>
