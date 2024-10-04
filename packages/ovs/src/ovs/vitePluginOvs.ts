@@ -15,15 +15,6 @@ export default function vitePluginOvs(): Plugin {
             }
             let result = ovsTransformToTsCode(code);
 
-            // 按行分割
-            let lines = result.split('\n');
-
-            const lastLengthIndex = lines.length - 2
-
-            lines[lastLengthIndex] = 'return ' + lines[lastLengthIndex]
-
-            result = lines.join('\n')
-
             return `
 <script lang="ts">
 import {h} from "vue";
