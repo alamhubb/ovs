@@ -20,8 +20,6 @@ import VariableStatementOvsChevrotainEs5Transformer
 import ConciseMethodAssignmentEs6Transformer from "@/ovs/transform/transformEs6/ConciseMethodAssignmentEs6Transformer";
 
 
-
-
 @Doko(ObjectLiteralEs5Transformer)
 export default class ObjectLiteralEs6Transformer {
     static transformObjectLiteralAst(syntax: ChevrotainEcma5Ast) {

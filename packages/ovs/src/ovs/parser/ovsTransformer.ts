@@ -5,6 +5,8 @@ import OvsChevrotainCstTransformer from "@/ovs/transform/transformChevrotain/Ovs
 import ProgrammerOvsTransformer from "@/ovs/transform/transformOvs/ProgrammerOvsTransformer";
 import {parseCodeToOvsCst} from "./OvsChevrotainParser";
 import {ovsGenerateAstToTsCode} from "@/ovs/parser/ovsTypescriptParser";
+import "@/ovs/transform/transformOvs/VariableStatementOvsTransformer"
+import "@/ovs/transform/transformEs6/ObjectLiteralEs6Transformer"
 
 /**
  * convert ovs syntax code to typescript code

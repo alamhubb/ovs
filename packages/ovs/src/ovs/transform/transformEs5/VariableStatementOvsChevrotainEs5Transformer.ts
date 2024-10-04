@@ -82,6 +82,8 @@ export default class VariableStatementOvsChevrotainEs5Transformer {
 
     static getPrimaryExpressionTokenByAssignmentExpression(assignmentExpression: ChevrotainEcma5Ast): TypescriptAstNode<TypescriptTextExtendAstNode> {
         //assignmentExpression.BinaryExpression. UnaryExpression.PostfixExpression.MemberCallNewExpression.PrimaryExpression.child[0]
+        console.log(assignmentExpression)
+        console.log(assignmentExpression.children[0])
         const primaryExpression = assignmentExpression.children[0].children[0].children[0].children[0].children[0];
         return VariableStatementOvsChevrotainEs5Transformer.getPrimaryExpressionTokenByPrimaryExpression(primaryExpression)
     }
