@@ -7,7 +7,7 @@
  */
 
 // Link: https://www.ecma-international.org/ecma-262/5.1/#sec-7.2
-import {createToken} from "@/chevotain/src/api";
+import {createToken} from "@/chevrotain/src/api";
 
 export enum Es5TokenName {
     Identifier = 'Identifier',

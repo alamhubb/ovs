@@ -1,4 +1,4 @@
-import {EOF, tokenMatcher, MismatchedTokenException, CstParser} from "@/chevotain/src/api";
+import {EOF, tokenMatcher, MismatchedTokenException, CstParser} from "@/chevrotain/src/api";
 import * as t from "./ecma5_tokens.ts";
 
 

@@ -1,5 +1,5 @@
 import {AbsKeyword, Question} from "../ecma5/ecma5_tokens";
-import {createToken} from "@/chevotain/src/api";
+import {createToken} from "@/chevrotain/src/api";
 
 export * from "../ecma5/ecma5_tokens";
 

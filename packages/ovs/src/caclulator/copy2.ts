@@ -1,6 +1,6 @@
-import {createToken} from "@/chevotain/src/scan/tokens_public.ts";
-import {Lexer} from "@/chevotain/src/scan/lexer_public.ts";
-import {CstParser, EmbeddedActionsParser} from "@/chevotain/src/parse/parser/parser.ts";
+import {createToken} from "@/chevrotain/src/scan/tokens_public.ts";
+import {Lexer} from "@/chevrotain/src/scan/lexer_public.ts";
+import {CstParser, EmbeddedActionsParser} from "@/chevrotain/src/parse/parser/parser.ts";
 
 const AdditionOperator = createToken({
     name: "AdditionOperator",

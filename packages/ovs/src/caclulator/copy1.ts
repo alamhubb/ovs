@@ -1,6 +1,6 @@
-import {createToken} from "@/chevotain/src/scan/tokens_public.ts";
-import {Lexer} from "@/chevotain/src/scan/lexer_public.ts";
-import {CstParser} from "@/chevotain/src/parse/parser/parser.ts";
+import {createToken} from "chevrotain/src/scan/tokens_public.ts";
+import {Lexer} from "@/chevrotain/src/scan/lexer_public.ts";
+import {CstParser} from "@/chevrotain/src/parse/parser/parser.ts";
 
 // using the NA pattern marks this Token class as 'irrelevant' for the Lexer.
 // AdditionOperator defines a Tokens hierarchy but only the leafs in this hierarchy define
