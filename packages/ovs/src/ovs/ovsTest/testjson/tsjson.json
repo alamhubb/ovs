@@ -43,15 +43,6 @@
       }
     }
   ],
-  "endOfFileToken": {
-    "kind": 1
-  },
-  "text": "export default {\n    render(){\n        return h('div',123)\n    }\n}",
-  "bindDiagnostics": [],
-  "pragmas": {},
-  "referencedFiles": [],
-  "typeReferenceDirectives": [],
-  "libReferenceDirectives": [],
-  "amdDependencies": [],
-  "identifiers": {}
+  "text": "",
+  "fileName": "_$$ovs$$temp$$ovsToTsAst.ts"
 }
