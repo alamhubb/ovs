@@ -7,6 +7,7 @@ export * from "../ecma5/ecma5_tokens";
 export enum ES6TokenName {
     ConstTok = 'ConstTok',
     ClassTok = 'ClassTok',
+    StaticTok = 'StaticTok',
     ExtendsTok = 'ExtendsTok',
     ExportTok = 'ExportTok',
     ImportTok = 'ImportTok',
@@ -28,6 +29,7 @@ export enum ES6TokenName {
 //已使用
 export const ConstTok = createToken({name: ES6TokenName.ConstTok, categories: AbsKeyword});
 export const ClassTok = createToken({name: ES6TokenName.ClassTok, categories: AbsKeyword});
+export const StaticTok = createToken({name: ES6TokenName.StaticTok, categories: AbsKeyword});
 export const ExtendsTok = createToken({name: ES6TokenName.ExtendsTok, categories: AbsKeyword});
 export const ExportTok = createToken({name: ES6TokenName.ExportTok, categories: AbsKeyword});
 export const ImportTok = createToken({name: ES6TokenName.ImportTok, categories: AbsKeyword});

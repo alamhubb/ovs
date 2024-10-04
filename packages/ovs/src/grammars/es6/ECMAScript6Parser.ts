@@ -4,6 +4,7 @@ import * as t from "@/grammars/ecma5/ecma5_tokens";
 
 export enum Es6SyntaxName {
     ExportStatement = 'ExportStatement',
+    ClassDeclaration = 'ClassDeclaration',
     ExportDefaultStatement = 'ExportDefaultStatement',
     ConciseMethodAssignment = 'ConciseMethodAssignment',
 }
@@ -19,6 +20,7 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
         this.StatementValue = [
             // {ALT: () => $.SUBRULE($[OvsSyntaxName.OvsDomRenderStatement])},
             {ALT: () => $.SUBRULE($.Block)},
+            {ALT: () => $.SUBRULE($[Es6SyntaxName.ClassDeclaration])},
             {ALT: () => $.SUBRULE($[Es6SyntaxName.ExportDefaultStatement])},
             {ALT: () => $.SUBRULE($[Es6SyntaxName.ExportStatement])},
             {ALT: () => $.SUBRULE($[Es5SyntaxName.VariableStatement])},
@@ -75,7 +77,10 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
         $.RULE(Es6SyntaxName.ExportDefaultStatement, () => {
             $.CONSUME(es6AllTokens.ExportTok);
             $.CONSUME(es6AllTokens.DefaultTok)
-            $.SUBRULE($[Es5SyntaxName.AssignmentExpression])
+            $.OR([
+                {ALT: () =>  $.SUBRULE($[Es6SyntaxName.ClassDeclaration])},
+                {ALT: () =>  $.SUBRULE($[Es5SyntaxName.AssignmentExpression])},
+            ]);
             $.CONSUME(es6AllTokens.Semicolon, ENABLE_SEMICOLON_INSERTION);
         });
 
@@ -128,26 +133,8 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
             $.CONSUME(t.RCurly);
         });
 
-        /*
-
-        // 箭头函数
-        $.RULE("ArrowFunction", () => {
-            $.OPTION(() => {
-                $.SUBRULE($.FormalParameterList);
-            });
-            $.CONSUME(es6AllTokens.Arrow);
-            $.SUBRULE($.ConciseBody);
-        });
-
-        $.RULE("ConciseBody", () => {
-            $.OR([
-                { ALT: () => $.SUBRULE($.AssignmentExpression) },
-                { ALT: () => $.SUBRULE($.Block) }
-            ]);
-        });
-
         // 类声明
-        $.RULE("ClassDeclaration", () => {
+        $.RULE(Es6SyntaxName.ClassDeclaration, () => {
             $.CONSUME(es6AllTokens.ClassTok);
             $.CONSUME(es6AllTokens.Identifier);
             $.OPTION(() => {
@@ -177,12 +164,12 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
         });
 
         $.RULE("MethodDefinition", () => {
-            // $.OPTION(() => {
-            //     $.CONSUME(es6AllTokens.StaticTok);
-            // });
+            $.OPTION(() => {
+                $.CONSUME(es6AllTokens.StaticTok);
+            });
             $.SUBRULE($.PropertyName);
             $.CONSUME(es6AllTokens.LParen);
-            $.OPTION(() => {
+            $.OPTION1(() => {
                 $.SUBRULE($.FormalParameterList);
             });
             $.CONSUME(es6AllTokens.RParen);
@@ -190,6 +177,28 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
             $.SUBRULE($.SourceElements);
             $.CONSUME(es6AllTokens.RCurly);
         });
+
+
+        /*
+
+        // 箭头函数
+        $.RULE("ArrowFunction", () => {
+            $.OPTION(() => {
+                $.SUBRULE($.FormalParameterList);
+            });
+            $.CONSUME(es6AllTokens.Arrow);
+            $.SUBRULE($.ConciseBody);
+        });
+
+        $.RULE("ConciseBody", () => {
+            $.OR([
+                { ALT: () => $.SUBRULE($.AssignmentExpression) },
+                { ALT: () => $.SUBRULE($.Block) }
+            ]);
+        });
+
+
+
 
         // 模板字符串
         $.RULE("TemplateLiteral", () => {
