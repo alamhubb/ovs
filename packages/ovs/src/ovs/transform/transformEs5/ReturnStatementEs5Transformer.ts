@@ -13,8 +13,8 @@ export default class ReturnStatementEs5Transformer {
         for (const returnChild of returnChildren) {
             if (returnChild.tokenTypeName === Es5TokenName.ReturnTok) {
                 returnKind = ts.SyntaxKind.ReturnStatement
-            } else if (statementChild.name === Es5SyntaxName.Expression) {
-                expression = VariableStatementOvsChevrotainEs5Transformer.getPrimaryExpressionTokenByAssignmentExpression(statementChild.children[0])
+            } else if (returnChild.name === Es5SyntaxName.Expression) {
+                expression = VariableStatementOvsChevrotainEs5Transformer.getPrimaryExpressionTokenByAssignmentExpression(returnChild.children[0])
             } else {
                 throw new Error('未知类型' + statement.name)
             }

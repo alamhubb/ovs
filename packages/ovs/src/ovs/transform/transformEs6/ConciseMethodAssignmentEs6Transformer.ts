@@ -13,9 +13,9 @@ export default class ConciseMethodAssignmentEs6Transformer {
         const conciseMethodAssignmentAstChildren = conciseMethodAssignmentAst.children
         for (const conciseMethodAssignmentAstChild of conciseMethodAssignmentAstChildren) {
             if (conciseMethodAssignmentAstChild.name === Es5SyntaxName.PropertyName) {
-                nameKind = VariableStatementOvsChevrotainEs5Transformer.getPrimaryExpressionTokenByAssignmentExpression(conciseMethodAssignmentAstChild)
+                nameKind = VariableStatementOvsChevrotainEs5Transformer.getPrimaryExpressionTokenByPrimaryExpression(conciseMethodAssignmentAstChild)
             } else if (conciseMethodAssignmentAstChild.name === Es5SyntaxName.SourceElements) {
-                body = SourceElementsEs5Transformer.transformEs5SourceElements(regularPropertyAssignmentChild)
+                body = SourceElementsEs5Transformer.transformEs5SourceElements(conciseMethodAssignmentAstChild)
             }
         }
         console.log(77777)

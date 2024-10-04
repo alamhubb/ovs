@@ -82,11 +82,13 @@ export default class VariableStatementOvsChevrotainEs5Transformer {
 
     static getPrimaryExpressionTokenByAssignmentExpression(assignmentExpression: ChevrotainEcma5Ast): TypescriptAstNode<TypescriptTextExtendAstNode> {
         //assignmentExpression.BinaryExpression. UnaryExpression.PostfixExpression.MemberCallNewExpression.PrimaryExpression.child[0]
-        console.log(assignmentExpression)
-        console.log(assignmentExpression.children[0]?.children[0]?.children[0]?.children[0]?.children[0]?.children[0])
-        const primaryExpressionToken = assignmentExpression.children[0].children[0].children[0].children[0].children[0].children[0];
-        console.log(99898989)
-        console.log(primaryExpressionToken.name)
+        const primaryExpression = assignmentExpression.children[0].children[0].children[0].children[0].children[0];
+        return VariableStatementOvsChevrotainEs5Transformer.getPrimaryExpressionTokenByPrimaryExpression(primaryExpression)
+    }
+
+    static getPrimaryExpressionTokenByPrimaryExpression(primaryExpression: ChevrotainEcma5Ast): TypescriptAstNode<TypescriptTextExtendAstNode> {
+        //assignmentExpression.BinaryExpression. UnaryExpression.PostfixExpression.MemberCallNewExpression.PrimaryExpression.child[0]
+        const primaryExpressionToken = primaryExpression.children[0];
         if (primaryExpressionToken.tokenTypeName === Es5TokenName.Identifier) {
             return {
                 kind: ovsToTsTokenEs5SyntaxMap.get(primaryExpressionToken.tokenTypeName),
@@ -97,7 +99,7 @@ export default class VariableStatementOvsChevrotainEs5Transformer {
                 kind: ovsToTsTokenEs5SyntaxMap.get(primaryExpressionToken.tokenTypeName),
                 text: String(primaryExpressionToken.image)
             }
-        }  else if (primaryExpressionToken.name === Es5SyntaxName.ObjectLiteral) {
+        } else if (primaryExpressionToken.name === Es5SyntaxName.ObjectLiteral) {
             return ObjectLiteralEs5Transformer.transformObjectLiteralAst(primaryExpressionToken)
         } else {
             console.warn(`unexpected tokenTypeName:${primaryExpressionToken.tokenTypeName}:${primaryExpressionToken.name}`)

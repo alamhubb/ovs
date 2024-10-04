@@ -27,7 +27,7 @@ export default class StatementEs5Transformer {
         if (statementAst.name === Es5SyntaxName.VariableStatement) {
             ast = OvsChevrotainEs5VariableStatementTransformer.transformVariableStatementAst(statementAst);
         } else if (statementAst.name === Es5SyntaxName.ReturnStatement) {
-            ast = ReturnStatementEs5Transformer.transformEs5ReturnStatement(statementChild)
+            ast = ReturnStatementEs5Transformer.transformEs5ReturnStatement(statementAst)
         }
         return ast
     }
