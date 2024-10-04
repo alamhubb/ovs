@@ -17,40 +17,57 @@ import * as tokens from "./ECMAScript6Token.ts";
 import {createChevToken, getEs5ChevrotainToken} from "@/grammars/ecma5/ecma5_lexer";
 import {Token} from "acorn";
 
+
+function getEs6PreToken(acornType: String, token: Token) {
+    let ctt
+    switch (acornType) {
+        case acornTokTypes._const:
+            ctt = tokens.ConstTok;
+            break;
+        case acornTokTypes._class:
+            ctt = tokens.ClassTok;
+            break;
+        case acornTokTypes.name:
+            switch (token.value) {
+                case "static":
+                    console.log(token.value)
+                    ctt = tokens.StaticTok;
+                    break;
+                default:
+                    break;
+            }
+            break;
+        case acornTokTypes._extends:
+            ctt = tokens.ExtendsTok;
+            break;
+        case acornTokTypes._export:
+            ctt = tokens.ExportTok;
+            break;
+        case acornTokTypes._import:
+            ctt = tokens.ImportTok;
+            break;
+        case acornTokTypes.arrow:
+            ctt = tokens.Arrow;
+            break;
+        case acornTokTypes.ellipsis:
+            ctt = tokens.Ellipsis;
+            break;
+        case acornTokTypes.backQuote:
+            ctt = tokens.BackQuote;
+            break;
+        case acornTokTypes.dollarBraceL:
+            ctt = tokens.DollarCurly;
+            break;
+        default:
+            break
+    }
+    return ctt
+}
+
 export function getEs6ChevrotainToken(acornType: String, token: Token) {
-    let ctt = getEs5ChevrotainToken(acornType, token)
+    let ctt = getEs6PreToken(acornType, token)
     if (!ctt) {
-        switch (acornType) {
-            case acornTokTypes._const:
-                ctt = tokens.ConstTok;
-                break;
-            case acornTokTypes._class:
-                ctt = tokens.ClassTok;
-                break;
-            case acornTokTypes._extends:
-                ctt = tokens.ExtendsTok;
-                break;
-            case acornTokTypes._export:
-                ctt = tokens.ExportTok;
-                break;
-            case acornTokTypes._import:
-                ctt = tokens.ImportTok;
-                break;
-            case acornTokTypes.arrow:
-                ctt = tokens.Arrow;
-                break;
-            case acornTokTypes.ellipsis:
-                ctt = tokens.Ellipsis;
-                break;
-            case acornTokTypes.backQuote:
-                ctt = tokens.BackQuote;
-                break;
-            case acornTokTypes.dollarBraceL:
-                ctt = tokens.DollarCurly;
-                break;
-            default:
-                break
-        }
+        ctt = getEs5ChevrotainToken(acornType, token)
     }
     return ctt
 }
@@ -59,7 +76,9 @@ export function getEs6ChevrotainToken(acornType: String, token: Token) {
 export default class ECMAScript6Lexer {
     static tokenize(str) {
         const result = [];
+        const tokens = []
         for (let token of acorn.tokenizer(str, {ecmaVersion: 6})) {
+            tokens.push(token)
             let acornType = token.type;
             let ctt = getEs6ChevrotainToken(acornType, token)
             if (!ctt) {
@@ -68,6 +87,7 @@ export default class ECMAScript6Lexer {
             const chevToken = createChevToken(ctt, token);
             result.push(chevToken);
         }
+        // console.log(tokens)
         return result;
     }
 }

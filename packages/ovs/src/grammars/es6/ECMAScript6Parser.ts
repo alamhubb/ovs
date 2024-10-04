@@ -157,16 +157,17 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
         });
 
         $.RULE("ClassElement", () => {
-            $.OR([
-                { ALT: () => $.SUBRULE($.MethodDefinition) },
-                { ALT: () => $.CONSUME(es6AllTokens.Semicolon) }
-            ]);
-        });
-
-        $.RULE("MethodDefinition", () => {
             $.OPTION(() => {
                 $.CONSUME(es6AllTokens.StaticTok);
             });
+            $.SUBRULE($.MethodDefinition)
+            // $.OR([
+            //     { ALT: () => $.SUBRULE($.MethodDefinition) },
+            //     { ALT: () => $.CONSUME(es6AllTokens.Semicolon) }
+            // ]);
+        });
+
+        $.RULE("MethodDefinition", () => {
             $.SUBRULE($.PropertyName);
             $.CONSUME(es6AllTokens.LParen);
             $.OPTION1(() => {
