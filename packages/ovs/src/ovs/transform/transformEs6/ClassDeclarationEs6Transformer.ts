@@ -1,51 +1,30 @@
+import ts from "typescript";
+import ChevrotainEcma5Ast from "@/ovs/model/ChevrotainEcma5Ast";
+import {Es5TokenName, ES6TokenName} from "@/grammars/es6/ECMAScript6Token";
+import Es5Transformer from "@/ovs/transform/transformEs5/Es5Transformer";
+import {Es6SyntaxName} from "@/grammars/es6/ECMAScript6Parser";
+import Es6Transformer from "@/ovs/transform/transformEs6/Es6Transformer";
+
 export default class ClassDeclarationEs6Transformer {
-    static transformClassDeclaration(){
+    static transformClassDeclaration(classDeclaration: ChevrotainEcma5Ast) {
+        let kind
+        let name
+        let members
+        for (const child of classDeclaration.children) {
+            if (child.tokenTypeName === ES6TokenName.ClassTok) {
+                kind = ts.SyntaxKind.ClassDeclaration
+            } else if (child.tokenTypeName === Es5TokenName.Identifier) {
+                name = Es5Transformer.transform(child)
+            }else if (child.tokenTypeName === Es6SyntaxName.ClassBody) {
+                members = Es6Transformer.transform(child)
+            }
+        }
+
+
         return {
-            "kind": 263, //ClassDeclaration
-            "modifiers": [{
-                "kind": 95 //ExportKeyword
-            },
-                {
-                    "kind": 90 //DefaultKeyword
-                }
-            ],
-            "name": {
-                "kind": 80, //iden
-                "escapedText": "Testsyntax"
-            },
-            "members": [{
-                "kind": 174, //MethodDeclaration
-                "modifiers": [{
-                    "kind": 126 //StaticKeyword
-                }],
-                "name": {
-                    "kind": 80, //iden
-                    "escapedText": "render"
-                },
-                "parameters": [],
-                "body": {
-                    "kind": 241, //Block
-                    "statements": [{
-                        "kind": 253, //ReturnStatement
-                        "expression": {
-                            "kind": 213,
-                            "expression": {
-                                "kind": 80,
-                                "escapedText": "h"
-                            },
-                            "arguments": [{
-                                "kind": 11,
-                                "text": "div"
-                            },
-                                {
-                                    "kind": 9,
-                                    "text": "123"
-                                }
-                            ]
-                        }
-                    }]
-                }
-            }]
+            "kind": kind,
+            "name": name,
+            "members": members
         }
     }
 }

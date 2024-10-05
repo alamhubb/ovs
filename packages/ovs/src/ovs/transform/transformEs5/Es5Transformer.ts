@@ -3,9 +3,12 @@ import {Es5SyntaxName} from "@/grammars/ecma5/ecma5_parser";
 import ProgramEs5Transformer from "@/ovs/transform/transformEs5/ProgramEs5Transformer";
 import SourceElementsEs5Transformer from "@/ovs/transform/transformEs5/SourceElementsEs5Transformer";
 import StatementEs5Transformer from "@/ovs/transform/transformEs5/StatementEs5Transformer";
+import {Es5TokenName} from "@/grammars/ecma5/ecma5_tokens";
+import IdentifierTransformer from "@/ovs/transform/transformEs5/IdentifierTransformer";
+import PropertyNameTransformerEs5 from "@/ovs/transform/transformEs5/PropertyNameTransformerEs5";
 
-export default class TransformerEs5 {
-   static transform(node:ChevrotainEcma5Ast){
+export default class Es5Transformer {
+    static transform(node: ChevrotainEcma5Ast) {
         switch (node.name) {
             case Es5SyntaxName.Program:
                 return ProgramEs5Transformer.transformProgram(node);
@@ -13,10 +16,11 @@ export default class TransformerEs5 {
                 return SourceElementsEs5Transformer.transformSourceElements(node);
             case Es5SyntaxName.Statement:
                 return StatementEs5Transformer.transformStatement(node);
-
-            case "PropertyName":
-                return this.transformPropertyName(node as SourceNode);
-            case "ReturnStatement":
+            case Es5SyntaxName.PropertyName:
+                return PropertyNameTransformerEs5.transformPropertyName(node);
+            case Es5TokenName.Identifier:
+                return IdentifierTransformer.transformIdentifier(node);
+/*            case "ReturnStatement":
                 return this.transformReturnStatement(node as SourceNode);
             case "Expression":
                 return this.transformExpression(node as SourceNode);
@@ -31,7 +35,7 @@ export default class TransformerEs5 {
             case "MemberCallNewExpression":
                 return this.transformMemberCallNewExpression(node as SourceNode);
             case "PrimaryExpression":
-                return this.transformPrimaryExpression(node as SourceNode);
+                return this.transformPrimaryExpression(node as SourceNode);*/
             // 添加更多节点类型的转换方法
             default:
                 console.warn(`未处理的节点类型: ${node.name}`);

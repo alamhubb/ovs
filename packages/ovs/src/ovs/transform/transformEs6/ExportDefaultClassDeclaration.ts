@@ -3,7 +3,7 @@ import {Es5TokenName, ES6TokenName} from "@/grammars/es6/ECMAScript6Token";
 import Es6TokenMap from "@/ovs/parser/Es6TokenMap";
 import {ovsToTsTokenEs6SyntaxMap} from "@/ovs/transform/transformEs6/ProgrammerOvsEs6Transformer";
 import {Es6SyntaxName} from "@/grammars/es6/ECMAScript6Parser";
-import TransformerEs6 from "@/ovs/transform/transformEs6/TransformerEs6";
+import Es6Transformer from "@/ovs/transform/transformEs6/Es6Transformer";
 
 export default class ExportDefaultClassDeclaration {
     static transformEs6ExportDefaultClass(exportDefaultStatement: ChevrotainEcma5Ast) {
@@ -15,7 +15,7 @@ export default class ExportDefaultClassDeclaration {
         let classAst = null
         for (const exportDefaultChild of exportDefaultChildren) {
             if (exportDefaultChild.name === Es6SyntaxName.ClassDeclaration) {
-                classAst = TransformerEs6.transform(exportDefaultChild)
+                classAst = Es6Transformer.transform(exportDefaultChild)
             } else if (exportDefaultChild.tokenTypeName === Es5TokenName.DefaultTok) {
                 modifiers.push(ovsToTsTokenEs6SyntaxMap.get(Es5TokenName.DefaultTok))
             } else if (exportDefaultChild.tokenTypeName === ES6TokenName.ExportTok) {

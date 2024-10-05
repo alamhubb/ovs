@@ -50,6 +50,9 @@ export default class OvsChevrotainCstTransformer {
 
         if (ovsChevrotainAst.tokenTypeIdx) {
             ovsChevrotainAst.tokenTypeName = Es6TokenMap.get(ovsChevrotainAst.tokenTypeIdx)
+            if (!ovsChevrotainAst.name){
+                ovsChevrotainAst.name = ovsChevrotainAst.tokenTypeName
+            }
         }
         // {additionExpression:[]}
         const childObj = chevrotainEcma5Cst.children

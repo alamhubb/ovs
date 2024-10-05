@@ -5,6 +5,9 @@ import * as t from "@/grammars/ecma5/ecma5_tokens";
 export enum Es6SyntaxName {
     ExportStatement = 'ExportStatement',
     ClassDeclaration = 'ClassDeclaration',
+    ClassBody = 'ClassBody',
+    ClassElement = 'ClassElement',
+    MethodDefinition = 'MethodDefinition',
     ExportDefaultStatement = 'ExportDefaultStatement',
     ConciseMethodAssignment = 'ConciseMethodAssignment',
 }
@@ -140,7 +143,7 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
             $.OPTION(() => {
                 $.SUBRULE($.ClassHeritage);
             });
-            $.SUBRULE($.ClassBody);
+            $.SUBRULE($[Es6SyntaxName.ClassBody]);
         });
 
         $.RULE("ClassHeritage", () => {
@@ -148,7 +151,7 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
             // $.SUBRULE($.LeftHandSideExpression);
         });
 
-        $.RULE("ClassBody", () => {
+        $.RULE(Es6SyntaxName.ClassBody, () => {
             $.CONSUME(es6AllTokens.LCurly);
             $.MANY(() => {
                 $.SUBRULE($.ClassElement);
@@ -156,18 +159,18 @@ export class ECMAScript6Parser extends ECMAScript5Parser {
             $.CONSUME(es6AllTokens.RCurly);
         });
 
-        $.RULE("ClassElement", () => {
+        $.RULE(Es6SyntaxName.ClassElement, () => {
             $.OPTION(() => {
                 $.CONSUME(es6AllTokens.StaticTok);
             });
-            $.SUBRULE($.MethodDefinition)
+            $.SUBRULE($[Es6SyntaxName.MethodDefinition])
             // $.OR([
             //     { ALT: () => $.SUBRULE($.MethodDefinition) },
             //     { ALT: () => $.CONSUME(es6AllTokens.Semicolon) }
             // ]);
         });
 
-        $.RULE("MethodDefinition", () => {
+        $.RULE(Es6SyntaxName.MethodDefinition, () => {
             $.SUBRULE($.PropertyName);
             $.CONSUME(es6AllTokens.LParen);
             $.OPTION1(() => {
