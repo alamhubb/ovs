@@ -1,5 +1,5 @@
 import ChevrotainEcma5Ast from "@/ovs/model/ChevrotainEcma5Ast";
-import {Es6SyntaxName} from "@/grammars/es6/ECMAScript6Parser";
+import {Es6SyntaxName} from "@/grammars/es6/Es6Parser";
 import ExportDefaultClassDeclaration from "@/ovs/transform/transformEs6/ExportDefaultClassDeclaration";
 
 export default class ExportDefaultStatementEs6Transformer {

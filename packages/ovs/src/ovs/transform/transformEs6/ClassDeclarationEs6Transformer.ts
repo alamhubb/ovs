@@ -2,7 +2,7 @@ import ts from "typescript";
 import ChevrotainEcma5Ast from "@/ovs/model/ChevrotainEcma5Ast";
 import {Es5TokenName, ES6TokenName} from "@/grammars/es6/ECMAScript6Token";
 import Es5Transformer from "@/ovs/transform/transformEs5/Es5Transformer";
-import {Es6SyntaxName} from "@/grammars/es6/ECMAScript6Parser";
+import {Es6SyntaxName} from "@/grammars/es6/Es6Parser";
 import Es6Transformer from "@/ovs/transform/transformEs6/Es6Transformer";
 
 export default class ClassDeclarationEs6Transformer {

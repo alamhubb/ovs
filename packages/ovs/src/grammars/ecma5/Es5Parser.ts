@@ -27,7 +27,7 @@ export const ENABLE_SEMICOLON_INSERTION = true;
 export const DISABLE_SEMICOLON_INSERTION = false;
 
 // as defined in https://www.ecma-international.org/ecma-262/5.1/index.html
-export class ECMAScript5Parser extends CstParser {
+export class Es5Parser extends CstParser {
     set orgText(newText) {
         this._orgText = newText;
     }

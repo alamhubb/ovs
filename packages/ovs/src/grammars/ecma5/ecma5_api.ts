@@ -1,7 +1,7 @@
 import { tokenize } from "./ecma5_lexer.ts";
-import { ECMAScript5Parser } from "./ecma5_parser.ts";
+import { Es5Parser } from "./Es5Parser.ts";
 
-const parserInstance = new ECMAScript5Parser();
+const parserInstance = new Es5Parser();
 
 export function parse(str) {
   const tokens = tokenize(str);

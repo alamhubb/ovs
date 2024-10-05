@@ -1,6 +1,6 @@
 import ChevrotainEcma5Ast from "@/ovs/model/ChevrotainEcma5Ast";
 import Es6Transformer from "@/ovs/transform/transformEs6/Es6Transformer";
-import {Es6SyntaxName} from "@/grammars/es6/ECMAScript6Parser";
+import {Es6SyntaxName} from "@/grammars/es6/Es6Parser";
 
 export default class ClassBodyTransformer {
     //return  members

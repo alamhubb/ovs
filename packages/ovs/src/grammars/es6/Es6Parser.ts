@@ -1,4 +1,4 @@
-import {ECMAScript5Parser, ENABLE_SEMICOLON_INSERTION, Es5SyntaxName} from "../ecma5/ecma5_parser";
+import {Es5Parser, ENABLE_SEMICOLON_INSERTION, Es5SyntaxName} from "../ecma5/Es5Parser";
 import * as es6AllTokens from "./ECMAScript6Token";
 import * as t from "@/grammars/ecma5/ecma5_tokens";
 
@@ -12,7 +12,7 @@ export enum Es6SyntaxName {
     ConciseMethodAssignment = 'ConciseMethodAssignment',
 }
 
-export class ECMAScript6Parser extends ECMAScript5Parser {
+export class Es6Parser extends Es5Parser {
 
     readonly StatementValue = []
 

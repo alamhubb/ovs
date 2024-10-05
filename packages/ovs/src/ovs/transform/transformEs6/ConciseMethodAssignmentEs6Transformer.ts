@@ -1,6 +1,6 @@
 import ChevrotainEcma5Ast from "@/ovs/model/ChevrotainEcma5Ast";
 import ts from "typescript";
-import {Es5SyntaxName} from "@/grammars/ecma5/ecma5_parser";
+import {Es5SyntaxName} from "@/grammars/ecma5/Es5Parser";
 import VariableStatementOvsChevrotainEs5Transformer
     from "@/ovs/transform/transformEs5/VariableStatementOvsChevrotainEs5Transformer";
 import {Es5TokenName} from "@/grammars/ecma5/ecma5_tokens";

@@ -1,7 +1,7 @@
 import {OvsSyntaxName} from "../../parser/OvsChevrotainParser.ts";
 import ChevrotainEcma5Cst from "../../model/ChevrotainEcma5Cst.ts";
 import ts, {SourceFile, Statement} from "typescript";
-import {Es5SyntaxName} from "../../../grammars/ecma5/ecma5_parser.ts";
+import {Es5SyntaxName} from "../../../grammars/ecma5/Es5Parser.ts";
 import ChevrotainEcma5Ast from "../../model/ChevrotainEcma5Ast.ts";
 import {
     ArgumentsExtendNode,
@@ -11,7 +11,7 @@ import {
 } from "../../TypescriptAstNode.ts";
 import {Es5TokenName} from "../../../grammars/ecma5/ecma5_tokens.ts";
 import {ES6TokenName} from "@/grammars/es6/ECMAScript6Token";
-import {Es6SyntaxName} from "@/grammars/es6/ECMAScript6Parser";
+import {Es6SyntaxName} from "@/grammars/es6/Es6Parser";
 import OvsDomRenderTransformer from "@/ovs/transform/transformOvs/RenderDomOvsTransformer";
 import {Doko} from "@/doko/doko";
 import VariableStatementOvsChevrotainEs5Transformer

@@ -1,5 +1,5 @@
-import {ECMAScript5Parser, Es5SyntaxName} from "../../grammars/ecma5/ecma5_parser";
-import {ECMAScript6Parser} from "../../grammars/es6/ECMAScript6Parser";
+import {Es5Parser, Es5SyntaxName} from "../../grammars/ecma5/Es5Parser";
+import {Es6Parser} from "../../grammars/es6/Es6Parser";
 import ChevrotainEcma5Cst from "../model/ChevrotainEcma5Cst.ts";
 import ECMAScript6Lexer from "../../grammars/es6/ECMAScript6Lexer";
 import * as es6AllTokens from "../../grammars/es6/ECMAScript6Token";
@@ -13,7 +13,7 @@ export enum OvsSyntaxName {
 // (	parentheses
 // [	bracket
 // {	brace ,curly brace ,curly bracket
-export class OvsChevrotainParser extends ECMAScript6Parser {
+export class OvsChevrotainParser extends Es6Parser {
     constructor() {
         super(true)
         const $ = this

@@ -1,5 +1,5 @@
 import ChevrotainEcma5Ast from "@/ovs/model/ChevrotainEcma5Ast";
-import {Es5SyntaxName} from "@/grammars/ecma5/ecma5_parser";
+import {Es5SyntaxName} from "@/grammars/ecma5/Es5Parser";
 import ProgramTransformerEs5 from "@/ovs/transform/transformEs5/ProgramTransformerEs5";
 import SourceElementsEs5Transformer from "@/ovs/transform/transformEs5/SourceElementsEs5Transformer";
 import StatementEs5Transformer from "@/ovs/transform/transformEs5/StatementEs5Transformer";

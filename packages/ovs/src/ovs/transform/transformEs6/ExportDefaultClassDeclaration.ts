@@ -1,5 +1,5 @@
 import ChevrotainEcma5Ast from "@/ovs/model/ChevrotainEcma5Ast";
-import {Es6SyntaxName} from "@/grammars/es6/ECMAScript6Parser";
+import {Es6SyntaxName} from "@/grammars/es6/Es6Parser";
 import Es6Transformer, {ovsToTsTokenEs6SyntaxMap} from "@/ovs/transform/transformEs6/Es6Transformer";
 import {Es5TokenName} from "@/grammars/ecma5/ecma5_tokens";
 import {ES6TokenName} from "@/grammars/es6/ECMAScript6Token";

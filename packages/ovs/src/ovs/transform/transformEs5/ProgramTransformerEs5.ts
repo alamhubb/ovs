@@ -2,7 +2,7 @@ import ChevrotainEcma5Ast from "@/ovs/model/ChevrotainEcma5Ast";
 import ts, {SourceFile, Statement} from "typescript";
 import StatementOvsTransformer from "@/ovs/transform/transformOvs/StatementOvsTransformer";
 import Es5Transformer from "@/ovs/transform/transformEs5/Es5Transformer";
-import {Es5SyntaxName} from "@/grammars/ecma5/ecma5_parser";
+import {Es5SyntaxName} from "@/grammars/ecma5/Es5Parser";
 
 export default class ProgramTransformerEs5 {
     static transformProgram(programAst: ChevrotainEcma5Ast) {
