@@ -1,33 +1,62 @@
-[
-  {
-    "kind": 174,
-    //MethodDeclaration
-    "body": {
-      "kind": 241,
-      //Block
-      "statements": [
+{
+  "kind": 312,
+  "statements": [
+    {
+      "kind": 263,
+      "name": {
+        "kind": 80,
+        "escapedText": "Testsyntax"
+      },
+      "members": [
         {
-          "kind": 253,
-          //ReturnStatement
-          "expression": {
-            "kind": 213,
-            "expression": {
-              "kind": 80,
-              "escapedText": "h"
-            },
-            "arguments": [
+          "kind": 174,
+          "name": {
+            "kind": 80,
+            "escapedText": "render"
+          },
+          "parameters": [],
+          "body": {
+            "kind": 241,
+            "statements": [
               {
-                "kind": 11,
-                "text": "div"
-              },
-              {
-                "kind": 9,
-                "text": "123"
+                "kind": 253,
+                "expression": {
+                  "kind": 213,
+                  "expression": {
+                    "kind": 80,
+                    "escapedText": "h"
+                  },
+                  "arguments": [
+                    {
+                      "kind": 11,
+                      "text": "div"
+                    },
+                    {
+                      "kind": 9,
+                      "text": "123"
+                    }
+                  ]
+                }
               }
             ]
-          }
+          },
+          "modifiers": [
+            {
+              "kind": 126
+            }
+          ]
+        }
+      ],
+      "modifiers": [
+        {
+          "kind": 95
+        },
+        {
+          "kind": 90
         }
       ]
     }
-  }
-]
+  ],
+  "text": "",
+  "fileName": "_$$ovs$$temp$$ovsToTsAst.ts"
+}
