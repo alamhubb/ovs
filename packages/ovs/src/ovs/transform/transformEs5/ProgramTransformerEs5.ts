@@ -9,20 +9,20 @@ export default class ProgramTransformerEs5 {
         if (programAst.name !== Es5SyntaxName.Program) {
             throw "解析错误"
         }
-        let statement
+        let statements
 
         for (const child of programAst.children) {
             if (child.name === Es5SyntaxName.SourceElements) {
-                statement = Es5Transformer.transform(child)
+                statements = Es5Transformer.transform(child)
             }
         }
-        if (!statement) {
+        if (!statements) {
             throw Error('错误的语法')
         }
 
         const sourceFile: SourceFile = {
             kind: ts.SyntaxKind.SourceFile,
-            statements: [statement],
+            statements: statements,
             text: "",
             fileName: "_$$ovs$$temp$$ovsToTsAst.ts"
         }

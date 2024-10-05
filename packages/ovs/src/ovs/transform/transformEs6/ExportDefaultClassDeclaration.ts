@@ -16,93 +16,23 @@ export default class ExportDefaultClassDeclaration {
             if (exportDefaultChild.name === Es6SyntaxName.ClassDeclaration) {
                 classAst = Es6Transformer.transform(exportDefaultChild)
             } else if (exportDefaultChild.tokenTypeName === Es5TokenName.DefaultTok) {
-                modifiers.push(ovsToTsTokenEs6SyntaxMap.get(Es5TokenName.DefaultTok))
+                modifiers.push({
+                    kind:ovsToTsTokenEs6SyntaxMap.get(Es5TokenName.DefaultTok)
+                })
             } else if (exportDefaultChild.tokenTypeName === ES6TokenName.ExportTok) {
-                modifiers.push(ovsToTsTokenEs6SyntaxMap.get(ES6TokenName.ExportTok))
-            } else {
-
+                modifiers.push({
+                    kind:ovsToTsTokenEs6SyntaxMap.get(ES6TokenName.ExportTok)
+                })
             }
         }
 
-        let nameKind = {
-            "kind": 80, //iden
-            "escapedText": "Testsyntax"
+        if (!classAst){
+            throw Error('错误语法')
         }
-
-        let members = [{
-            "kind": 174, //MethodDeclaration
-            "modifiers": [{
-                "kind": 126 //StaticKeyword
-            }],
-            "name": {
-                "kind": 80, //iden
-                "escapedText": "render"
-            },
-            "parameters": [],
-            "body": {
-                "kind": 241, //Block
-                "statements": [{
-                    "kind": 253, //ReturnStatement
-                    "expression": {
-                        "kind": 213,
-                        "expression": {
-                            "kind": 80,
-                            "escapedText": "h"
-                        },
-                        "arguments": [{
-                            "kind": 11,
-                            "text": "div"
-                        },
-                            {
-                                "kind": 9,
-                                "text": "123"
-                            }
-                        ]
-                    }
-                }]
-            }
-        }]
 
         return {
-            "kind": 263, //ClassDeclaration
-            "modifiers": modifiers,
-            "name": {
-                "kind": 80, //iden
-                "escapedText": "Testsyntax"
-            },
-            "members": [{
-                "kind": 174, //MethodDeclaration
-                "modifiers": [{
-                    "kind": 126 //StaticKeyword
-                }],
-                "name": {
-                    "kind": 80, //iden
-                    "escapedText": "render"
-                },
-                "parameters": [],
-                "body": {
-                    "kind": 241, //Block
-                    "statements": [{
-                        "kind": 253, //ReturnStatement
-                        "expression": {
-                            "kind": 213,
-                            "expression": {
-                                "kind": 80,
-                                "escapedText": "h"
-                            },
-                            "arguments": [{
-                                "kind": 11,
-                                "text": "div"
-                            },
-                                {
-                                    "kind": 9,
-                                    "text": "123"
-                                }
-                            ]
-                        }
-                    }]
-                }
-            }]
+            ...classAst,
+            modifiers:modifiers
         }
 
     }

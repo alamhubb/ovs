@@ -1,38 +1,34 @@
 {
-  "kind": 312, //SourceFile
+  "kind": 312,
   "statements": [
     {
-      "kind": 263, //ClassDeclaration
+      "kind": 263,
       "modifiers": [
-        {
-          "kind": 95 //ExportKeyword
-        },
-        {
-          "kind": 90 //DefaultKeyword
-        }
+        95,
+        90
       ],
       "name": {
-        "kind": 80, //iden
+        "kind": 80,
         "escapedText": "Testsyntax"
       },
       "members": [
         {
-          "kind": 174, //MethodDeclaration
+          "kind": 174,
           "modifiers": [
             {
-              "kind": 126 //StaticKeyword
+              "kind": 126
             }
           ],
           "name": {
-            "kind": 80,//iden
+            "kind": 80,
             "escapedText": "render"
           },
           "parameters": [],
           "body": {
-            "kind": 241, //Block
+            "kind": 241,
             "statements": [
               {
-                "kind": 253, //ReturnStatement
+                "kind": 253,
                 "expression": {
                   "kind": 213,
                   "expression": {
@@ -57,15 +53,6 @@
       ]
     }
   ],
-  "endOfFileToken": {
-    "kind": 1
-  },
-  "text": "export default class Testsyntax {\n    static render(){\n        return h('div',123)\n    }\n}",
-  "bindDiagnostics": [],
-  "pragmas": {},
-  "referencedFiles": [],
-  "typeReferenceDirectives": [],
-  "libReferenceDirectives": [],
-  "amdDependencies": [],
-  "identifiers": {}
+  "text": "",
+  "fileName": "_$$ovs$$temp$$ovsToTsAst.ts"
 }

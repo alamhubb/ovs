@@ -6,7 +6,7 @@ export default class IdentifierTransformer {
     static transformIdentifier(identifier: ChevrotainEcma5Ast) {
         return {
             kind: ovsToTsTokenEs5SyntaxMap.get(Es5TokenName.Identifier),
-            escapedText: primaryExpressionToken.image
+            escapedText: identifier.image
         }
     }
 }
