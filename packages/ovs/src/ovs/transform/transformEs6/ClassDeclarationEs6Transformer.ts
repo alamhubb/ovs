@@ -11,15 +11,15 @@ export default class ClassDeclarationEs6Transformer {
         let name
         let members
         for (const child of classDeclaration.children) {
-            if (child.tokenTypeName === ES6TokenName.ClassTok) {
+
+            if (child.name === ES6TokenName.ClassTok) {
                 kind = ts.SyntaxKind.ClassDeclaration
-            } else if (child.tokenTypeName === Es5TokenName.Identifier) {
+            } else if (child.name === Es5TokenName.Identifier) {
                 name = Es5Transformer.transform(child)
-            }else if (child.tokenTypeName === Es6SyntaxName.ClassBody) {
+            }else if (child.name === Es6SyntaxName.ClassBody) {
                 members = Es6Transformer.transform(child)
             }
         }
-
 
         return {
             "kind": kind,

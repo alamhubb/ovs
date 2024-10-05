@@ -11,7 +11,7 @@ export default class ReturnStatementEs5Transformer {
         let returnKind
         let expression
         for (const returnChild of returnChildren) {
-            if (returnChild.tokenTypeName === Es5TokenName.ReturnTok) {
+            if (returnChild.name === Es5TokenName.ReturnTok) {
                 returnKind = ts.SyntaxKind.ReturnStatement
             } else if (returnChild.name === Es5SyntaxName.Expression) {
                 expression = VariableStatementOvsChevrotainEs5Transformer.getPrimaryExpressionTokenByAssignmentExpression(returnChild.children[0])

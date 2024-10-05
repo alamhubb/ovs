@@ -30,7 +30,7 @@ export default class RenderDomOvsTransformer {
             arguments: argumentsAry
         }
         for (const syntaxToken of syntax.children) {
-            if (syntaxToken.tokenTypeName === Es5TokenName.Identifier) {
+            if (syntaxToken.name === Es5TokenName.Identifier) {
                 //tagName 固定为 StringLiteral
                 const argument: TypescriptAstNode<ArgumentsExtendNode> = {
                     // pos: syntaxToken.startOffset,

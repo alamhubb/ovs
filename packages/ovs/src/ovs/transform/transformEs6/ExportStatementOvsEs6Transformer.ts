@@ -22,7 +22,7 @@ export default class ExportStatementOvsEs6Transformer {
         let astKind
         let variableStatement
         for (const tokenSyntax of syntax.children) {
-            if ([ES6TokenName.ExportTok].includes(tokenSyntax.tokenTypeName)) {
+            if ([ES6TokenName.ExportTok].includes(tokenSyntax.name)) {
                 astKind = ts.SyntaxKind.ExportKeyword
             } else if (tokenSyntax.name === Es5SyntaxName.VariableStatement) {
                 variableStatement = VariableStatementOvsChevrotainEs5Transformer.transformVariableStatementAst(tokenSyntax)
@@ -30,7 +30,7 @@ export default class ExportStatementOvsEs6Transformer {
         }
 
         if (!astKind) {
-            throw new Error(`错误的Kind:${syntax.name}:${syntax.tokenTypeName}:${syntax.image}`)
+            throw new Error(`错误的Kind:${syntax.name}:${syntax.name}:${syntax.image}`)
         }
 
         if (!variableStatement) {
@@ -53,25 +53,25 @@ export default class ExportStatementOvsEs6Transformer {
         console.log(6666)
         for (const tokenSyntax of syntax.children) {
 
-            if (Es6SyntaxName.ClassDeclaration === tokenSyntax.tokenTypeName) {
+            if (Es6SyntaxName.ClassDeclaration === tokenSyntax.name) {
 
             } else {
-                console.log(tokenSyntax.tokenTypeName)
                 console.log(tokenSyntax.name)
-                if ([Es5TokenName.DefaultTok].includes(tokenSyntax.tokenTypeName)) {
+                console.log(tokenSyntax.name)
+                if ([Es5TokenName.DefaultTok].includes(tokenSyntax.name)) {
                     console.log(5555)
                     //277
                     astKind = ts.SyntaxKind.ExportAssignment
                 } else if (tokenSyntax.name === Es5SyntaxName.AssignmentExpression) {
                     console.log(4444)
                     expression = VariableStatementOvsChevrotainEs5Transformer.getPrimaryExpressionTokenByAssignmentExpression(tokenSyntax)
-                } else if ([ES6TokenName.ExportTok].includes(tokenSyntax.tokenTypeName)) {
-                    // console.log(tokenSyntax.tokenTypeName)
+                } else if ([ES6TokenName.ExportTok].includes(tokenSyntax.name)) {
+                    // console.log(tokenSyntax.name)
                 } else {
                     // throw new Error(JSON.stringify(tokenSyntax))
                 }
                 if (!astKind) {
-                    throw new Error(`错误的Kind:${syntax.name}:${syntax.tokenTypeName}:${syntax.image}`)
+                    throw new Error(`错误的Kind:${syntax.name}:${syntax.name}:${syntax.image}`)
                 }
 
                 if (!expression) {

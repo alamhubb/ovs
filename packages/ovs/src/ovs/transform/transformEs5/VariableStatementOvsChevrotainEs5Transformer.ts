@@ -28,7 +28,7 @@ export default class VariableStatementOvsChevrotainEs5Transformer {
         let declarations: TypescriptAstNode<DeclarationsExtendNode> [] = [];
         for (const tokenSyntax of syntax.children) {
             //support var const
-            if ([Es5TokenName.VarTok, ES6TokenName.ConstTok].includes(tokenSyntax.tokenTypeName)) {
+            if ([Es5TokenName.VarTok, ES6TokenName.ConstTok].includes(tokenSyntax.name)) {
                 astKind = ts.SyntaxKind.VariableStatement
             } else if (tokenSyntax.name === Es5SyntaxName.VariableDeclarationList) {
                 //对应一条声明语句 variableDeclarationCst ,遍历 VariableDeclarationList
@@ -38,9 +38,9 @@ export default class VariableStatementOvsChevrotainEs5Transformer {
                         let name: TypescriptAstNode<TypescriptTextExtendAstNode> = null
                         let initializer: TypescriptAstNode<TypescriptTextExtendAstNode> = null
                         for (const variableDeclarationTokenSyntax of variableDeclarationCst.children) {
-                            if (variableDeclarationTokenSyntax.tokenTypeName === Es5TokenName.Identifier) {
+                            if (variableDeclarationTokenSyntax.name === Es5TokenName.Identifier) {
                                 name = {
-                                    kind: ovsToTsTokenEs5SyntaxMap.get(variableDeclarationTokenSyntax.tokenTypeName),
+                                    kind: ovsToTsTokenEs5SyntaxMap.get(variableDeclarationTokenSyntax.name),
                                     escapedText: variableDeclarationTokenSyntax.image
                                 }
                                 // 9 = NumericLiteral
@@ -64,7 +64,7 @@ export default class VariableStatementOvsChevrotainEs5Transformer {
         }
 
         if (!astKind) {
-            throw new Error(`错误的Kind:${syntax.name}:${syntax.tokenTypeName}:${syntax.image}`)
+            throw new Error(`错误的Kind:${syntax.name}:${syntax.name}:${syntax.image}`)
         }
 
         if (!declarations.length) {
@@ -92,22 +92,22 @@ export default class VariableStatementOvsChevrotainEs5Transformer {
     static getPrimaryExpressionTokenByPrimaryExpression(primaryExpression: ChevrotainEcma5Ast): TypescriptAstNode<TypescriptTextExtendAstNode> {
         //assignmentExpression.BinaryExpression. UnaryExpression.PostfixExpression.MemberCallNewExpression.PrimaryExpression.child[0]
         const primaryExpressionToken = primaryExpression.children[0];
-        if (primaryExpressionToken.tokenTypeName === Es5TokenName.Identifier) {
+        if (primaryExpressionToken.name === Es5TokenName.Identifier) {
             return {
-                kind: ovsToTsTokenEs5SyntaxMap.get(primaryExpressionToken.tokenTypeName),
+                kind: ovsToTsTokenEs5SyntaxMap.get(primaryExpressionToken.name),
                 escapedText: primaryExpressionToken.image
             }
-        } else if (primaryExpressionToken.tokenTypeName === Es5TokenName.NumericLiteral) {
+        } else if (primaryExpressionToken.name === Es5TokenName.NumericLiteral) {
             return {
-                kind: ovsToTsTokenEs5SyntaxMap.get(primaryExpressionToken.tokenTypeName),
+                kind: ovsToTsTokenEs5SyntaxMap.get(primaryExpressionToken.name),
                 text: String(primaryExpressionToken.image)
             }
         } else if (primaryExpressionToken.name === Es5SyntaxName.ObjectLiteral) {
             return ObjectLiteralEs5Transformer.transformObjectLiteralAst(primaryExpressionToken)
         } else {
-            console.warn(`unexpected tokenTypeName:${primaryExpressionToken.tokenTypeName}:${primaryExpressionToken.name}`)
+            console.warn(`unexpected tokenTypeName:${primaryExpressionToken.name}:${primaryExpressionToken.name}`)
             return {
-                kind: ovsToTsTokenEs5SyntaxMap.get(primaryExpressionToken.tokenTypeName),
+                kind: ovsToTsTokenEs5SyntaxMap.get(primaryExpressionToken.name),
                 //这里应该为 text，todo 待确认
                 escapedText: primaryExpressionToken.image
             }

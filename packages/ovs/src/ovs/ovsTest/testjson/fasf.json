@@ -1,0 +1,37 @@
+[
+  {
+    "kind": 174,
+    "name": {
+      "kind": 80,
+      "escapedText": "render"
+    },
+    "parameters": [],
+    "body": [
+      {
+        "kind": 253,
+        "expression": {
+          "kind": 213,
+          "expression": {
+            "kind": 80,
+            "escapedText": "h"
+          },
+          "arguments": [
+            {
+              "kind": 11,
+              "text": "div"
+            },
+            {
+              "kind": 9,
+              "text": "123"
+            }
+          ]
+        }
+      }
+    ],
+    "modifiers": [
+      {
+        "kind": 126
+      }
+    ]
+  }
+]

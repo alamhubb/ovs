@@ -18,6 +18,9 @@ export default class ClassElementTransformer {
                 res = Es6Transformer.transform(child)
             }
         }
+        if (!res) {
+            throw Error('错误的语法')
+        }
         return {
             ...res,
             modifiers

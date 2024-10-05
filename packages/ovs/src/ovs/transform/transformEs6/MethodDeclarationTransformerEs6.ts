@@ -6,12 +6,11 @@ import ts from "typescript";
 export default class MethodDeclarationTransformerEs6 {
     //return
     static transformMethodDeclaration(methodDefinition: ChevrotainEcma5Ast) {
-        let kind
         let name
         let body
         for (const child of methodDefinition.children) {
             if (child.name === Es5SyntaxName.PropertyName) {
-
+                name = Es5Transformer.transform(child)
             } else if (child.name === Es5SyntaxName.SourceElements) {
                 body = Es5Transformer.transform(child)
             }

@@ -15,11 +15,11 @@ export default class ExportDefaultClassDeclaration {
         for (const exportDefaultChild of exportDefaultChildren) {
             if (exportDefaultChild.name === Es6SyntaxName.ClassDeclaration) {
                 classAst = Es6Transformer.transform(exportDefaultChild)
-            } else if (exportDefaultChild.tokenTypeName === Es5TokenName.DefaultTok) {
+            } else if (exportDefaultChild.name === Es5TokenName.DefaultTok) {
                 modifiers.push({
                     kind:ovsToTsTokenEs6SyntaxMap.get(Es5TokenName.DefaultTok)
                 })
-            } else if (exportDefaultChild.tokenTypeName === ES6TokenName.ExportTok) {
+            } else if (exportDefaultChild.name === ES6TokenName.ExportTok) {
                 modifiers.push({
                     kind:ovsToTsTokenEs6SyntaxMap.get(ES6TokenName.ExportTok)
                 })
