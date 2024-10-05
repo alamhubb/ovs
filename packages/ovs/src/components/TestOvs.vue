@@ -1,12 +1,12 @@
 <script lang="ts">
 import {h} from "vue";
+import toVueComponent from "@/components/ToVueComponent";
 
-export default {
-  render() {
-    return h('div', [
-      '123',
-        h('button',{style: { color: 'red' }},'click me')
-    ]);
+class Testsyntax11 {
+  static render() {
+    return h('div', 123456)
   }
 }
+
+export default toVueComponent(Testsyntax11)
 </script>

@@ -1,7 +1,7 @@
-export default {
-    render(){
+export default class Testsyntax {
+    static render(){
         return div{
-             123456
+            123
         }
     }
 }
