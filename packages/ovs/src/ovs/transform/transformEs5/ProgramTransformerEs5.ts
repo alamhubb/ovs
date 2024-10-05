@@ -4,28 +4,28 @@ import StatementOvsTransformer from "@/ovs/transform/transformOvs/StatementOvsTr
 import Es5Transformer from "@/ovs/transform/transformEs5/Es5Transformer";
 import {Es5SyntaxName} from "@/grammars/ecma5/ecma5_parser";
 
-export default class ProgramEs5Transformer {
+export default class ProgramTransformerEs5 {
     static transformProgram(programAst: ChevrotainEcma5Ast) {
         if (programAst.name !== Es5SyntaxName.Program) {
             throw "解析错误"
         }
-        const statements: Statement [] = []
+        let statement
+
+        for (const child of programAst.children) {
+            if (child.name === Es5SyntaxName.SourceElements) {
+                statement = Es5Transformer.transform(child)
+            }
+        }
+        if (!statement) {
+            throw Error('错误的语法')
+        }
 
         const sourceFile: SourceFile = {
             kind: ts.SyntaxKind.SourceFile,
-            statements: statements,
+            statements: [statement],
             text: "",
             fileName: "_$$ovs$$temp$$ovsToTsAst.ts"
         }
-        programAst.children.forEach(sourceElements => {
-            sourceElements.children.forEach(statement => {
-                const statementAst = Es5Transformer.transform(statement)
-                if (!statementAst) {
-                    throw new Error(`unknown Statement：${statement.name}`)
-                }
-                statements.push(statementAst)
-            })
-        })
         return sourceFile
     }
 }

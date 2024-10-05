@@ -18,18 +18,21 @@ import OvsChevrotainEs5VariableStatementTransformer
 import ReturnStatementEs5Transformer from "@/ovs/transform/transformEs5/ReturnStatementEs5Transformer";
 import VariableStatementOvsChevrotainEs5Transformer
     from "@/ovs/transform/transformEs5/VariableStatementOvsChevrotainEs5Transformer";
+import Es5Transformer from "@/ovs/transform/transformEs5/Es5Transformer";
 
 
 export default class StatementEs5Transformer {
-    static transformStatement(parentStatementAst: ChevrotainEcma5Ast): Statement {
-        let ast: TypescriptAstNode<StatementExtendNode>
-        const statementAst = parentStatementAst.children[0]
-        if (statementAst.name === Es5SyntaxName.VariableStatement) {
-            ast = OvsChevrotainEs5VariableStatementTransformer.transformVariableStatementAst(statementAst);
-        } else if (statementAst.name === Es5SyntaxName.ReturnStatement) {
-            ast = ReturnStatementEs5Transformer.transformEs5ReturnStatement(statementAst)
-        }
-        return ast
+    static transformStatement(statement: ChevrotainEcma5Ast): Statement {
+        console.log('chufale Statement')
+        let child = statement.children[0]
+        /* let ast: TypescriptAstNode<StatementExtendNode>
+         const statementAst = statement.children[0]
+         if (statementAst.name === Es5SyntaxName.VariableStatement) {
+             ast = OvsChevrotainEs5VariableStatementTransformer.transformVariableStatementAst(statementAst);
+         } else if (statementAst.name === Es5SyntaxName.ReturnStatement) {
+             ast = ReturnStatementEs5Transformer.transformEs5ReturnStatement(statementAst)
+         }*/
+        return Es5Transformer.transform(child)
     }
 }
 
