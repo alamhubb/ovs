@@ -28,7 +28,7 @@ export default class StatementOvsTransformer {
         }
         const statementAst = parentStatementAst.children[0]
         if (statementAst.name === OvsSyntaxName.OvsRenderDomStatement) {
-            ast = OvsDomRenderTransformer.transformOvsRenderDomAst(statementAst);
+            ast = OvsDomRenderTransformer.transformOvsRenderDom(statementAst);
         }
         return ast
 

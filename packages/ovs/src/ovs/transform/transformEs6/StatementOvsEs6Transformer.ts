@@ -22,7 +22,7 @@ import ExportStatementOvsEs6Transformer from "@/ovs/transform/transformEs6/Expor
 export default class StatementOvsEs6Transformer {
     static transformStatementAst(parentStatementAst: ChevrotainEcma5Ast): Statement {
         let ast: TypescriptAstNode<StatementExtendNode>
-        ast = StatementEs5Transformer.transformStatementAst(parentStatementAst)
+        ast = StatementEs5Transformer.transformStatement(parentStatementAst)
         if (ast) {
             return ast
         }

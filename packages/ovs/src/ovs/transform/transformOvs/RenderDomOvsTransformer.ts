@@ -19,7 +19,7 @@ import VariableStatementOvsChevrotainEs5Transformer
 
 
 export default class RenderDomOvsTransformer {
-    static transformOvsRenderDomAst(syntax: ChevrotainEcma5Ast) {
+    static transformOvsRenderDom(syntax: ChevrotainEcma5Ast) {
         const argumentsAry: TypescriptAstNode<ArgumentsExtendNode>[] = []
         let ast: TypescriptAstNode<StatementExtendNode> = {
             kind: ts.SyntaxKind.CallExpression,

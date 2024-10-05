@@ -52,3 +52,13 @@ export default class ProgrammerOvsEs6Transformer {
     }
 }
 */
+
+import {Es5TokenName} from "@/grammars/ecma5/ecma5_tokens";
+import ts from "typescript";
+import {ES6TokenName} from "@/grammars/es6/ECMAScript6Token";
+import lodash from "@/plugins/Lodash";
+import {ovsToTsTokenEs5SyntaxMap} from "@/ovs/transform/transformEs5/VariableStatementOvsChevrotainEs5Transformer";
+
+export const ovsToTsTokenEs6SyntaxMap: Map<string, number> = new Map(...ovsToTsTokenEs5SyntaxMap)
+ovsToTsTokenEs6SyntaxMap.set(ES6TokenName.ExportTok, ts.SyntaxKind.ExportKeyword)
+

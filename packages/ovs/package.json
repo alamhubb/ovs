@@ -15,6 +15,7 @@
     "@chevrotain/utils": "11.0.3",
     "acorn": "^8.12.1",
     "chevrotain": "^11.0.3",
+    "lodash": "^4.17.21",
     "lodash-es": "4.17.21",
     "qing-scss": "^0.1.18",
     "ts-node": "^10.9.2",

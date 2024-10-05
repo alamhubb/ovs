@@ -7,6 +7,7 @@ import {parseCodeToOvsCst} from "./OvsChevrotainParser";
 import {ovsGenerateAstToTsCode} from "@/ovs/parser/ovsTypescriptParser";
 import "@/ovs/transform/transformOvs/VariableStatementOvsTransformer"
 import "@/ovs/transform/transformEs6/ObjectLiteralEs6Transformer"
+import TransformOvs from "@/ovs/transform/transformOvs/TransformOvs";
 
 /**
  * convert ovs syntax code to typescript code
@@ -19,7 +20,7 @@ export function ovsTransformToTsCode(code: string): string {
     const chevrotainEcma5Ast: ChevrotainEcma5Ast = OvsChevrotainCstTransformer.transformOvsChevrotainCstToAst(chevrotainEcma5Cst)
 
     // transform ovs ast  to typescript ast
-    const typescriptAst: SourceFile = ProgrammerOvsTransformer.transformOvsAstToTsAst(chevrotainEcma5Ast)
+    const typescriptAst: SourceFile = TransformOvs.transform(chevrotainEcma5Ast)
 
     console.log(JSON.stringify(typescriptAst))
 

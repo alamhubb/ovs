@@ -39,6 +39,7 @@ export function dokoFun(target, classt) {
   let dokoObj = {}
   for (const staticProp of staticProps) {
     if (!['length', 'name', 'prototype'].includes(staticProp)) {
+      //应该修改get和set，set同步设置，get同步获取
       if (classt[staticProp]) {
         console.log(staticProp)
         dokoObj[staticProp] = target[staticProp]

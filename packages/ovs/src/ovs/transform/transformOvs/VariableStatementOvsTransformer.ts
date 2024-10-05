@@ -26,7 +26,7 @@ export default class VariableStatementOvsTransformer {
     static getPrimaryExpressionTokenByAssignmentExpression(assignmentExpression: ChevrotainEcma5Ast): TypescriptAstNode<TypescriptTextExtendAstNode> {
         const assignmentExpressionChild = assignmentExpression.children[0]
         if (assignmentExpressionChild.name === OvsSyntaxName.OvsRenderDomStatement) {
-            return RenderDomOvsTransformer.transformOvsRenderDomAst(assignmentExpressionChild)
+            return RenderDomOvsTransformer.transformOvsRenderDom(assignmentExpressionChild)
         } else {
             return VariableStatementOvsTransformer.dokoObj.getPrimaryExpressionTokenByAssignmentExpression(assignmentExpression)
         }

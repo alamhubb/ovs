@@ -6,8 +6,8 @@ import * as t from "./ecma5_tokens.ts";
 
 export enum Es5SyntaxName {
     Program = 'Program',
-    Statement = 'Statement',
     SourceElements = 'SourceElements',
+    Statement = 'Statement',
     ElementList = 'ElementList',
     ObjectLiteral = 'ObjectLiteral',
     Arguments = 'Arguments',

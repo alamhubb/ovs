@@ -32,7 +32,7 @@ export default class ObjectLiteralEs5Transformer {
                         const token = regularPropertyAssignmentChild.children[0]
                         nameKind = VariableStatementOvsChevrotainEs5Transformer.getPrimaryExpressionTokenByAssignmentExpression(token)
                     } else if (regularPropertyAssignmentChild.name === Es5SyntaxName.SourceElements) {
-                        body = SourceElementsEs5Transformer.transformEs5SourceElements(regularPropertyAssignmentChild)
+                        body = SourceElementsEs5Transformer.transformSourceElements(regularPropertyAssignmentChild)
                     }
                 }
             }

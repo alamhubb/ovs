@@ -21,7 +21,7 @@ import VariableStatementOvsChevrotainEs5Transformer
 
 
 export default class StatementEs5Transformer {
-    static transformStatementAst(parentStatementAst: ChevrotainEcma5Ast): Statement {
+    static transformStatement(parentStatementAst: ChevrotainEcma5Ast): Statement {
         let ast: TypescriptAstNode<StatementExtendNode>
         const statementAst = parentStatementAst.children[0]
         if (statementAst.name === Es5SyntaxName.VariableStatement) {

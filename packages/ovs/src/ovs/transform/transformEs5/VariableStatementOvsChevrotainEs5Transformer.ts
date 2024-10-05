@@ -15,9 +15,10 @@ import {Es6SyntaxName} from "@/grammars/es6/ECMAScript6Parser";
 import OvsDomRenderTransformer from "@/ovs/transform/transformOvs/RenderDomOvsTransformer";
 import ObjectLiteralEs5Transformer from "@/ovs/transform/transformEs5/ObjectLiteralEs5Transformer";
 
-const ovsToTsTokenEs5SyntaxMap: Map<string, number> = new Map()
+export const ovsToTsTokenEs5SyntaxMap: Map<string, number> = new Map()
 ovsToTsTokenEs5SyntaxMap.set(Es5TokenName.NumericLiteral, ts.SyntaxKind.NumericLiteral)
 ovsToTsTokenEs5SyntaxMap.set(Es5TokenName.Identifier, ts.SyntaxKind.Identifier)
+ovsToTsTokenEs5SyntaxMap.set(Es5TokenName.DefaultTok, ts.SyntaxKind.DefaultKeyword)
 
 
 export default class VariableStatementOvsChevrotainEs5Transformer {
