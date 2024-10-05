@@ -2,18 +2,6 @@
   {
     "kind": 174,
     //MethodDeclaration
-    "modifiers": [
-      {
-        "kind": 126
-        //StaticKeyword
-      }
-    ],
-    "name": {
-      "kind": 80,
-      //iden
-      "escapedText": "render"
-    },
-    "parameters": [],
     "body": {
       "kind": 241,
       //Block
