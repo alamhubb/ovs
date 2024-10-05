@@ -6,9 +6,11 @@ import StatementEs5Transformer from "@/ovs/transform/transformEs5/StatementEs5Tr
 import {Es5TokenName} from "@/grammars/ecma5/ecma5_tokens";
 import IdentifierTransformer from "@/ovs/transform/transformEs5/IdentifierTransformer";
 import PropertyNameTransformerEs5 from "@/ovs/transform/transformEs5/PropertyNameTransformerEs5";
+import ReturnStatementEs5Transformer from "@/ovs/transform/transformEs5/ReturnStatementEs5Transformer";
 
 export default class Es5Transformer {
     static transform(node: ChevrotainEcma5Ast) {
+        console.log('触发了es5 transform')
         switch (node.name) {
             case Es5SyntaxName.Program:
                 return ProgramEs5Transformer.transformProgram(node);
@@ -20,22 +22,8 @@ export default class Es5Transformer {
                 return PropertyNameTransformerEs5.transformPropertyName(node);
             case Es5TokenName.Identifier:
                 return IdentifierTransformer.transformIdentifier(node);
-/*            case "ReturnStatement":
-                return this.transformReturnStatement(node as SourceNode);
-            case "Expression":
-                return this.transformExpression(node as SourceNode);
-            case "AssignmentExpression":
-                return this.transformAssignmentExpression(node as SourceNode);
-            case "BinaryExpression":
-                return this.transformBinaryExpression(node as SourceNode);
-            case "UnaryExpression":
-                return this.transformUnaryExpression(node as SourceNode);
-            case "PostfixExpression":
-                return this.transformPostfixExpression(node as SourceNode);
-            case "MemberCallNewExpression":
-                return this.transformMemberCallNewExpression(node as SourceNode);
-            case "PrimaryExpression":
-                return this.transformPrimaryExpression(node as SourceNode);*/
+            case Es5SyntaxName.ReturnStatement:
+                return ReturnStatementEs5Transformer.transformEs5ReturnStatement(node);
             // 添加更多节点类型的转换方法
             default:
                 console.warn(`未处理的节点类型: ${node.name}`);

@@ -1,9 +1,8 @@
 import ChevrotainEcma5Ast from "@/ovs/model/ChevrotainEcma5Ast";
-import {Es5TokenName, ES6TokenName} from "@/grammars/es6/ECMAScript6Token";
-import Es6TokenMap from "@/ovs/parser/Es6TokenMap";
-import {ovsToTsTokenEs6SyntaxMap} from "@/ovs/transform/transformEs6/ProgrammerOvsEs6Transformer";
 import {Es6SyntaxName} from "@/grammars/es6/ECMAScript6Parser";
-import Es6Transformer from "@/ovs/transform/transformEs6/Es6Transformer";
+import Es6Transformer, {ovsToTsTokenEs6SyntaxMap} from "@/ovs/transform/transformEs6/Es6Transformer";
+import {Es5TokenName} from "@/grammars/ecma5/ecma5_tokens";
+import {ES6TokenName} from "@/grammars/es6/ECMAScript6Token";
 
 export default class ExportDefaultClassDeclaration {
     static transformEs6ExportDefaultClass(exportDefaultStatement: ChevrotainEcma5Ast) {

@@ -9,14 +9,17 @@ import {Doko} from "@/doko/doko";
 
 @Doko(Es6Transformer)
 export default class TransformOvs {
+    static dokoObj: Es6Transformer
+
     static transform(node: ChevrotainEcma5Ast) {
+        console.log('触发了ovs transform')
         let result
         switch (node.name) {
             case OvsSyntaxName.OvsRenderDomStatement:
                 result = RenderDomOvsTransformer.transformOvsRenderDom(node);
         }
         if (!result) {
-            result = Es6Transformer.transform(node)
+            result = TransformOvs.dokoObj.transform(node)
         }
         return result;
     }

@@ -11,10 +11,20 @@ import ClassDeclarationEs6Transformer from "@/ovs/transform/transformEs6/ClassDe
 import ClassBodyTransformer from "@/ovs/transform/transformEs6/ClassBodyTransformer";
 import ClassElementTransformer from "@/ovs/transform/transformEs6/ClassElementTransformer";
 import MethodDeclarationTransformerEs6 from "@/ovs/transform/transformEs6/MethodDeclarationTransformerEs6";
+import ts from "typescript";
+import {ES6TokenName} from "@/grammars/es6/ECMAScript6Token";
+import {ovsToTsTokenEs5SyntaxMap} from "@/ovs/transform/transformEs5/VariableStatementOvsChevrotainEs5Transformer";
+
+export const ovsToTsTokenEs6SyntaxMap: Map<string, number> = new Map([...ovsToTsTokenEs5SyntaxMap])
+ovsToTsTokenEs6SyntaxMap.set(ES6TokenName.ExportTok, ts.SyntaxKind.ExportKeyword)
+
 
 @Doko(Es5Transformer)
 export default class Es6Transformer {
+    static dokoObj: Es5Transformer
+
     static transform(node: ChevrotainEcma5Ast) {
+        console.log('触发了es6 transform')
         let result
         switch (node.name) {
             case Es6SyntaxName.ExportDefaultStatement:
@@ -29,7 +39,7 @@ export default class Es6Transformer {
                 return MethodDeclarationTransformerEs6.transformMethodDeclaration(node)
         }
         if (!result) {
-            result = Es5Transformer.transform(node)
+            result = Es6Transformer.dokoObj.transform(node)
         }
         return result;
     }
