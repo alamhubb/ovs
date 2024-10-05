@@ -10,7 +10,7 @@ import ReturnStatementEs5Transformer from "@/ovs/transform/transformEs5/ReturnSt
 
 export default class Es5Transformer {
     static transform(node: ChevrotainEcma5Ast) {
-        console.log('触发了es5 transform')
+        console.log('触发了es5 transform:', node.name)
         switch (node.name) {
             case Es5SyntaxName.Program:
                 return ProgramEs5Transformer.transformProgram(node);

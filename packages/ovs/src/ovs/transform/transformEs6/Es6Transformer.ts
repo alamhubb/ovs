@@ -24,11 +24,10 @@ export default class Es6Transformer {
     static dokoObj: Es5Transformer
 
     static transform(node: ChevrotainEcma5Ast) {
-        console.log('触发了es6 transform')
-        let result
+        console.log('触发了es6 transform:', node.name)
         switch (node.name) {
             case Es6SyntaxName.ExportDefaultStatement:
-                result = ExportDefaultStatementEs6Transformer.transformExportDefaultStatement(node);
+                return ExportDefaultStatementEs6Transformer.transformExportDefaultStatement(node);
             case Es6SyntaxName.ClassDeclaration:
                 return ClassDeclarationEs6Transformer.transformClassDeclaration(node);
             case Es6SyntaxName.ClassBody:
@@ -38,9 +37,6 @@ export default class Es6Transformer {
             case Es6SyntaxName.MethodDefinition:
                 return MethodDeclarationTransformerEs6.transformMethodDeclaration(node)
         }
-        if (!result) {
-            result = Es6Transformer.dokoObj.transform(node)
-        }
-        return result;
+        return Es6Transformer.dokoObj.transform(node)
     }
 }

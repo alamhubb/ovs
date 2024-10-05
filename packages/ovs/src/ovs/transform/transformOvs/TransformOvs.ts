@@ -12,15 +12,11 @@ export default class TransformOvs {
     static dokoObj: Es6Transformer
 
     static transform(node: ChevrotainEcma5Ast) {
-        console.log('触发了ovs transform')
-        let result
+        console.log('触发了ovs transform:', node.name)
         switch (node.name) {
             case OvsSyntaxName.OvsRenderDomStatement:
-                result = RenderDomOvsTransformer.transformOvsRenderDom(node);
+                return RenderDomOvsTransformer.transformOvsRenderDom(node);
         }
-        if (!result) {
-            result = TransformOvs.dokoObj.transform(node)
-        }
-        return result;
+        return TransformOvs.dokoObj.transform(node)
     }
 }
