@@ -38,6 +38,7 @@ export class OvsChevrotainParser extends Es6Parser {
             ]);
         });
 
+        //定义一个方法
         $.RULE(OvsSyntaxName.OvsRenderDomStatement, () => {
             // $.SUBRULE($.MemberCallNewExpression)
             $.CONSUME(es6AllTokens.Identifier);
@@ -51,7 +52,7 @@ export class OvsChevrotainParser extends Es6Parser {
             $.CONSUME(es6AllTokens.RCurly);
         });
 
-        this.performSelfAnalysis()
+        // this.performSelfAnalysis()
     }
 }
 

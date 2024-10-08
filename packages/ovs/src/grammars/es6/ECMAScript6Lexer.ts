@@ -17,7 +17,6 @@ import * as tokens from "./ECMAScript6Token.ts";
 import {createChevToken, getEs5ChevrotainToken} from "@/grammars/ecma5/ecma5_lexer";
 import {Token} from "acorn";
 
-
 function getEs6PreToken(acornType: String, token: Token) {
     let ctt
     switch (acornType) {
