@@ -1,7 +1,0 @@
-export default class Testsyntax {
-    static render(){
-        return div{
-            123
-        }
-    }
-}
