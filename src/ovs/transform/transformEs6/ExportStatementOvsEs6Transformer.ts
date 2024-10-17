@@ -50,7 +50,6 @@ export default class ExportStatementOvsEs6Transformer {
     static transformDefaultExportStatementAst(syntax: ChevrotainEcma5Ast) {
         let astKind
         let expression
-        console.log(6666)
         for (const tokenSyntax of syntax.children) {
 
             if (Es6SyntaxName.ClassDeclaration === tokenSyntax.name) {
