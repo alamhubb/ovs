@@ -21,12 +21,16 @@
     }
   ],
   "keywords": [
-    "parser",
-    "auto-parser",
-    "generator",
-    "auto-generator",
-    "transformer",
-    "auto-transfomer"
+    "ovs",
+    "UI",
+    "framework",
+    "UI framework",
+    "tsx",
+    "no jsx",
+    "no html",
+    "oopUI",
+    "flutterUI",
+    "swiftUI"
   ],
   "author": "alamhubb",
   "description": "Automatic conversion between two different programming languages through two grammar files that define the same grammar structure and grammar name",
