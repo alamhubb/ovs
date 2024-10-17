@@ -1,6 +1,6 @@
 {
   "name": "ovsjs",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "index.js",
   "type": "module",
   "license": "MIT",
@@ -8,10 +8,10 @@
     "test": "tsx test/HelloWorldGrammarParser.ts",
     "build": "tsc"
   },
-  "homepage": "https://github.com/alamhubb/subhuti",
+  "homepage": "https://github.com/alamhubb/ovs",
   "repository": {
     "type": "git",
-    "url": "https://github.com/alamhubb/subhuti.git"
+    "url": "git+https://github.com/alamhubb/ovs.git"
   },
   "contributors": [
     {
@@ -20,12 +20,18 @@
       "url": "https://github.com/alamhubb"
     }
   ],
-  "keywords": [],
-  "author": "",
-  "description": "",
+  "keywords": [
+    "parser",
+    "auto-parser",
+    "generator",
+    "auto-generator",
+    "transformer",
+    "auto-transfomer"
+  ],
+  "author": "alamhubb",
+  "description": "Automatic conversion between two different programming languages through two grammar files that define the same grammar structure and grammar name",
   "devDependencies": {
     "@types/node": "^22.7.6",
-    "@types/lodash": "^4.17.10",
     "tsx": "^4.19.1",
     "typescript": "^5.6.2"
   }
