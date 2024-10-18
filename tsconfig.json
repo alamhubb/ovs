@@ -3,6 +3,7 @@
     "src/**/*"
   ],
   "compilerOptions": {
+    "allowImportingTsExtensions": true,
     "moduleResolution": "Node",
     "module": "ES2022",
     "target": "ES5",

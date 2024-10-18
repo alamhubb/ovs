@@ -1,5 +1,6 @@
 // Vite 插件
 import {createFilter, Plugin} from "vite";
+import SubhutiLexer from "subhuti/src/subhuti/SubhutiLexer.ts"
 
 function traverseClearTokens(currentNode: SubhutiCst) {
     if (!currentNode || !currentNode.children || !currentNode.children.length)
