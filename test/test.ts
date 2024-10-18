@@ -1,4 +1,4 @@
-import {vitePluginOvsTransform} from "../src";
+import {vitePluginOvsTransform} from "@/index.js";
 
 const code = `
 div{123}
