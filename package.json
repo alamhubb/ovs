@@ -4,6 +4,9 @@
   "main": "lib/index.js",
   "type": "module",
   "license": "MIT",
+  "files": [
+    "lib"
+  ],
   "exports": {
     ".": "./lib/index.js"
   },
