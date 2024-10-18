@@ -1,6 +1,6 @@
 {
   "name": "ovsjs",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "main": "index.ts",
   "type": "module",
   "license": "MIT",
@@ -36,7 +36,7 @@
     "swiftUI"
   ],
   "author": "alamhubb",
-  "description": "Automatic conversion between two different programming languages through two grammar files that define the same grammar structure and grammar name",
+  "description": "A technology similar to JSX, but unlike JSX which still uses XML syntax, OVS uses OOP syntax similar to Flutter and SwiftUI to develop UI.",
   "devDependencies": {
     "@types/node": "^22.7.6",
     "tsx": "^4.19.1",
