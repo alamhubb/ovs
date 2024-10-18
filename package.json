@@ -2,7 +2,7 @@
   "name": "ovsjs",
   "version": "0.0.5",
   "main": "index.js",
-  "type": "module",
+  "type": "commonjs",
   "license": "MIT",
   "scripts": {
     "test": "tsx test/HelloWorldGrammarParser.ts",
@@ -41,6 +41,6 @@
     "vite": "^5.4.9"
   },
   "dependencies": {
-    "subhuti": "^0.0.5"
+    "subhuti": "^0.0.6"
   }
 }
