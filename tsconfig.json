@@ -16,7 +16,6 @@
     "declaration": true,
     "declarationMap": true,
     "esModuleInterop": true,
-    "verbatimModuleSyntax": true,
     "lib": [
       "ES2015"
     ],

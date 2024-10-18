@@ -1,5 +1,5 @@
 // Vite 插件
-import {createFilter} from "vite";
+import {createFilter, Plugin} from "vite";
 import SubhutiLexer from "subhuti/SubhutiLexer.js";
 import type SubhutiCst from "subhuti/struct/SubhutiCst.js";
 import {es6Tokens} from "subhuti/syntax/es6/Es6Tokens.js";
@@ -27,7 +27,7 @@ export function vitePluginOvsTransform(code) {
     const mapping = new OvsMappingParser()
     mapping.openMappingMode(res)
     code1 = mapping.exec(res)
-    return`
+    return `
     import { h } from "vue";\n
     ${code1}
     `
@@ -38,6 +38,7 @@ export default function vitePluginOvs(): Plugin {
         /\.ovs$/,
         null,
     )
+    // @ts-ignore
     return {
         enforce: 'pre',
         transform(code, id) {
