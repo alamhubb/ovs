@@ -2,7 +2,7 @@
   "name": "ovsjs",
   "version": "0.0.5",
   "main": "index.js",
-  "type": "commonjs",
+  "type": "module",
   "license": "MIT",
   "scripts": {
     "test": "tsx test/HelloWorldGrammarParser.ts",

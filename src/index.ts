@@ -1,5 +1,10 @@
 // Vite 插件
-import {createFilter, Plugin} from "vite";
+import {createFilter} from "vite";
+import SubhutiLexer from "subhuti/SubhutiLexer.js";
+import type SubhutiCst from "subhuti/struct/SubhutiCst.js";
+import {es6Tokens} from "subhuti/syntax/es6/Es6Tokens.js";
+import OvsParser from "@/ovs/OvsParser.js";
+import OvsMappingParser from "@/ovs/OvsMapping.js";
 
 function traverseClearTokens(currentNode: SubhutiCst) {
     if (!currentNode || !currentNode.children || !currentNode.children.length)
@@ -14,8 +19,7 @@ function traverseClearTokens(currentNode: SubhutiCst) {
 }
 
 export function vitePluginOvsTransform(code) {
-    const lexer = new Subh
-    utiLexer(es6Tokens)
+    const lexer = new SubhutiLexer(es6Tokens)
     const tokens = lexer.lexer(code)
     const parser = new OvsParser(tokens)
     let res = parser.Program()
