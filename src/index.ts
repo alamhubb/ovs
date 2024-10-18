@@ -14,7 +14,8 @@ function traverseClearTokens(currentNode: SubhutiCst) {
 }
 
 export function vitePluginOvsTransform(code) {
-    const lexer = new SubhutiLexer(es6Tokens)
+    const lexer = new Subh
+    utiLexer(es6Tokens)
     const tokens = lexer.lexer(code)
     const parser = new OvsParser(tokens)
     let res = parser.Program()
