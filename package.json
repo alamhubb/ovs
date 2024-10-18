@@ -1,11 +1,11 @@
 {
   "name": "ovsjs",
   "version": "0.0.7",
-  "main": "index.ts",
+  "main": "lib/index.js",
   "type": "module",
   "license": "MIT",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./lib/index.js"
   },
   "scripts": {
     "test": "tsx test/HelloWorldGrammarParser.ts",
