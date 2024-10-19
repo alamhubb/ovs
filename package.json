@@ -4,9 +4,6 @@
   "main": "lib/index.js",
   "type": "module",
   "license": "MIT",
-  "files": [
-    "lib"
-  ],
   "scripts": {
     "test": "tsx test/HelloWorldGrammarParser.ts",
     "build": "tsc"
