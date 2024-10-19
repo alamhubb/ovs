@@ -3,8 +3,8 @@ import {createFilter, Plugin} from "vite";
 import SubhutiLexer from "subhuti/SubhutiLexer.js";
 import type SubhutiCst from "subhuti/struct/SubhutiCst.js";
 import {es6Tokens} from "subhuti/syntax/es6/Es6Tokens.js";
-import OvsMappingParser from "./ovs/OvsMapping.js";
-import OvsParser from "./ovs/OvsParser.js";
+import OvsMappingParser from "./parser/OvsMapping.js";
+import OvsParser from "./parser/OvsParser.js";
 
 function traverseClearTokens(currentNode: SubhutiCst) {
     if (!currentNode || !currentNode.children || !currentNode.children.length)
