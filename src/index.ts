@@ -5,6 +5,7 @@ import type SubhutiCst from "subhuti/struct/SubhutiCst.js";
 import {es6Tokens} from "subhuti/syntax/es6/Es6Tokens.js";
 import OvsMappingParser from "./parser/OvsMapping.js";
 import OvsParser from "./parser/OvsParser.js";
+import JsonUtil from "subhuti/lib/utils/JsonUtil.js";
 
 function traverseClearTokens(currentNode: SubhutiCst) {
     if (!currentNode || !currentNode.children || !currentNode.children.length)
@@ -22,11 +23,12 @@ export function vitePluginOvsTransform(code) {
     const lexer = new SubhutiLexer(es6Tokens)
     const tokens = lexer.lexer(code)
     const parser = new OvsParser(tokens)
-    let res = parser.Program()
+    let res = parser.OvsRenderDom()
     let code1 = parser.exec()
-    const mapping = new OvsMappingParser()
-    mapping.openMappingMode(res)
-    code1 = mapping.exec(res)
+    // const mapping = new OvsMappingParser()
+    // mapping.openMappingMode(res)
+    // code1 = mapping.exec(res)
+    JsonUtil.log(res)
     return `
     import { h } from "vue";\n
     ${code1}
