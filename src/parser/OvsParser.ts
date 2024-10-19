@@ -5,9 +5,7 @@ import {es6TokensObj} from "subhuti/syntax/es6/Es6Tokens.js";
 export default class OvsParser extends Es6Parser {
     @SubhutiRule
     OvsRenderDom() {
-        this.Option(() => {
-            this.consume(es6TokensObj.IdentifierName)
-        })
+        this.consume(es6TokensObj.IdentifierName)
         this.Option(() => {
             this.Arguments()
         })
@@ -16,8 +14,6 @@ export default class OvsParser extends Es6Parser {
             this.ElementList()
         })
         this.consume(es6TokensObj.RBrace)
-        console.log(11111)
-        return this.getCurCst()
     }
 
 
