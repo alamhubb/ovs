@@ -9,15 +9,6 @@ export default class OvsParser extends Es6Parser {
             this.consume(es6TokensObj.IdentifierName)
         })
         this.Option(() => {
-            this.Option(() => {
-                this.Arguments()
-            })
-            this.tokenConsumer.Colon();
-            this.Option(() => {
-                this.consume(es6TokensObj.IdentifierName)
-            })
-        })
-        this.Option(() => {
             this.Arguments()
         })
         this.consume(es6TokensObj.LBrace)
